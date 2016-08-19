@@ -9,9 +9,9 @@ RUN yum update -y && \
     rm -f /var/log/yum.log && \
     rm -rf /usr/local/src/*
 
-ADD nginx-1.10.1.tar.gz /tmp/
-
-RUN cd /tmp/nginx-1.10.1 && \
+RUN wget https://nginx.org/download/nginx-1.10.1.tar.gz -O /tmp/nginx-1.10.1.tar.gz && \
+    tar -zxvf /tmp/nginx-1.10.1.tar.gz -C /tmp/ && \
+    cd /tmp/nginx-1.10.1 && \
     ./configure --prefix=/usr/local/nginx \
     --sbin-path=/usr/local/nginx/sbin/nginx \
     --conf-path=/etc/nginx/nginx.conf \
@@ -37,6 +37,7 @@ RUN cd /tmp/nginx-1.10.1 && \
 RUN useradd -s /sbin/nologin nginx && \
     mkdir -p /tmp/nginx/{client,http_proxy_temp,http_fastcgi_temp,http_uwsgi_temp,http_scgi_temp} && \
     mkdir -p /etc/nginx/conf.d && \
+    rm -f /tmp/nginx-1.10.1.tar.gz && \
     rm -rf /tmp/nginx-1.10.1
 
 RUN git clone https://github.com/mritd/mritd.github.io.git /home/nginx/mritd.me && \

@@ -1,0 +1,13 @@
+version: '2'
+services:
+  nginx:
+    image: mritd/nginx
+    links:
+      - mritd
+      - idea
+    ports:
+      - "80:80"
+  mritd:
+    image: mritd/mritd
+  idea:
+    image: mritd/idea

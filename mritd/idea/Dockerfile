@@ -1,4 +1,4 @@
-FROM alpine:3.3
+FROM alpine:3.4
 
 MAINTAINER mritd <mritd@mritd.me>
 
@@ -15,4 +15,3 @@ RUN pip install --upgrade pip
 RUN pip install -r /idea/ideaLicenseServer/requirements.txt
 
 CMD ["python","/idea/ideaLicenseServer/jetbrains_license_server/manage.py","runserver","0.0.0.0:80"]
-

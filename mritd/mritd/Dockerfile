@@ -4,7 +4,7 @@ MAINTAINER mritd <mritd@mritd.me>
 
 RUN yum update -y && \
     yum upgrade -y && \
-    yum install -y git gcc automake autoconf libtool make gcc-c++ zlib zlib-devel openssl openssl-devel perl perl-devel pcre pcre-devel libxslt libxslt-devel vixie-cron && \
+    yum install -y wget git gcc automake autoconf libtool make gcc-c++ zlib zlib-devel openssl openssl-devel perl perl-devel pcre pcre-devel libxslt libxslt-devel vixie-cron && \
     yum clean all && \
     rm -f /var/log/yum.log && \
     rm -rf /usr/local/src/*

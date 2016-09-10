@@ -45,8 +45,6 @@ RUN useradd -s /sbin/nologin nginx && \
 RUN git clone https://github.com/mritd/mritd.github.io.git /home/nginx/mritd.me && \
     chown -R nginx.nginx /home/nginx/mritd.me/
 
-RUN wget 
-
 ADD conf.d/*.conf /etc/nginx/conf.d/
 
 ADD nginx.conf /etc/nginx/

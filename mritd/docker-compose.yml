@@ -11,5 +11,6 @@ services:
     image: mritd/mritd
     volumes:
       - /etc/nginx/ssl:/etc/nginx/ssl
+      - /var/log/nginx/mritd.me.log:/var/log/nginx/mritd.me.log
   idea:
     image: mritd/idea

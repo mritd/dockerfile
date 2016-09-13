@@ -2,6 +2,8 @@ FROM centos:7
 
 MAINTAINER mritd <mritd@mritd.me>
 
+ENV TZ 'Asia/Shanghai'
+
 RUN yum update -y && \
     yum upgrade -y && \
     yum install -y wget gcc automake autoconf libtool make gcc-c++ zlib zlib-devel openssl openssl-devel perl perl-devel pcre pcre-devel libxslt libxslt-devel && \

@@ -10,7 +10,10 @@ services:
       - idea
     ports:
       - "80:80"
+      - "443:443"
   mritd:
     image: mritd/mritd
+    volumes:
+      - /var/log/nginx/mritd.me.log:/var/log/mritd/mritd.me.log
   idea:
     image: mritd/idea

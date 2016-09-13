@@ -9,5 +9,7 @@ services:
       - "80:80"
   mritd:
     image: mritd/mritd
+    volumes:
+      - /etc/nginx/ssl:/etc/nginx/ssl
   idea:
     image: mritd/idea

@@ -2,6 +2,9 @@ version: '2'
 services:
   nginx:
     image: mritd/nginx
+    volumes:
+      - /etc/nginx/ssl:/etc/nginx/ssl
+      - /var/log/nginx/mritd.me.log:/var/log/nginx/mritd.me.log
     links:
       - mritd
       - idea
@@ -9,8 +12,5 @@ services:
       - "80:80"
   mritd:
     image: mritd/mritd
-    volumes:
-      - /etc/nginx/ssl:/etc/nginx/ssl
-      - /var/log/nginx/mritd.me.log:/var/log/nginx/mritd.me.log
   idea:
     image: mritd/idea

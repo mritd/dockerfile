@@ -13,4 +13,4 @@ RUN apk upgrade --update && \
 RUN wget https://dl.minio.io/server/minio/release/linux-amd64/minio && \
     chmod +x minio
 
-CMD ["./minio server","/data/aws_s3"]
+CMD ["./minio","server","/data/aws_s3"]

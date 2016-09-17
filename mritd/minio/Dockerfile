@@ -11,6 +11,6 @@ RUN apk upgrade --update && \
     rm -rf /var/cache/apk/*
 
 RUN wget https://dl.minio.io/server/minio/release/linux-amd64/minio && \
-    chmod+x minio
+    chmod +x minio
 
 CMD ["nohup","./minio server","/data/aws_s3","&"]

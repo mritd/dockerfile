@@ -2,6 +2,7 @@ version: '2'
 services:
   nginx:
     image: mritd/nginx
+    restart: always
     volumes:
       - /etc/nginx/ssl:/etc/nginx/ssl
       - /var/log/nginx/mritd.me.log:/var/log/nginx/mritd.me.log
@@ -13,7 +14,9 @@ services:
       - "443:443"
   mritd:
     image: mritd/mritd
+    restart: always
     volumes:
       - /var/log/mritd/mritd.me.log:/var/log/nginx/mritd.me.log
   idea:
+    restart: always
     image: mritd/idea

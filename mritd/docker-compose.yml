@@ -19,6 +19,7 @@ services:
       - /var/log/mritd/mritd.me.log:/var/log/nginx/mritd.me.log
   mirror:
     image: registry:2.5.1
+    restart: always
     volumes:
       - /data/registry/:/var/lib/registry
       - /etc/registry/config.yml:/etc/docker/registry/config.yml

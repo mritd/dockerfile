@@ -4,7 +4,7 @@ services:
     image: mritd/nginx
     volumes:
       - /etc/nginx/ssl:/etc/nginx/ssl
-      - /var/log/nginx/mritd.me.log:/var/log/nginx/mritd.me.log
+      - /var/log/nginx/:/var/log/nginx/
     links:
       - mritd
       - idea
@@ -15,5 +15,10 @@ services:
     image: mritd/mritd
     volumes:
       - /var/log/mritd/mritd.me.log:/var/log/nginx/mritd.me.log
+  mirror:
+    image: registry:2.5.1
+    volumes:
+      - /data/registry/:/var/lib/registry
+      - /etc/registry/config.yml:/etc/docker/registry/config.yml
   idea:
     image: mritd/idea

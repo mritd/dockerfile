@@ -12,17 +12,9 @@ services:
     ports:
       - "80:80"
       - "443:443"
-  mritd:
-    image: mritd/mritd
+  jekyll:
+    image: mritd/jekyll
     restart: always
-    volumes:
-      - /var/log/mritd/mritd.me.log:/var/log/nginx/mritd.me.log
-  mirror:
-    image: registry:2.5.1
-    restart: always
-    volumes:
-      - /data/registry/:/var/lib/registry
-      - /etc/registry/config.yml:/etc/docker/registry/config.yml
   idea:
     restart: always
     image: mritd/idea

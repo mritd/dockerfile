@@ -24,4 +24,4 @@ RUN git clone https://github.com/mritd/mritd.github.io.git /root/mritd.github.io
 
 WORKDIR /root/mritd.github.io
 
-CMD ["jekyll","serve","-H","0.0.0.0"]
+CMD ["jekyll","serve","-H","0.0.0.0","-P","80"]

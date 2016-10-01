@@ -7,7 +7,7 @@ services:
       - /etc/nginx/ssl:/etc/nginx/ssl
       - /var/log/nginx/:/var/log/nginx/
     links:
-      - mritd
+      - jekyll
       - idea
     ports:
       - "80:80"

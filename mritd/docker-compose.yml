@@ -6,6 +6,7 @@ services:
     volumes:
       - /etc/nginx/ssl:/etc/nginx/ssl
       - /var/log/nginx/:/var/log/nginx/
+      - /home/www:/usr/local/nginx/html
     links:
       - jekyll
       - idea

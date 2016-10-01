@@ -43,11 +43,11 @@ RUN useradd -M -s /sbin/nologin nginx && \
     rm -f /tmp/nginx-1.10.1.tar.gz && \
     rm -rf /tmp/nginx-1.10.1
 
-RUN .acme.sh/acme.sh  --issue -d mritd.me -d www.mritd.me --standalone && \
-    .acme.sh/acme.sh  --installcert -d mritd.me -d www.mritd.me \
+RUN /root/.acme.sh/acme.sh  --issue -d mritd.me -d www.mritd.me --standalone && \
+    /root/.acme.sh/acme.sh  --installcert -d mritd.me -d www.mritd.me \
              --keypath /etc/nginx/ssl/mritd.me.key \
              --certpath /etc/nginx/ssl/mritd.me.key && \
-    .acme.sh/acme.sh  --upgrade  --auto-upgrade
+    /root/.acme.sh/acme.sh  --upgrade  --auto-upgrade
 
 ADD conf.d/*.conf /etc/nginx/conf.d/
 

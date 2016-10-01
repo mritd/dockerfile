@@ -6,9 +6,11 @@ ENV TZ 'Asia/Shanghai'
 
 RUN yum update -y && \
     yum upgrade -y && \
-    yum install -y wget gcc automake autoconf libtool make gcc-c++ zlib zlib-devel openssl openssl-devel perl perl-devel pcre pcre-devel libxslt libxslt-devel && \
+    yum install -y wget gcc automake autoconf libtool make gcc-c++ zlib zlib-devel crontabs \
+        openssl openssl-devel perl perl-devel pcre pcre-devel libxslt libxslt-devel nc && \
     yum clean all && \
-    rm -rf /usr/local/src/*
+    rm -rf /usr/local/src/* && \
+    curl  https://get.acme.sh | bash
 
 RUN wget https://nginx.org/download/nginx-1.10.1.tar.gz -O /tmp/nginx-1.10.1.tar.gz && \
     tar -zxvf /tmp/nginx-1.10.1.tar.gz -C /tmp/ && \
@@ -40,6 +42,13 @@ RUN useradd -M -s /sbin/nologin nginx && \
     mkdir -p /etc/nginx/conf.d && \
     rm -f /tmp/nginx-1.10.1.tar.gz && \
     rm -rf /tmp/nginx-1.10.1
+
+RUN alias acme.sh=~/.acme.sh/acme.sh && \
+    acme.sh  --issue -d mritd.me -d www.mritd.me --standalone && \
+    acme.sh  --installcert -d mritd.me -d www.mritd.me \
+             --keypath /etc/nginx/ssl/mritd.me.key \
+             --certpath /etc/nginx/ssl/mritd.me.key && \
+    acme.sh  --upgrade  --auto-upgrade
 
 ADD conf.d/*.conf /etc/nginx/conf.d/
 

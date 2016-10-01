@@ -9,8 +9,7 @@ RUN yum update -y && \
     yum install -y wget gcc automake autoconf libtool make gcc-c++ zlib zlib-devel \
         openssl openssl-devel perl perl-devel pcre pcre-devel libxslt libxslt-devel && \
     yum clean all && \
-    rm -rf /usr/local/src/* && \
-    curl  https://get.acme.sh | bash
+    rm -rf /usr/local/src/* && 
 
 RUN wget https://nginx.org/download/nginx-1.10.1.tar.gz -O /tmp/nginx-1.10.1.tar.gz && \
     tar -zxvf /tmp/nginx-1.10.1.tar.gz -C /tmp/ && \

@@ -22,6 +22,8 @@ RUN gem install --no-document redcarpet  maruku rdiscount RedCloth liquid && \
 
 RUN git clone https://github.com/mritd/mritd.github.io.git /root/mritd.github.io
 
+ADD cron/15min/*.sh /etc/periodic/15min
+
 WORKDIR /root/mritd.github.io
 
 CMD ["jekyll","serve","-H","0.0.0.0","-P","80"]

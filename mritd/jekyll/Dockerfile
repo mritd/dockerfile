@@ -20,6 +20,8 @@ RUN git clone https://github.com/mritd/mritd.github.io.git /root/mritd.github.io
 
 ADD cron/15min/* /etc/periodic/15min
 
-ADD entrypoint.sh /entrypoint.sh
+ADD entrypoint.sh /root/entrypoint.sh
+
+WORKDIR /root
 
 CMD ["entrypoint.sh"]

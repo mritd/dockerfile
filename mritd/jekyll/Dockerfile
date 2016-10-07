@@ -16,10 +16,12 @@ RUN apk upgrade --update && \
 RUN git clone https://github.com/mritd/mritd.github.io.git /root/mritd.github.io && \
     cd /root/mritd.github.io && \
     gem install --no-document bundle && \
-    bundle install && \
-    crond -l 8 -L /root/cron.log 
+    bundle install
 
 ADD cron/15min/* /etc/periodic/15min
+
+RUN chmod +x /etc/periodic/15min/* && \
+    crond -l 8 -L /root/cron.log
 
 WORKDIR /root/mritd.github.io
 

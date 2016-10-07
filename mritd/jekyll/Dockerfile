@@ -8,7 +8,9 @@ RUN apk upgrade --update && \
     apk add --update bash libatomic readline readline-dev libxml2 libxml2-dev \
       ncurses-terminfo-base ncurses-terminfo libxslt libxslt-dev zlib-dev zlib \
       ruby ruby-dev yaml yaml-dev libffi-dev build-base git ruby-io-console \
-      ruby-irb ruby-json ruby-rake && \
+      ruby-irb ruby-json ruby-rake tzdata && \
+    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    echo "Asia/Shanghai" > /etc/timezone && \
     rm -rf /root/src /tmp/* /usr/share/man /var/cache/apk/*
 
 RUN gem install --no-document redcarpet  maruku rdiscount RedCloth liquid && \
@@ -20,9 +22,10 @@ RUN gem install --no-document redcarpet  maruku rdiscount RedCloth liquid && \
     gem uninstall jekyll-sass-converter -v 1.4.0 && \
     gem uninstall kramdown -v 1.12.0
 
-RUN git clone https://github.com/mritd/mritd.github.io.git /root/mritd.github.io
+RUN git clone https://github.com/mritd/mritd.github.io.git /root/mritd.github.io && \
+    crond -l 8 -L /root/cron.log
 
-ADD cron/15min/*.sh /etc/periodic/15min
+ADD cron/15min/* /etc/periodic/15min
 
 WORKDIR /root/mritd.github.io
 

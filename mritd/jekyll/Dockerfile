@@ -24,4 +24,4 @@ ADD entrypoint.sh /root/entrypoint.sh
 
 WORKDIR /root
 
-CMD ["entrypoint.sh"]
+CMD ["./entrypoint.sh"]

@@ -20,9 +20,6 @@ RUN git clone https://github.com/mritd/mritd.github.io.git /root/mritd.github.io
 
 ADD cron/15min/* /etc/periodic/15min
 
-RUN chmod +x /etc/periodic/15min/* && \
-    crond -l 8 -L /root/cron.log
+ADD entrypoint.sh /entrypoint.sh
 
-WORKDIR /root/mritd.github.io
-
-CMD ["jekyll","serve","-H","0.0.0.0","-P","80"]
+CMD ["entrypoint.sh"]

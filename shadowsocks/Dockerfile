@@ -11,7 +11,6 @@ RUN apk upgrade --update && \
     pip install shadowsocks && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo "Asia/Shanghai" > /etc/timezone && \
-    tar -zxvf 2.9.0.tar.gz && \
     rm -rf /var/cache/apk/*
 
 ADD entrypoint.sh /root/entrypoint.sh

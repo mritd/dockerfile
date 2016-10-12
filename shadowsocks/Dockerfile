@@ -11,7 +11,7 @@ RUN apk upgrade --update && \
     wget --no-check-certificate https://github.com/shadowsocks/shadowsocks/archive/2.9.0.tar.gz && \
     tar -zxvf 2.9.0.tar.gz && rm -f /root/shadowsocks-2.9.0/setup.py && \
     wget --no-check-certificate https://raw.githubusercontent.com/shadowsocks/shadowsocks/master/setup.py -O /root/shadowsocks-2.9.0/setup.py && \
-    (cd /root/shadowsocks-2.9.0 && python setup.py install) &&  rm -rf shadowsocks-2.9.0 && \
+    (cd /root/shadowsocks-2.9.0 && python setup.py install) &&  rm -rf shadowsocks-2.9.0 2.9.0.tar.gz && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo "Asia/Shanghai" > /etc/timezone && \
     rm -rf /var/cache/apk/*

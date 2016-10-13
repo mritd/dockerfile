@@ -9,6 +9,7 @@ ONE_TIME_AUTH=""
 FAST_OPEN=""
 WORKERS=1
 PREFER_IPV6=""
+KCPTUN_FLAG="true"
 
 while getopts "s:p:k:m:t:w:af" OPT; do
   case $OPT in
@@ -30,10 +31,19 @@ while getopts "s:p:k:m:t:w:af" OPT; do
         FAST_OPEN="--fast-open";;
     i)
         PREFER_IPV6="--prefer-ipv6";;
+    x)
+        KCPTUN_FLAG="false";;
+
   esac
 done
 
-kcptun -c /etc/kcptun.cfg 2>&1 &
+if [ "$KCPTUN_FLAG" == "true" ]; then
+  echo -e "\033[32mStarting kcptun......\033[0m"
+  kcptun -c /etc/kcptun.cfg 2>&1 &
+else
+  echo -e "\033[33mKcptun not started......\033[0m"
+fi
 
+echo -e "\033[32mStarting shadowsocks......\033[0m"
 /usr/bin/ssserver -s $SERVER_ADDR -p $SERVER_PORT -k $PASSWORD -m $METHOD -t $TIMEOUT \
                   --workers $WORKERS $ONE_TIME_AUTH $FAST_OPEN $PREFER_IPV6

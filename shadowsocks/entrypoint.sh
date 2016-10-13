@@ -33,5 +33,7 @@ while getopts "s:p:k:m:t:w:af" OPT; do
   esac
 done
 
+kcptun -c /etc/kcptun.cfg 2>&1 &
+
 /usr/bin/ssserver -s $SERVER_ADDR -p $SERVER_PORT -k $PASSWORD -m $METHOD -t $TIMEOUT \
                   --workers $WORKERS $ONE_TIME_AUTH $FAST_OPEN $PREFER_IPV6

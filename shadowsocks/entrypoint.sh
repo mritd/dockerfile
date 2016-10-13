@@ -11,7 +11,7 @@ WORKERS=1
 PREFER_IPV6=""
 KCPTUN_FLAG="true"
 
-while getopts "s:p:k:m:t:w:af" OPT; do
+while getopts "s:p:k:m:t:w:afx" OPT; do
   case $OPT in
     s)
         SERVER_ADDR=$OPTARG;;

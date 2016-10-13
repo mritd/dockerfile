@@ -16,7 +16,6 @@ RUN apk upgrade --update && \
     tar -zxvf kcptun-linux-amd64-20161009.tar.gz && mv server_linux_amd64 /usr/bin/kcptun && rm -f client_linux_amd64 && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo "Asia/Shanghai" > /etc/timezone && \
-    apk del py-setuptools wget && \
     rm -rf /var/cache/apk/*
 
 ADD entrypoint.sh /root/entrypoint.sh

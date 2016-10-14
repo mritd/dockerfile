@@ -45,5 +45,5 @@ else
 fi
 
 echo -e "\033[32mStarting shadowsocks......\033[0m"
-/usr/bin/ssserver -s $SERVER_ADDR -p $SERVER_PORT -k $PASSWORD -m $METHOD -t $TIMEOUT \
+/usr/bin/ssserver -s $SERVER_ADDR -p $SERVER_PORT -k "$PASSWORD" -m $METHOD -t $TIMEOUT \
                   --workers $WORKERS $ONE_TIME_AUTH $FAST_OPEN $PREFER_IPV6

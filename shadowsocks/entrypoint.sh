@@ -1,15 +1,15 @@
 #!/bin/bash
 
-SERVER_ADDR=0.0.0.0
-SERVER_PORT=5000
-PASSWORD=ZQoPF2g6uwJE7cy4
-METHOD=aes-256-cfb
-TIMEOUT=300
-ONE_TIME_AUTH=""
-FAST_OPEN=""
-WORKERS=1
-PREFER_IPV6=""
-KCPTUN_FLAG="true"
+SERVER_ADDR=${SERVER_ADDR:-0.0.0.0}
+SERVER_PORT=${SERVER_PORT:-5000}
+PASSWORD=${PASSWORD-:ZQoPF2g6uwJE7cy4}
+METHOD=${METHOD:-aes-256-cfb}
+TIMEOUT=${TIMEOUT:-300}
+ONE_TIME_AUTH=${ONE_TIME_AUTH:-""}
+FAST_OPEN=${FAST_OPEN:-""}
+WORKERS=${WORKERS:-1}
+PREFER_IPV6=${PREFER_IPV6:-""}
+KCPTUN_FLAG=${KCPTUN_FLAG:-"true"}
 
 while getopts "s:p:k:m:t:w:afx" OPT; do
   case $OPT in
@@ -45,5 +45,5 @@ else
 fi
 
 echo -e "\033[32mStarting shadowsocks......\033[0m"
-/usr/bin/ssserver -s $SERVER_ADDR -p $SERVER_PORT -k $PASSWORD -m $METHOD -t $TIMEOUT \
+/usr/bin/ssserver -s $SERVER_ADDR -p $SERVER_PORT -k "$PASSWORD" -m $METHOD -t $TIMEOUT \
                   --workers $WORKERS $ONE_TIME_AUTH $FAST_OPEN $PREFER_IPV6

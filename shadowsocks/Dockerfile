@@ -2,9 +2,9 @@ FROM alpine:3.4
 
 MAINTAINER mritd <mritd@mritd.me>
 
-ENV TZ 'Asia/Shanghai'
-
 WORKDIR /root
+
+ENV TZ 'Asia/Shanghai'
 
 ENV SS_VERSION 2.9.0
 

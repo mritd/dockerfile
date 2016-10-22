@@ -24,5 +24,6 @@ RUN apk upgrade --update && \
     rm -rf /tmp/v2ray/* && \
     rm -rf /var/cache/apk/*
 
+ADD entrypoint.sh /root/entrypoint.sh
 
 CMD ["/bin/bash"]

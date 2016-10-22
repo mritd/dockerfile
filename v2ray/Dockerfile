@@ -17,11 +17,8 @@ RUN apk upgrade --update && \
     curl -L -H "Cache-Control: no-cache" -o /tmp/v2ray/v2ray.zip ${DOWNLOAD_URL} && \
     unzip /tmp/v2ray/v2ray.zip -d /tmp/v2ray/ && \
     cp /tmp/v2ray/v2ray-${VERSION}-linux-64/v2ray /usr/bin/v2ray/v2ray && \
-    chmod +x /usr/bin/v2ray/v2ray && \
     cp /tmp/v2ray/v2ray-${VERSION}-linux-64/vpoint_vmess_freedom.json /etc/v2ray/config.json && \
-    let PORT=$RANDOM+10000 && sed -i "s/10086/${PORT}/g" /etc/v2ray/config.json && \
-    UUID=$(cat /proc/sys/kernel/random/uuid) && sed -i "s/23ad6b10-8d1a-40f7-8ad0-e3e35cd38297/${UUID}/g" /etc/v2ray/config.json && \
-    echo "PORT:${PORT}" && echo "UUID:${UUID}" && \
+    chmod +x /usr/bin/v2ray/v2ray && \
     rm -rf /tmp/v2ray && \
     rm -rf /var/cache/apk/*
 

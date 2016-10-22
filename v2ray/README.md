@@ -1,6 +1,6 @@
 ## v2ray 最新版本
 
-
+[![](https://images.microbadger.com/badges/version/mritd/v2ray.svg)](https://microbadger.com/images/mritd/v2ray "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/mritd/v2ray.svg)](https://microbadger.com/images/mritd/v2ray "Get your own image badge on microbadger.com")
 
 > 截至目前该镜像为 v2ray 2.3.3 版本，Dockerfile 每次 build 会自动获取最新稳定版
 

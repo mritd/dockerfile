@@ -23,8 +23,10 @@ docker run -dt --name v2ray mritd/v2ray -c "{\"log\" : {     \"access\": \"/var/
 ```
 
 **`-c` 选项后面的参数就是改好的配置文件中的 JSON 字符串**
-**实际上对于怎么处理那个 JSON 中引号懵逼的朋友可以借助 JSON 在线转换工具 [http://www.bejson.com/zhuanyi/](http://www.bejson.com/zhuanyi/) 完成**
-**也就是说先改好配置，然后将 JSON 复制到上面的网站，选择压缩并转义转换一下，拼接在 `-c` 选项后即可**
+**实际上对于怎么处理那个 JSON 中引号懵逼的朋友可以借助 JSON
+在线转换工具 [http://www.bejson.com/zhuanyi/](http://www.bejson.com/zhuanyi/) 完成 JSON 字符串转换**
+**也就是说先改好配置，然后将 JSON 复制到上面的网站，选择压缩并转义转换一下，
+最后将压缩并转义后的内容拼接在 `-c` 选项后即可**
 **注意: 网站转换完的两边没有双引号，也就是说要 `-c "粘贴压缩并转义后的内容"`**
 
 ### 样例配置

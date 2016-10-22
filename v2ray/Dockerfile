@@ -12,10 +12,11 @@ RUN apk upgrade --update && \
     apk add --update bash tzdata wget && \
     wget --no-check-certificate https://github.com/v2ray/v2ray-core/releases/download/v$VERSION/v2ray-linux-64.zip && \
     unzip v2ray-linux-64.zip && \
+	mv v2ray-v2.2.1-linux-64/v2ray /root && \ 
 	mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2 && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo "Asia/Shanghai" > /etc/timezone && \
-    rm -f v2ray-linux-64.zip && \
+    rm -rf v2ray-linux-64.zip v2ray-v2.2.1-linux-64 && \
     rm -rf /var/cache/apk/*
 
 CMD ["/bin/bash"]

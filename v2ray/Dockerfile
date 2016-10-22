@@ -7,7 +7,7 @@ ENV TZ 'Asia/Shanghai'
 WORKDIR /root
 
 RUN apk upgrade --update && \
-    apk add --update bash tzdata wget && \
+    apk add --update bash tzdata curl && \
     mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2 && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo "Asia/Shanghai" > /etc/timezone && \
@@ -21,7 +21,7 @@ RUN apk upgrade --update && \
     cp /tmp/v2ray/v2ray-${VERSION}-linux-64/vpoint_vmess_freedom.json /etc/v2ray/config.json && \
     let PORT=$RANDOM+10000 && sed -i "s/10086/${PORT}/g" /etc/v2ray/config.json && \
     UUID=$(cat /proc/sys/kernel/random/uuid) && sed -i "s/23ad6b10-8d1a-40f7-8ad0-e3e35cd38297/${UUID}/g" /etc/v2ray/config.json && \
-    echo "PORT:${PORT}" && echo "UUID:${UUID}" && \ 
+    echo "PORT:${PORT}" && echo "UUID:${UUID}" && \
     rm -rf /tmp/v2ray/* && \
     rm -rf /var/cache/apk/*
 

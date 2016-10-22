@@ -24,4 +24,4 @@ RUN apk upgrade --update && \
 
 ADD entrypoint.sh /root/entrypoint.sh
 
-CMD ["/bin/bash"]
+CMD ["/root/entrypoint.sh"]

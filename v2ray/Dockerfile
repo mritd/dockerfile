@@ -16,9 +16,9 @@ RUN apk upgrade --update && \
     mkdir -p /var/log/v2ray /usr/bin/v2ray /tmp/v2ray /etc/v2ray/ && \
     curl -L -H "Cache-Control: no-cache" -o /tmp/v2ray/v2ray.zip ${DOWNLOAD_URL} && \
     unzip /tmp/v2ray/v2ray.zip -d /tmp/v2ray/ && \
-    cp /tmp/v2ray/v2ray-${VERSION}-linux-64/v2ray /usr/bin/v2ray/v2ray && \
-    cp /tmp/v2ray/v2ray-${VERSION}-linux-64/vpoint_vmess_freedom.json /etc/v2ray/config.json && \
-    chmod +x /usr/bin/v2ray/v2ray && \
+    cp /tmp/v2ray/v2ray-${VERSION}-linux-64/v2ray /root/v2ray && \
+    cp /tmp/v2ray/v2ray-${VERSION}-linux-64/vpoint_vmess_freedom.json /root/config.json && \
+    chmod +x /root/v2ray && \
     rm -rf /tmp/v2ray && \
     rm -rf /var/cache/apk/*
 

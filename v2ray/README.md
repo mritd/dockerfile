@@ -16,7 +16,7 @@ docker run -dt --name v2ray mritd/v2ray
 
 ### 自定义配置
 
-**镜像支持写入自定义的 v2ray 配置，使用 `-c` 选项并跟上 JSON 字符串即可，如下所示**
+**镜像支持写入自定义的 v2ray 配置，挂载覆盖 `/root/config.json` 或使用 `-c` 选项并跟上 JSON 字符串即可，如下所示**
 
 ``` sh
 docker run -dt --name v2ray mritd/v2ray -c "{\"log\" : {     \"access\": \"/var/log/v2ray/access.log\",     \"error\": \"/var/log/v2ray/error.log\",     \"loglevel\": \"warning\"   },   \"inbound\": {     \"port\": 4500,     \"protocol\": \"vmess\",     \"settings\": {       \"clients\": [         {           \"id\": \"23ad6b10-8d1a-40f7-8ad0-e3e35cd38297\",           \"level\": 1,           \"alterId\": 64         }       ]     }   },   \"outbound\": {     \"protocol\": \"freedom\",     \"settings\": {}   },   \"outboundDetour\": [     {       \"protocol\": \"blackhole\",       \"settings\": {},       \"tag\": \"blocked\"     }   ], \"routing\": {     \"strategy\": \"rules\",     \"settings\": {       \"rules\": [         {           \"type\": \"field\",           \"ip\": [             \"0.0.0.0/8\",             \"10.0.0.0/8\",             \"100.64.0.0/10\",             \"127.0.0.0/8\",             \"169.254.0.0/16\",             \"172.16.0.0/12\",             \"192.0.0.0/24\",             \"192.0.2.0/24\",             \"192.168.0.0/16\",             \"198.18.0.0/15\",             \"198.51.100.0/24\",             \"203.0.113.0/24\",             \"::1/128\",             \"fc00::/7\",             \"fe80::/10\"           ],           \"outboundTag\": \"blocked\"         }       ]     }   },   \"transport\": {     \"kcpSettings\": {       \"uplinkCapacity\": 10,       \"downlinkCapacity\": 10     }   } }"

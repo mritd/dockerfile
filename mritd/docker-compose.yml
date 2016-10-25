@@ -6,7 +6,6 @@ services:
     volumes:
       - /etc/nginx/ssl:/etc/nginx/ssl
       - /var/log/nginx/:/var/log/nginx/
-      - /home/www:/usr/share/nginx/html
     links:
       - jekyll
       - idea
@@ -17,5 +16,5 @@ services:
     image: mritd/jekyll
     restart: always
   idea:
-    restart: always
     image: mritd/idea
+    restart: always

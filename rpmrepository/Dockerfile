@@ -8,8 +8,6 @@ VOLUME /usr/share/nginx/html/
 
 RUN yum install -y epel-release && yum update -y && \
     yum install -y nginx createrepo crontabs && \
-    mkdir -p /usr/share/nginx/html/centos/7.2/{i386,x86_64,noarch,updates,SRPMS} && \
-    cd /usr/share/nginx/html/centos/7.2/ && ls | xargs -i createrepo {} && \
     echo "*/15  *  *  * *  cd /usr/share/nginx/html/centos/7.2/ && ls | xargs -i createrepo --update {}" | crontab
 
 ADD entrypoint.sh /root/entrypoint.sh

@@ -9,6 +9,7 @@ services:
     links:
       - jekyll
       - idea
+      - rpm
     ports:
       - "80:80"
       - "443:443"
@@ -18,3 +19,8 @@ services:
   idea:
     image: mritd/idea
     restart: always
+  rpm:
+    image: mritd/rpmrepository
+    restart: always
+    volumes:
+      - /data/repo:/data/repo

@@ -1,2 +1,2 @@
 #!/bin/bash
-cd /usr/share/nginx/html/centos/7.2/ && ls | xargs -i createrepo --update {}
+cd /data/repo/centos/7/ && ls | xargs -i createrepo --update {}

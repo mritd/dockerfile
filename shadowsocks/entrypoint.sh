@@ -10,6 +10,7 @@ FAST_OPEN=${FAST_OPEN:-""}
 WORKERS=${WORKERS:-1}
 PREFER_IPV6=${PREFER_IPV6:-""}
 KCPTUN_FLAG=${KCPTUN_FLAG:-"true"}
+KCPTUN_CONFIG=${KCPTUN_CONFIG:""}
 
 while getopts "s:p:k:m:t:w:afx" OPT; do
   case $OPT in
@@ -33,12 +34,17 @@ while getopts "s:p:k:m:t:w:afx" OPT; do
         PREFER_IPV6="--prefer-ipv6";;
     x)
         KCPTUN_FLAG="false";;
+    c)
+        KCPTUN_CONFIG=$OPTARG;;
 
   esac
 done
 
 if [ "$KCPTUN_FLAG" == "true" ]; then
   echo -e "\033[32mStarting kcptun......\033[0m"
+  if [ "$KCPTUN_CONFIG" != "" ]; then
+    echo '$KCPTUN_CONFIG' > /etc/kcptun.cfg
+  fi
   kcptun -c /etc/kcptun.cfg 2>&1 &
 else
   echo -e "\033[33mKcptun not started......\033[0m"

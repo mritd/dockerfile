@@ -43,7 +43,8 @@ done
 if [ "$KCPTUN_FLAG" == "true" ]; then
   echo -e "\033[32mStarting kcptun......\033[0m"
   if [ "$KCPTUN_CONFIG" != "" ]; then
-    echo '$KCPTUN_CONFIG' > /etc/kcptun.cfg
+    echo -e "\033[32mOverride the kcptun configuration......\033[0m"
+    echo $KCPTUN_CONFIG > /etc/kcptun.cfg
   fi
   kcptun -c /etc/kcptun.cfg 2>&1 &
 else

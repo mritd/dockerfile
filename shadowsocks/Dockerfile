@@ -8,7 +8,7 @@ ENV TZ 'Asia/Shanghai'
 
 ENV SS_VERSION 2.9.0
 
-ENV KCP_VERSION 20161009
+ENV KCP_VERSION 20161031
 
 RUN apk upgrade --update && \
     apk add --update bash tzdata python py-setuptools wget && \

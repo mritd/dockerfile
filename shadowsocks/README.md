@@ -1,6 +1,10 @@
-## shadowsocks 2.9.0 版本
+## shadowsocks
 
 [![](https://images.microbadger.com/badges/image/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own version badge on microbadger.com")
+
+- shadowskcs 2.9.0
+- kcptun 20161031
+
 ### 打开姿势
 
 ``` sh
@@ -105,6 +109,6 @@ docker run -dt --name shadowsocks -p 5000:5000 -e PASSWORD=ZQoPF2g6uwJE7cy4 -e F
 
 增加 默认读取环境变量策略，可通过环境变量指定 shadowsocks 相关设置
 
-- 2016-11-1 增加 kcptun 自定义配置选项(-c 或 环境变量)
+- 2016-11-1 升级 kcptun，增加 kcptun 自定义配置选项(-c 或 环境变量)
 
 增加了 `-c` 参数和环境变量 `KCPTUN_CONFIG`，用于在不挂载文件的情况下重写 kcptun 的配置

@@ -2,8 +2,8 @@
 
 [![](https://images.microbadger.com/badges/image/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own version badge on microbadger.com")
 
-- shadowskcs 2.9.0
-- kcptun 20161031
+- **shadowsocks 版本: 2.9.0**
+- **kcptun 版本: 20161031**
 
 ### 打开姿势
 

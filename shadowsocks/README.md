@@ -56,7 +56,17 @@ General options:
 docker run -dt --name shadowsocks -v KCP_CFG_PATH:/etc/kcptun.cfg -p 5000:5000 -p 20000:20000 mritd/shadowsocks -k mritd -w 2 -f
 ```
 
-kcptun 默认使用 `/etc/kcptun.cfg` 启动，默认配置见右侧 Github，自定义配置时只需要使用 `-v` 将本地配置挂载进去即可，如 `-v /root/kcptun.cfg:/etc/kcptun.cfg` ；同时应使用 `-p` 增加 kcptun 对应的端口映射，默认配置监听 20000 端口；如不想使用 kcptun 可使用 `-x` 参数禁止
+kcptun 默认使用 `/etc/kcptun.cfg` 启动，默认配置见右侧 Github，自定义配置时只需要使用 `-v` 将本地配置挂载进去即可，如 `-v /root/kcptun.cfg:/etc/kcptun.cfg`；同时应使用 `-p` 增加 kcptun 对应的端口映射，默认配置监听 20000 端口；如不想使用 kcptun 可使用 `-x` 参数禁止
+
+最新增加了 `-c` 参数和环境变量 `KCPTUN_CONFIG` 来支持命令行下自定义 kcptun 的配置，`-c` 命令后面要跟一个完整的 kcptun json 配置字符串，如下所示
+
+``` sh
+docker run -dt --name shadowsocks -p 5000:5000 -p 20000:20000 mritd/shadowsocks -k mritd -w 2 -f -c "{\"listen\":\":1111\",\"target\":\"127.0.0.1:5000\",\"key\":\"kcptun\",\"crypt\":\"salsa20\",\"mode\":\"fast2\",\"mtu\":1350,\"sndwnd\":1024,\"rcvwnd\":1024,\"datashard\":70,\"parityshard\":30,\"dscp\":46,\"nocomp\":false,\"acknodelay\":false,\"nodelay\":0,\"interval\":40,\"resend\":0,\"nc\":0,\"sockbuf\":4194304,\"keepalive\":10,\"log\":\"/var/log/kcptun.log\"}"
+```
+
+**json 字符串手动转义 `"` 可能有很大困难，可以借助 [JSON 在线格式化工具](http://www.bejson.com/zhuanyi/)，也就是说:
+首先自己修改好一个 kcptun 的配置文件，然后将里面的内容复制到上面的在线格式化工具中，选择压缩并转义；此时 json 字符串将被压缩
+成一行，同时内部 `"` 全部被转义，最后在启动的时候使用 `-c "压缩并转义后的内容"` 即可；注意一下不要忘记两边的双引号**
 
 ### 环境变量支持
 
@@ -74,6 +84,7 @@ kcptun 默认使用 `/etc/kcptun.cfg` 启动，默认配置见右侧 Github，�
 |FAST_OPEN|开启 fast-open|为空或 `--fast-open`|
 |PREFER_IPV6|优先处理 IPV6|为空或 `--prefer-ipv6`|
 |KCPTUN_FLAG|是否开启 kcptun 支持|`true` 或 `false`|
+|KCPTUN_CONFIG|自定义 kcptun 配置|压缩并转义后的 kcptun 配置|
 
 使用时可指定环境变量，如下
 
@@ -95,3 +106,7 @@ docker run -dt --name shadowsocks -p 5000:5000 -e PASSWORD=ZQoPF2g6uwJE7cy4 -e F
 - 2016-10-14 增加 环境变量支持
 
 增加 默认读取环境变量策略，可通过环境变量指定 shadowsocks 相关设置
+
+- 2016-11-1 增加 kcptun 自定义配置选项(-c 或 环境变量)
+
+增加了 `-c` 参数和环境变量 `KCPTUN_CONFIG`，用于在不挂载文件的情况加重写 kcptun 的配置

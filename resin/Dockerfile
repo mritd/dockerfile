@@ -15,11 +15,13 @@ RUN apk upgrade --update && \
     tar -zxvf resin-$RESIN_VERSION.tar.gz && \
     tar -zxvf jdk-8u111-linux-x64.tar.gz && \
     mv jdk1.8.0_111 /usr/local && \
-    cd resin-$RESIN_VERSION && \
+    echo "export JAVA_HOME=/usr/local/jdk1.8.0_111" >> /etc/profile && \
+    source /etc/profile && \
+    (cd resin-$RESIN_VERSION && \
     ./configure --prefix=/usr/local/resin-$RESIN_VERSION \
                 --with-java-home=/user/local/jdk1.8.0_111 \
                 --enable-64bit && \
-    make && make install && \
+    make && make install) && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo "Asia/Shanghai" > /etc/timezone && \
     rm -rf /var/cache/apk/*

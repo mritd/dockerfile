@@ -12,7 +12,8 @@ RUN apk upgrade --update && \
             gd-dev geoip-dev  perl-dev && \
     wget http://www.caucho.com/download/resin-$RESIN_VERSION.tar.gz && \
     wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u111-b14/jdk-8u111-linux-x64.tar.gz && \
-    tar -zxvf resin-$RESIN_VERSION.tar.gz jdk-8u111-linux-x64.tar.gz && \
+    tar -zxvf resin-$RESIN_VERSION.tar.gz && \
+    tar -zxvf jdk-8u111-linux-x64.tar.gz && \
     mv jdk1.8.0_111 /usr/local && \
     cd resin-$RESIN_VERSION && \
     ./configure --prefix=/usr/local/resin-$RESIN_VERSION \

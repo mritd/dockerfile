@@ -6,15 +6,14 @@ ENV TZ 'Asia/Shanghai'
 
 ENV RESIN_VERSION 4.0.49
 
-ADD jdk-8u111-linux-x64.tar.gz /user/local
-
 RUN apk upgrade --update && \
-    apk add --update bash tzdata wget && \
-    apk add --no-cache gcc libc-dev make openssl-dev pcre-dev \
-            zlib-dev linux-headers curl gnupg libxslt-dev gd-dev \
-            geoip-dev  perl-dev && \
+    apk add --no-cache bash tzdata wget gcc libc-dev make openssl-dev \
+            pcre-dev zlib-dev linux-headers curl gnupg libxslt-dev \
+            gd-dev geoip-dev  perl-dev && \
     wget http://www.caucho.com/download/resin-$RESIN_VERSION.tar.gz && \
-    tar -zxvf resin-$RESIN_VERSION.tar.gz && \
+    wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u111-b14/jdk-8u111-linux-x64.tar.gz && \
+    tar -zxvf resin-$RESIN_VERSION.tar.gz jdk-8u111-linux-x64.tar.gz && \
+    mv jdk1.8.0_111 /usr/local && \
     cd resin-$RESIN_VERSION && \
     ./configure --prefix=/usr/local/resin-$RESIN_VERSION \
                 --with-java-home=/user/local/jdk1.8.0_111 \

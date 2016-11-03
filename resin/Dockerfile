@@ -2,30 +2,56 @@ FROM alpine:3.4
 
 MAINTAINER mritd <mritd@mritd.me>
 
-ENV TZ='Asia/Shanghai' \
+ENV LANG=C.UTF-8 \
+    TZ='Asia/Shanghai' \
     JAVA_VERSION=8 \
     JAVA_UPDATE=112 \
     JAVA_BUILD=15 \
-    JAVA_HOME="/usr/local/jdk1.${JAVA_VERSION}.0_${JAVA_UPDATE}" \
+    JAVA_HOME='/usr/lib/jvm/default-jvm' \
     RESIN_VERSION=4.0.49
 
-RUN apk upgrade --update && \
-    apk add --no-cache bash tzdata wget gcc libc-dev \
-            make openssl-dev pcre-dev linux-headers \
-            libxslt-dev gd-dev geoip-dev perl-dev && \
-    wget http://www.caucho.com/download/resin-$RESIN_VERSION.tar.gz && \
-    wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}u${JAVA_UPDATE}-b${JAVA_BUILD}/jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz && \
-    tar -zxvf resin-$RESIN_VERSION.tar.gz && \
+# install glibc
+RUN ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download" && \
+    ALPINE_GLIBC_PACKAGE_VERSION="2.23-r3" && \
+    ALPINE_GLIBC_BASE_PACKAGE_FILENAME="glibc-$ALPINE_GLIBC_PACKAGE_VERSION.apk" && \
+    ALPINE_GLIBC_BIN_PACKAGE_FILENAME="glibc-bin-$ALPINE_GLIBC_PACKAGE_VERSION.apk" && \
+    ALPINE_GLIBC_I18N_PACKAGE_FILENAME="glibc-i18n-$ALPINE_GLIBC_PACKAGE_VERSION.apk" && \
+    apk add --no-cache --virtual=.build-dependencies wget ca-certificates && \
+    wget \
+        "https://raw.githubusercontent.com/andyshinn/alpine-pkg-glibc/master/sgerrand.rsa.pub" \
+        -O "/etc/apk/keys/sgerrand.rsa.pub" && \
+    wget \
+        "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
+        "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
+        "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_I18N_PACKAGE_FILENAME" && \
+    apk add --no-cache \
+        "$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
+        "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
+        "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME" && \
+    \
+    rm "/etc/apk/keys/sgerrand.rsa.pub" && \
+    /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 C.UTF-8 || true && \
+    echo "export LANG=C.UTF-8" > /etc/profile.d/locale.sh && \
+    \
+    apk del glibc-i18n && \
+    \
+    rm "/root/.wget-hsts" && \
+    apk del .build-dependencies && \
+    rm \
+        "$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
+        "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
+        "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME"
+
+# instal oracle jdk
+RUN apk add --no-cache --virtual=build-dependencies wget ca-certificates && \
+    cd "/tmp" && \
+    wget --header "Cookie: oraclelicense=accept-securebackup-cookie;" \
+        "http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}u${JAVA_UPDATE}-b${JAVA_BUILD}/jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz" && \
     tar -xzf "jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz" && \
-    mv "jdk1.${JAVA_VERSION}.0_${JAVA_UPDATE}" /usr/local && \
+    mkdir -p "/usr/lib/jvm" && \
+    mv "/tmp/jdk1.${JAVA_VERSION}.0_${JAVA_UPDATE}" "/usr/lib/jvm/java-${JAVA_VERSION}-oracle" && \
+    ln -s "java-${JAVA_VERSION}-oracle" "$JAVA_HOME" && \
     ln -s "$JAVA_HOME/bin/"* "/usr/bin/" && \
-    (cd resin-$RESIN_VERSION && \
-    ./configure --prefix=/usr/local/resin-$RESIN_VERSION \
-                --with-java-home=/usr/local/jdk1.${JAVA_VERSION}.0_${JAVA_UPDATE} \
-                --enable-64bit && \
-    make && make install) && \
-    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-    echo "Asia/Shanghai" > /etc/timezone && \
     rm -rf "$JAVA_HOME/"*src.zip && \
     rm -rf "$JAVA_HOME/lib/missioncontrol" \
            "$JAVA_HOME/lib/visualvm" \
@@ -46,8 +72,22 @@ RUN apk upgrade --update && \
            "$JAVA_HOME/jre/lib/amd64/libgstreamer-lite.so" \
            "$JAVA_HOME/jre/lib/amd64/"libjavafx*.so \
            "$JAVA_HOME/jre/lib/amd64/"libjfx*.so && \
-    rm -f resin-$RESIN_VERSION.tar.gz \
-          "jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz" && \
+    apk del build-dependencies && \
+    rm "/tmp/"*
+
+# install resin
+RUN apk add --no-cache bash tzdata openssl-dev libxslt-dev perl-dev && \
+    wget http://www.caucho.com/download/resin-$RESIN_VERSION.tar.gz && \
+    tar -zxvf resin-$RESIN_VERSION.tar.gz && \
+    (cd resin-$RESIN_VERSION && \
+    ./configure --prefix=/usr/local/resin-$RESIN_VERSION \
+                --with-java-home=$JAVA_HOME \
+                --enable-64bit && \
+    make && make install) && \
+    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    echo "Asia/Shanghai" > /etc/timezone && \
+    rm -rf resin-$RESIN_VERSION.tar.gz \
+           resin-$RESIN_VERSION && \
     rm -rf /var/cache/apk/*
 
 CMD ["/bin/bash"]

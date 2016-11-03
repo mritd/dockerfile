@@ -2,7 +2,7 @@ FROM alpine:3.4
 
 MAINTAINER mritd <mritd@mritd.me>
 
-ENV TZ 'Asia/Shanghai' \
+ENV TZ='Asia/Shanghai' \
     JAVA_VERSION=8 \
     JAVA_UPDATE=112 \
     JAVA_BUILD=15 \

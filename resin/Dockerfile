@@ -10,7 +10,7 @@ ENV TZ 'Asia/Shanghai' \
     RESIN_VERSION 4.0.49
 
 RUN apk upgrade --update && \
-    apk add --no-cache --virtual=build-dependencies bash tzdata wget \
+    apk add --no-cache bash tzdata wget \
             gcc libc-dev make openssl-dev pcre-dev inux-headers \
             libxslt-dev gd-dev geoip-dev perl-dev && \
     wget http://www.caucho.com/download/resin-$RESIN_VERSION.tar.gz && \
@@ -26,7 +26,6 @@ RUN apk upgrade --update && \
     make && make install) && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo "Asia/Shanghai" > /etc/timezone && \
-    apk del build-dependencies && \
     rm -rf "$JAVA_HOME/"*src.zip && \
     rm -rf "$JAVA_HOME/lib/missioncontrol" \
            "$JAVA_HOME/lib/visualvm" \

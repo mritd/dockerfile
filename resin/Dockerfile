@@ -4,7 +4,7 @@ MAINTAINER mritd <mritd@mritd.me>
 
 ENV TZ='Asia/Shanghai' \
     JAVA_VERSION=8 \
-    JAVA_UPDATE=111 \
+    JAVA_UPDATE=112 \
     JAVA_BUILD=15 \
     JAVA_HOME="/usr/local/jdk1.${JAVA_VERSION}.0_${JAVA_UPDATE}" \
     RESIN_VERSION=4.0.49

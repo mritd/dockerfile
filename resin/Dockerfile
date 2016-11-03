@@ -7,7 +7,7 @@ ENV TZ 'Asia/Shanghai' \
     JAVA_UPDATE=112 \
     JAVA_BUILD=15 \
     JAVA_HOME="/usr/local/jdk-${JAVA_VERSION}u${JAVA_UPDATE}" \
-    RESIN_VERSION 4.0.49
+    RESIN_VERSION=4.0.49
 
 RUN apk upgrade --update && \
     apk add --no-cache bash tzdata wget gcc libc-dev \

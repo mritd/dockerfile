@@ -4,9 +4,9 @@ MAINTAINER mritd <mritd@mritd.me>
 
 ENV TZ='Asia/Shanghai' \
     JAVA_VERSION=8 \
-    JAVA_UPDATE=112 \
+    JAVA_UPDATE=111 \
     JAVA_BUILD=15 \
-    JAVA_HOME="/usr/local/jdk-${JAVA_VERSION}u${JAVA_UPDATE}" \
+    JAVA_HOME="/usr/local/jdk1.${JAVA_VERSION}.0_${JAVA_UPDATE}" \
     RESIN_VERSION=4.0.49
 
 RUN apk upgrade --update && \
@@ -17,11 +17,11 @@ RUN apk upgrade --update && \
     wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}u${JAVA_UPDATE}-b${JAVA_BUILD}/jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz && \
     tar -zxvf resin-$RESIN_VERSION.tar.gz && \
     tar -xzf "jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz" && \
-    mv "jdk-${JAVA_VERSION}u${JAVA_UPDATE}" /usr/local && \
+    mv "jdk1.${JAVA_VERSION}.0_${JAVA_UPDATE}" /usr/local && \
     ln -s "$JAVA_HOME/bin/"* "/usr/bin/" && \
     (cd resin-$RESIN_VERSION && \
     ./configure --prefix=/usr/local/resin-$RESIN_VERSION \
-                --with-java-home=/usr/local/jdk1.8.0_111 \
+                --with-java-home=/usr/local/jdk1.${JAVA_VERSION}.0_${JAVA_UPDATE} \
                 --enable-64bit && \
     make && make install) && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \

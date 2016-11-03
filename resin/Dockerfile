@@ -91,4 +91,4 @@ RUN apk add --no-cache bash tzdata gcc libc-dev make openssl-dev linux-headers &
            resin-$RESIN_VERSION && \
     rm -rf /var/cache/apk/*
 
-CMD ["/bin/bash"]
+CMD ["resinctl","start-with-foreground"]

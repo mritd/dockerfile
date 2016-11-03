@@ -76,7 +76,7 @@ RUN apk add --no-cache --virtual=build-dependencies wget ca-certificates && \
     rm "/tmp/"*
 
 # install resin
-RUN apk add --no-cache bash tzdata openssl-dev libxslt-dev perl-dev && \
+RUN apk add --no-cache bash tzdata gcc openssl-dev libxslt-dev perl-dev && \
     wget http://www.caucho.com/download/resin-$RESIN_VERSION.tar.gz && \
     tar -zxvf resin-$RESIN_VERSION.tar.gz && \
     (cd resin-$RESIN_VERSION && \

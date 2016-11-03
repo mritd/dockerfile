@@ -10,8 +10,8 @@ ENV TZ 'Asia/Shanghai' \
     RESIN_VERSION 4.0.49
 
 RUN apk upgrade --update && \
-    apk add --no-cache bash tzdata wget \
-            gcc libc-dev make openssl-dev pcre-dev inux-headers \
+    apk add --no-cache bash tzdata wget gcc libc-dev \
+            make openssl-dev pcre-dev linux-headers \
             libxslt-dev gd-dev geoip-dev perl-dev && \
     wget http://www.caucho.com/download/resin-$RESIN_VERSION.tar.gz && \
     wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}u${JAVA_UPDATE}-b${JAVA_BUILD}/jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz && \

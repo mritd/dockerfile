@@ -76,7 +76,7 @@ RUN apk add --no-cache --virtual=build-dependencies wget ca-certificates && \
     rm "/tmp/"*
 
 # install resin
-RUN apk add --no-cache bash tzdata gcc libc-dev openssl-dev libxslt-dev perl-dev && \
+RUN apk add --no-cache bash tzdata gcc libc-dev make openssl-dev && \
     wget http://www.caucho.com/download/resin-$RESIN_VERSION.tar.gz && \
     tar -zxvf resin-$RESIN_VERSION.tar.gz && \
     (cd resin-$RESIN_VERSION && \
@@ -84,6 +84,7 @@ RUN apk add --no-cache bash tzdata gcc libc-dev openssl-dev libxslt-dev perl-dev
                 --with-java-home=$JAVA_HOME \
                 --enable-64bit && \
     make && make install) && \
+    ln -s "/usr/local/resin-$RESIN_VERSION/bin/"* "/usr/bin/" && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo "Asia/Shanghai" > /etc/timezone && \
     rm -rf resin-$RESIN_VERSION.tar.gz \

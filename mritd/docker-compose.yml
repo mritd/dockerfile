@@ -25,7 +25,7 @@ services:
     restart: always
     volumes:
       - /data/minio:/export
-    command: ["server","/export"]
+    command: ["server","--address","0.0.0.0:80","/export"]
   rpm:
     image: mritd/rpmrepository
     restart: always

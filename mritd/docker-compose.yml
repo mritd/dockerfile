@@ -10,6 +10,7 @@ services:
       - jekyll
       - idea
       - rpm
+      - minio
     ports:
       - "80:80"
       - "443:443"
@@ -19,6 +20,12 @@ services:
   idea:
     image: mritd/idea
     restart: always
+  minio:
+    image: minio/minio
+    restart: always
+    volumes:
+      - /data/minio:/export
+    command: ["server","/export"]
   rpm:
     image: mritd/rpmrepository
     restart: always

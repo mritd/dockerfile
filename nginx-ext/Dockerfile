@@ -5,6 +5,8 @@ MAINTAINER mritd <mritd@mritd.me>
 ENV NGINX_VERSION 1.11.5
 ENV LUAJIT_VERSION 2.0.4
 ENV LUAJIT_MAIN_VERSION 2.0
+ENV LUAJIT_LIB /usr/local/lib
+ENV LUAJIT_INC /usr/local/include/luajit-$LUAJIT_MAIN_VERSION
 ENV NGINX_LUA_MODULE_VERSION 0.10.7
 
 RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
@@ -53,7 +55,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 		--with-compat \
 		--with-file-aio \
 		--with-http_v2_module \
-		--with-ld-opt=\"-Wl,-rpath,$LUAJIT_LIB\" \
+		--with-ld-opt=-Wl,-rpath,$LUAJIT_LIB \
     --add-module=/usr/src/ngx_http_google_filter_module \
     --add-module=/usr/src/ngx_http_substitutions_filter_module \
 		--add-module=/usr/src/lua-nginx-module-$NGINX_LUA_MODULE_VERSION \
@@ -96,8 +98,6 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& make -j$(getconf _NPROCESSORS_ONLN) \
 	&& make install \
 	&& export GNUPGHOME="$(mktemp -d)" \
-	&& export LUAJIT_LIB=/usr/local/lib \
-	&& export LUAJIT_INC=/usr/local/include/luajit-$LUAJIT_MAIN_VERSION \
 	&& cd /usr/src/nginx-$NGINX_VERSION \
 	&& ./configure $CONFIG --with-debug \
 	&& make -j$(getconf _NPROCESSORS_ONLN) \

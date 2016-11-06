@@ -97,6 +97,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& cd /usr/src/LuaJIT-$LUAJIT_VERSION \
 	&& make -j$(getconf _NPROCESSORS_ONLN) \
 	&& make install \
+	&& ln -s /usr/local/lib/libluajit-5.1.so.$LUAJIT_VERSION /lib64/libluajit-5.1.so.2 \
 	&& export GNUPGHOME="$(mktemp -d)" \
 	&& cd /usr/src/nginx-$NGINX_VERSION \
 	&& ./configure $CONFIG --with-debug \

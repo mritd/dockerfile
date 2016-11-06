@@ -95,7 +95,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& rm -r "$GNUPGHOME" nginx.tar.gz.asc \
   && tar -zxC /usr/src -f nginx.tar.gz \
 	&& rm nginx.tar.gz \
-	&& cd /usr/src/Verynginx \
+	&& cd /usr/src/VeryNginx \
 	&& python install.py install verynginx \
 	&& cd /usr/src/LuaJIT-$LUAJIT_VERSION \
 	&& make -j$(getconf _NPROCESSORS_ONLN) \

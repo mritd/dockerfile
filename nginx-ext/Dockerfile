@@ -77,14 +77,16 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 		geoip-dev \
 		perl-dev \
 		git \
+		python \
 	&& curl -fSL http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz -o nginx.tar.gz \
 	&& curl -fSL http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz.asc  -o nginx.tar.gz.asc \
 	&& curl -fSL http://luajit.org/download/LuaJIT-$LUAJIT_VERSION.tar.gz -o LuaJIT-$LUAJIT_VERSION.tar.gz \
 	&& curl -fSL https://github.com/openresty/lua-nginx-module/archive/v$NGINX_LUA_MODULE_VERSION.tar.gz -o lua-nginx-module-v$NGINX_LUA_MODULE_VERSION.tar.gz \
 	&& git clone https://github.com/cuber/ngx_http_google_filter_module /usr/src/ngx_http_google_filter_module \
 	&& git clone https://github.com/yaoweibin/ngx_http_substitutions_filter_module /usr/src/ngx_http_substitutions_filter_module \
-	&& mkdir -p /usr/src \
-	&& tar -zxC /usr/src -f nginx.tar.gz \
+	&& git clone https://github.com/alexazhou/VeryNginx.git /usr/src/VeryNginx \
+	&& mkdir -p /usr/src/VeryNginx \
+	&& python install.py install verynginx \
 	&& tar -zxC /usr/src -f lua-nginx-module-v$NGINX_LUA_MODULE_VERSION.tar.gz \
 	&& tar -zxC /usr/src -f LuaJIT-$LUAJIT_VERSION.tar.gz \
 	&& rm lua-nginx-module-v$NGINX_LUA_MODULE_VERSION.tar.gz \
@@ -93,7 +95,9 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEYS" \
 	&& gpg --batch --verify nginx.tar.gz.asc nginx.tar.gz \
 	&& rm -r "$GNUPGHOME" nginx.tar.gz.asc \
+  && tar -zxC /usr/src -f nginx.tar.gz \
 	&& rm nginx.tar.gz \
+	&& cd /usr/src/Verynginx
 	&& cd /usr/src/LuaJIT-$LUAJIT_VERSION \
 	&& make -j$(getconf _NPROCESSORS_ONLN) \
 	&& make install \
@@ -128,6 +132,9 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& rm -rf /usr/src/nginx-$NGINX_VERSION \
 	&& rm -rf /usr/src/ngx_http_google_filter_module \
 	&& rm -rf /usr/src/ngx_http_substitutions_filter_module \
+	&& rm -rf /usr/src/VeryNginx \
+  && rm -rf /usr/src/LuaJIT-$LUAJIT_VERSION \
+	&& rm -rf /usr/src/lua-nginx-module-$NGINX_LUA_MODULE_VERSION \
 	\
 	# Bring in gettext so we can get `envsubst`, then throw
 	# the rest away. To do this, we need to install `gettext`

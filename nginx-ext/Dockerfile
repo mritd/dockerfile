@@ -85,8 +85,6 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& git clone https://github.com/cuber/ngx_http_google_filter_module /usr/src/ngx_http_google_filter_module \
 	&& git clone https://github.com/yaoweibin/ngx_http_substitutions_filter_module /usr/src/ngx_http_substitutions_filter_module \
 	&& git clone https://github.com/alexazhou/VeryNginx.git /usr/src/VeryNginx \
-	&& mkdir -p /usr/src/VeryNginx \
-	&& python install.py install verynginx \
 	&& tar -zxC /usr/src -f lua-nginx-module-v$NGINX_LUA_MODULE_VERSION.tar.gz \
 	&& tar -zxC /usr/src -f LuaJIT-$LUAJIT_VERSION.tar.gz \
 	&& rm lua-nginx-module-v$NGINX_LUA_MODULE_VERSION.tar.gz \
@@ -97,7 +95,8 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& rm -r "$GNUPGHOME" nginx.tar.gz.asc \
   && tar -zxC /usr/src -f nginx.tar.gz \
 	&& rm nginx.tar.gz \
-	&& cd /usr/src/Verynginx
+	&& cd /usr/src/Verynginx \
+	&& python install.py install verynginx \
 	&& cd /usr/src/LuaJIT-$LUAJIT_VERSION \
 	&& make -j$(getconf _NPROCESSORS_ONLN) \
 	&& make install \

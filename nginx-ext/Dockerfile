@@ -53,7 +53,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 		--with-compat \
 		--with-file-aio \
 		--with-http_v2_module \
-		--with-ld-opt="-Wl,-rpath,$LUAJIT_LIB" \
+		--with-ld-opt=\"-Wl,-rpath,$LUAJIT_LIB\" \
     --add-module=/usr/src/ngx_http_google_filter_module \
     --add-module=/usr/src/ngx_http_substitutions_filter_module \
 		--add-module=/usr/src/lua-nginx-module-$NGINX_LUA_MODULE_VERSION \
@@ -87,6 +87,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& tar -zxC /usr/src -f LuaJIT-$LUAJIT_VERSION.tar.gz \
 	&& rm lua-nginx-module-v$NGINX_LUA_MODULE_VERSION.tar.gz \
 	&& rm LuaJIT-$LUAJIT_VERSION.tar.gz \
+  && export GNUPGHOME="$(mktemp -d)" \
 	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEYS" \
 	&& gpg --batch --verify nginx.tar.gz.asc nginx.tar.gz \
 	&& rm -r "$GNUPGHOME" nginx.tar.gz.asc \

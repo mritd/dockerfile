@@ -8,10 +8,9 @@ ENV LUAJIT_MAIN_VERSION 2.0
 ENV LUAJIT_LIB /usr/local/lib
 ENV LUAJIT_INC /usr/local/include/luajit-$LUAJIT_MAIN_VERSION
 ENV NGINX_LUA_MODULE_VERSION 0.10.7
-ENV NPS_VERSION 1.11.33.4
 
 RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
-  && CONFIG="\
+	&& CONFIG="\
         --prefix=/etc/nginx \
         --sbin-path=/usr/sbin/nginx \
         --modules-path=/usr/lib/nginx/modules \
@@ -60,9 +59,8 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
         --add-module=/usr/src/ngx_http_google_filter_module \
         --add-module=/usr/src/ngx_http_substitutions_filter_module \
         --add-module=/usr/src/lua-nginx-module-$NGINX_LUA_MODULE_VERSION \
-				--add-module=/usr/src/ngx_pagespeed-latest-stable \
 	" \
-  && addgroup -S nginx \
+	&& addgroup -S nginx \
 	&& adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
 	&& apk add --no-cache --virtual .build-deps \
         gcc \
@@ -84,19 +82,13 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& curl -fSL http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz.asc  -o nginx.tar.gz.asc \
 	&& curl -fSL http://luajit.org/download/LuaJIT-$LUAJIT_VERSION.tar.gz -o LuaJIT-$LUAJIT_VERSION.tar.gz \
 	&& curl -fSL https://github.com/openresty/lua-nginx-module/archive/v$NGINX_LUA_MODULE_VERSION.tar.gz -o lua-nginx-module-v$NGINX_LUA_MODULE_VERSION.tar.gz \
-	&& curl -fSL https://github.com/pagespeed/ngx_pagespeed/archive/latest-stable.tar.gz -o ngx_pagespeed-latest-stable.tar.gz \
-	&& curl -fSL https://dl.google.com/dl/page-speed/psol/$NPS_VERSION.tar.gz -o psol.tar.gz \
 	&& git clone https://github.com/cuber/ngx_http_google_filter_module /usr/src/ngx_http_google_filter_module \
 	&& git clone https://github.com/yaoweibin/ngx_http_substitutions_filter_module /usr/src/ngx_http_substitutions_filter_module \
 	&& git clone https://github.com/alexazhou/VeryNginx.git /usr/src/VeryNginx \
 	&& tar -zxC /usr/src -f lua-nginx-module-v$NGINX_LUA_MODULE_VERSION.tar.gz \
 	&& tar -zxC /usr/src -f LuaJIT-$LUAJIT_VERSION.tar.gz \
-	&& tar -zxC /usr/src -f ngx_pagespeed-latest-stable.tar.gz \
-	&& tar -zxC /usr/src/ngx_pagespeed-latest-stable -f psol.tar.gz \
 	&& rm lua-nginx-module-v$NGINX_LUA_MODULE_VERSION.tar.gz \
 	&& rm LuaJIT-$LUAJIT_VERSION.tar.gz \
-	&& rm ngx_pagespeed-latest-stable.tar.gz \
-	&& rm psol.tar.gz \
   && export GNUPGHOME="$(mktemp -d)" \
 	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEYS" \
 	&& gpg --batch --verify nginx.tar.gz.asc nginx.tar.gz \
@@ -139,7 +131,6 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& rm -rf /usr/src/nginx-$NGINX_VERSION \
 	&& rm -rf /usr/src/ngx_http_google_filter_module \
 	&& rm -rf /usr/src/ngx_http_substitutions_filter_module \
-	&& rm -rf /usr/src/ngx_pagespeed-latest-stable \
 	&& rm -rf /usr/src/VeryNginx \
   && rm -rf /usr/src/LuaJIT-$LUAJIT_VERSION \
 	&& rm -rf /usr/src/lua-nginx-module-$NGINX_LUA_MODULE_VERSION \

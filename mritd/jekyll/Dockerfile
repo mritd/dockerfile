@@ -6,7 +6,6 @@ ENV TZ 'Asia/Shanghai'
 
 RUN apk upgrade --no-cache && \
     apk add --no-cache bash tzdata nodejs py-pygments git gcc musl-dev make && \
-    gem install jekyll rdiscount kramdown && \
     git clone https://github.com/mritd/mritd.github.io.git /root/mritd.github.io && \
     cd /root/mritd.github.io && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \

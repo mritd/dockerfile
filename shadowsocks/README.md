@@ -115,4 +115,4 @@ docker run -dt --name shadowsocks -p 5000:5000 -e PASSWORD=ZQoPF2g6uwJE7cy4 -e F
 
 - 2016-11-07 chacha20 加密支持
 
-增加了 libsodium 库,用于支持 chacha20 算法(感谢 Lihang Chen 提出),删除了 wget 进一步精简镜像体积 
+增加了 libsodium 库,用于支持 chacha20 加密算法(感谢 Lihang Chen 提出),删除了 wget 进一步精简镜像体积 

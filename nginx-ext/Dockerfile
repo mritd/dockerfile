@@ -60,7 +60,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
         --add-module=/usr/src/ngx_http_google_filter_module \
         --add-module=/usr/src/ngx_http_substitutions_filter_module \
         --add-module=/usr/src/lua-nginx-module-$NGINX_LUA_MODULE_VERSION \
-				--add-module=/usr/src/ngx_pagespeed-$NPS_VERSION \
+				--add-module=/usr/src/ngx_pagespeed-latest-stable \
 	" \
   && addgroup -S nginx \
 	&& adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \

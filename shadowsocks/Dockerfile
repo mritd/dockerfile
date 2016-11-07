@@ -22,6 +22,7 @@ RUN apk upgrade --no-cache && \
     mv server_linux_amd64 /usr/bin/kcptun && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo "Asia/Shanghai" > /etc/timezone && \
+    apk del py-setuptools wget && \
     rm -f client_linux_amd64 kcptun-linux-amd64-$KCP_VERSION.tar.gz $SS_VERSION.tar.gz && \
     rm -rf shadowsocks-$SS_VERSION && \
     rm -rf /var/cache/apk/*

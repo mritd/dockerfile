@@ -8,6 +8,8 @@ RUN apk upgrade --no-cache && \
     apk add --no-cache bash tzdata nodejs py-pygments git gcc musl-dev make && \
     git clone https://github.com/mritd/mritd.github.io.git /root/mritd.github.io && \
     cd /root/mritd.github.io && \
+    gem install --no-document bundle && \
+    bundle install && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo "Asia/Shanghai" > /etc/timezone && \
     apk del git gcc musl-dev make && \

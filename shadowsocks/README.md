@@ -109,6 +109,10 @@ docker run -dt --name shadowsocks -p 5000:5000 -e PASSWORD=ZQoPF2g6uwJE7cy4 -e F
 
 增加 默认读取环境变量策略，可通过环境变量指定 shadowsocks 相关设置
 
-- 2016-11-1 升级 kcptun，增加 kcptun 自定义配置选项(-c 或 环境变量)
+- 2016-11-01 升级 kcptun，增加 kcptun 自定义配置选项(-c 或 环境变量)
 
 增加了 `-c` 参数和环境变量 `KCPTUN_CONFIG`，用于在不挂载文件的情况下重写 kcptun 的配置
+
+- 2016-11-07 chacha20 加密支持
+
+增加了 libsodium 库,用于支持 chacha20 算法(感谢 Lihang Chen 提出),删除了 wget 进一步精简镜像体积 

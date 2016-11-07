@@ -5,7 +5,7 @@ MAINTAINER mritd <mritd@mritd.me>
 ENV TZ 'Asia/Shanghai'
 
 RUN apk upgrade --no-cache && \
-    apk add --no-cache bash tzdata node py-pygments git && \
+    apk add --no-cache bash tzdata nodejs py-pygments git && \
     gem install jekyll rdiscount kramdown && \
     git clone https://github.com/mritd/mritd.github.io.git /root/mritd.github.io && \
     cd /root/mritd.github.io && \

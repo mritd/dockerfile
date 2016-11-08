@@ -1,0 +1,13 @@
+version: '2'
+services: 
+  consul:
+    container_name: consul1
+    image: consul:0.7.0
+    network_mode: "host"  
+    ports:
+      - "8600:8600"
+      - "8500:8500"
+      - "8400:8400"
+      - "8301:8301"
+    command: "agent -server -bind=10.10.1.49 -client=10.10.1.49 -retry-join=10.10.1.49 -ui -bootstrap-expect=3"
+

@@ -1,7 +1,7 @@
 version: '2'
 services:
   nginx:
-    image: mritd/nginx-ext
+    image: mritd/nginx
     restart: always
     volumes:
       - /etc/nginx/ssl:/etc/nginx/ssl

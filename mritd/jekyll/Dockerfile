@@ -12,7 +12,7 @@ RUN apk upgrade --no-cache && \
     bundle install && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo "Asia/Shanghai" > /etc/timezone && \
-    apk del git gcc musl-dev make && \
+    apk del gcc musl-dev make && \
     rm -rf /var/cache/apk/*
 
 ADD cron/15min/* /etc/periodic/15min

@@ -3,6 +3,7 @@ services:
   consul:
     container_name: consul1
     image: consul:0.7.0
+    restart: always
     network_mode: "host"  
     ports:
       - "8600:8600"

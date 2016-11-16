@@ -1,0 +1,17 @@
+FROM ruby:2.3.1-alpine
+
+MAINTAINER mritd <mritd@mritd.me>
+
+ENV TZ 'Asia/Shanghai'
+
+RUN apk upgrade --no-cache && \
+    apk add --no-cache bash tzdata && \
+    gem install fluentd --no-ri --no-rdoc && \
+    gem install -V fluentd-ui && \
+    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    echo "Asia/Shanghai" > /etc/timezone && \
+    rm -rf /var/cache/apk/*
+
+EXPOSE 9292 24224 24230
+
+CMD ["fluentd-ui", "start"]

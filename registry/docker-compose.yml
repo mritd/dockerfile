@@ -2,6 +2,6 @@ registry:
   restart: always
   image: registry:2.5.1
   ports:
-    - 5000:5000
+    - 4000:5000
   volumes:
     - /data/registry:/var/lib/registry

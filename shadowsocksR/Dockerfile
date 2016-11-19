@@ -3,7 +3,7 @@ FROM alpine:3.4
 MAINTAINER mritd <mritd@mritd.me>
 
 ENV TZ 'Asia/Shanghai'
-ENV SSR_VERSION=2.5.6
+ENV SSR_VERSION 2.5.6
 
 RUN apk upgrade --no-cache && \
     apk add --no-cache bash tzdata && \
@@ -24,8 +24,8 @@ RUN apk upgrade --no-cache && \
     echo "Asia/Shanghai" > /etc/timezone && \
     apk add --no-cache --virtual .run-deps $runDeps && \
     apk del .build-deps && \
-    rm -rf v$SSR_VERSION.tar.gz && \
-    rm -f shadowsocks-libev-$SSR_VERSION && \
+    rm -r v$SSR_VERSION.tar.gz && \
+    rm -rf shadowsocks-libev-$SSR_VERSION && \
     rm -rf /var/cache/apk/*
 
 ADD entrypoint.sh /entrypoint.sh

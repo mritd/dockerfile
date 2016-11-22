@@ -18,7 +18,7 @@ RUN apk upgrade --no-cache \
     && gem install --no-document fluent-plugin-prometheus -v 0.2.1 \
     && gem cleanup fluentd \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo "Asia/Shanghai" > /etc/timezone && \
+    && echo "Asia/Shanghai" > /etc/timezone \
     && apk del .build-deps \
     && rm -rf /var/cache/apk/*
 

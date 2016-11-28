@@ -1,4 +1,4 @@
-FROM nginx:1.11.4-alpine
+FROM mritd/nginx-ext
 
 MAINTAINER mritd <mritd@mritd.me>
 

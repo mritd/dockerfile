@@ -8,7 +8,7 @@ ENV TZ 'Asia/Shanghai'
 
 ENV SS_VERSION 2.9.0
 
-ENV KCP_VERSION 20161111
+ENV KCP_VERSION 20161118
 
 RUN apk upgrade --no-cache && \
     apk add --no-cache bash tzdata python py-setuptools wget libsodium && \

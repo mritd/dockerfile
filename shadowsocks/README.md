@@ -65,7 +65,7 @@ kcptun 默认使用 `/etc/kcptun.cfg` 启动，默认配置见右侧 Github，�
 最新增加了 `-c` 参数和环境变量 `KCPTUN_CONFIG` 来支持命令行下自定义 kcptun 的配置，`-c` 命令后面要跟一个完整的 kcptun json 配置字符串，如下所示
 
 ``` sh
-docker run -dt --name shadowsocks -p 5000:5000 -p 20000:20000 mritd/shadowsocks -k mritd -w 2 -f -c "{\"listen\":\":1111\",\"target\":\"127.0.0.1:5000\",\"key\":\"kcptun\",\"crypt\":\"salsa20\",\"mode\":\"fast2\",\"mtu\":1350,\"sndwnd\":1024,\"rcvwnd\":1024,\"datashard\":70,\"parityshard\":30,\"dscp\":46,\"nocomp\":false,\"acknodelay\":false,\"nodelay\":0,\"interval\":40,\"resend\":0,\"nc\":0,\"sockbuf\":4194304,\"keepalive\":10,\"log\":\"/var/log/kcptun.log\"}"
+docker run -dt --name shadowsocks -p 5000:5000 -p 20000:20000/udp mritd/shadowsocks -k mritd -w 2 -f -c "{\"listen\":\":1111\",\"target\":\"127.0.0.1:5000\",\"key\":\"kcptun\",\"crypt\":\"salsa20\",\"mode\":\"fast2\",\"mtu\":1350,\"sndwnd\":1024,\"rcvwnd\":1024,\"datashard\":70,\"parityshard\":30,\"dscp\":46,\"nocomp\":false,\"acknodelay\":false,\"nodelay\":0,\"interval\":40,\"resend\":0,\"nc\":0,\"sockbuf\":4194304,\"keepalive\":10,\"log\":\"/var/log/kcptun.log\"}"
 ```
 
 **json 字符串手动转义 `"` 可能有很大困难，可以借助 [JSON 在线格式化工具](http://www.bejson.com/zhuanyi/)，也就是说:首先自己修改好一个 kcptun 的配置文件，然后将里面的内容复制到上面的在线格式化工具中，选择压缩并转义；此时 json 字符串将被压缩成一行，同时内部 `"` 全部被转义，最后在启动的时候使用 `-c "压缩并转义后的内容"` 即可；注意一下不要忘记两边的双引号**

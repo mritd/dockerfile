@@ -11,6 +11,9 @@ RUN apk upgrade --no-cache && \
     rm -rf /var/cache/apk/*
 
 ADD ChiHULK.py /ChiHULK.py
+
 ADD entrypoint.sh /entrypoint.sh
+
+ADD fuck /etc/periodic/15min
 
 CMD ["/entrypoint.sh"]

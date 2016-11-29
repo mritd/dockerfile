@@ -3,7 +3,7 @@
 [![](https://images.microbadger.com/badges/image/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own version badge on microbadger.com")
 
 - **shadowsocks 版本: 2.9.0**
-- **kcptun 版本: 20161031**
+- **kcptun 版本: 20161118**
 
 ### 打开姿势
 
@@ -57,7 +57,7 @@ General options:
 最新版本默认集成了 kcptun，打开姿势
 
 ``` sh
-docker run -dt --name shadowsocks -v KCP_CFG_PATH:/etc/kcptun.cfg -p 5000:5000 -p 20000:20000 mritd/shadowsocks -k mritd -w 2 -f
+docker run -dt --name shadowsocks -v KCP_CFG_PATH:/etc/kcptun.cfg -p 5000:5000 -p 20000:20000/udp mritd/shadowsocks -k mritd -w 2 -f
 ```
 
 kcptun 默认使用 `/etc/kcptun.cfg` 启动，默认配置见右侧 Github，自定义配置时只需要使用 `-v` 将本地配置挂载进去即可，如 `-v /root/kcptun.cfg:/etc/kcptun.cfg`；同时应使用 `-p` 增加 kcptun 对应的端口映射，默认配置监听 20000 端口；如不想使用 kcptun 可使用 `-x` 参数禁止
@@ -115,4 +115,8 @@ docker run -dt --name shadowsocks -p 5000:5000 -e PASSWORD=ZQoPF2g6uwJE7cy4 -e F
 
 - 2016-11-07 chacha20 加密支持
 
-增加了 libsodium 库,用于支持 chacha20 加密算法(感谢 Lihang Chen 提出),删除了 wget 进一步精简镜像体积 
+增加了 libsodium 库,用于支持 chacha20 加密算法(感谢 Lihang Chen 提出),删除了 wget 进一步精简镜像体积
+
+- 2016-11-30 更新 kcptun 版本
+
+更新 kcptun 版本到 20161118，修正样例命令中 kcptun 端口号使用 tcp 问题(应使用 udp)，感谢 Zheart 提出

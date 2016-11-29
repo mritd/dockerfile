@@ -11,5 +11,6 @@ RUN apk upgrade --no-cache && \
     rm -rf /var/cache/apk/*
 
 ADD ChiHULK.py /ChiHULK.py
+ADD entrypoint.sh /entrypoint.sh
 
-CMD ["python","/ChiHULK.py","http://www.kubernetes.org.cn/"]
+CMD ["/entrypoint.sh"]

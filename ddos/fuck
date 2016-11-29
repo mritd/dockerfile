@@ -1,2 +1,2 @@
 #!/bin/bash
-python /ChiHULK.py http://www.kubernetes.org.cn/
+python /ChiHULK.py http://www.kubernetes.org.cn/ >& >> /var/log/ddos.log

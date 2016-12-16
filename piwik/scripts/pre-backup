@@ -1,0 +1,5 @@
+#!/bin/bash -eux
+URL=${PWD##*/}
+db_container_name=`echo ${URL}_db_1 | sed "s/\.//g" | sed "s/-//g"`; \
+
+docker exec $db_container_name bash -c 'mysqldump --skip-lock-tables --single-transaction --all-databases --events -uroot -p$MYSQL_ROOT_PASSWORD' | gzip -9 >  ./mysql/piwik_$(date +%Y%d%mT%H%M).sql.gz

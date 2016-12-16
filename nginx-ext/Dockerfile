@@ -89,7 +89,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& tar -zxC /usr/src -f LuaJIT-$LUAJIT_VERSION.tar.gz \
 	&& rm lua-nginx-module-v$NGINX_LUA_MODULE_VERSION.tar.gz \
 	&& rm LuaJIT-$LUAJIT_VERSION.tar.gz \
-  && export GNUPGHOME="$(mktemp -d)" \
+    && export GNUPGHOME="$(mktemp -d)" \
 	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEYS" \
 	&& gpg --batch --verify nginx.tar.gz.asc nginx.tar.gz \
 	&& rm -r "$GNUPGHOME" nginx.tar.gz.asc \
@@ -132,7 +132,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& rm -rf /usr/src/ngx_http_google_filter_module \
 	&& rm -rf /usr/src/ngx_http_substitutions_filter_module \
 	&& rm -rf /usr/src/VeryNginx \
-  && rm -rf /usr/src/LuaJIT-$LUAJIT_VERSION \
+    && rm -rf /usr/src/LuaJIT-$LUAJIT_VERSION \
 	&& rm -rf /usr/src/lua-nginx-module-$NGINX_LUA_MODULE_VERSION \
 	\
 	# Bring in gettext so we can get `envsubst`, then throw

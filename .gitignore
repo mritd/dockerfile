@@ -1,2 +1,2 @@
-docker/piwik/config
-docker/piwik/mysql
+piwik/config
+piwik/mysql

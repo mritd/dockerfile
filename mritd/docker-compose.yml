@@ -6,6 +6,8 @@ services:
     volumes:
       - /etc/nginx/ssl:/etc/nginx/ssl
       - /var/log/nginx/:/var/log/nginx/
+    volumes_from:
+      - piwik_app
     links:
       - jekyll
       - idea

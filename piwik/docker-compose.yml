@@ -10,7 +10,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD
     networks:
-    - back
+      - back
   app:
     image: piwik:2.17.1
     links:
@@ -18,9 +18,9 @@ services:
     volumes:
       - /data/piwik/config:/var/www/html/config
     networks:
-    - back
+      - back
   web:
-      image: nginx:1.11.6-alpine
+    image: nginx:1.11.6-alpine
     volumes:
       - /data/piwik/nginx.conf:/etc/nginx/nginx.conf:ro
     links:
@@ -30,9 +30,9 @@ services:
     environment:
       - VIRTUAL_HOST
     networks:
-    - back
+      - back
     ports:
-    - "127.0.0.1:9000:80"
+      - "127.0.0.1:9000:80"
   cron:
     image: piwik:2.17.1
     links:
@@ -48,4 +48,4 @@ services:
       done
       EOF'
     networks:
-    - back
+      - back

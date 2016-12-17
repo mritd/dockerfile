@@ -1,5 +1,7 @@
 version: '2'
 networks:
+  lb_web:
+    driver: bridge
   piwik_back:
     driver: bridge
 services:
@@ -7,6 +9,7 @@ services:
     image: mritd/nginx
     restart: always
     networks:
+      - lb_web
       - piwik_back
     volumes:
       - /etc/nginx/ssl:/etc/nginx/ssl
@@ -23,18 +26,26 @@ services:
   jekyll:
     image: mritd/jekyll
     restart: always
+    networks:
+      - lb_web
   idea:
     image: mritd/idea
     restart: always
+    networks:
+      - lb_web
   minio:
     image: minio/minio
     restart: always
+    networks:
+      - lb_web
     volumes:
       - /data/minio:/export
     command: ["server","--address","0.0.0.0:80","/export"]
   rpm:
     image: mritd/rpmrepository
     restart: always
+    networks:
+      - lb_web
     volumes:
       - /data/repo:/data/repo
   piwik_db:

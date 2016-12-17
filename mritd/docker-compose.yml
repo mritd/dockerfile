@@ -1,8 +1,13 @@
 version: '2'
+networks:
+  piwil_back:
+    driver: bridge
 services:
   nginx:
     image: mritd/nginx
     restart: always
+    networks:
+      - piwik_back
     volumes:
       - /etc/nginx/ssl:/etc/nginx/ssl
       - /var/log/nginx/:/var/log/nginx/
@@ -35,6 +40,8 @@ services:
   piwik_db:
     image: mysql:5.7.17
     restart: always
+    networks:
+      - piwik_back
     volumes:
       - /data/piwik/mysql/runtime:/var/lib/mysql
     environment:
@@ -42,6 +49,8 @@ services:
   piwik_app:
     image: piwik:2.17.1
     restart: always
+    networks:
+      - piwik_back
     links:
       - piwik_db
     volumes:
@@ -49,6 +58,8 @@ services:
   piwik_cron:
     image: piwik:2.17.1
     restart: always
+    networks:
+      - piwik_back
     links:
       - piwik_db
     volumes_from:

@@ -21,8 +21,6 @@ services:
   idea:
     image: mritd/idea
     restart: always
-    networks:
-      - lb_web
   minio:
     image: minio/minio
     restart: always

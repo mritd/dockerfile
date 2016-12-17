@@ -1,6 +1,6 @@
 version: '2'
 networks:
-  piwil_back:
+  piwik_back:
     driver: bridge
 services:
   nginx:

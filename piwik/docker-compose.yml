@@ -1,7 +1,5 @@
 version: '2'
 networks:
-  lb_web:
-    external: true
   back:
     driver: bridge
 services:

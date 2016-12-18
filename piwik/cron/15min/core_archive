@@ -1,0 +1,1 @@
+su -s "/bin/bash" -c "/usr/local/bin/php /var/www/html/console core:archive" www-data

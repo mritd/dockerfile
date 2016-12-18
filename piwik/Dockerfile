@@ -41,10 +41,10 @@ COPY php.ini /usr/local/etc/php/php.ini
 
 COPY docker-entrypoint.sh /entrypoint.sh
 
+COPY cron/15min/* /etc/periodic/15min
+
 VOLUME /var/www/html
 
-#ENTRYPOINT ["/entrypoint.sh"]
-#
-#CMD ["php-fpm"]
+ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["/bin/bash"]
+CMD ["php-fpm"]

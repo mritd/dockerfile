@@ -21,7 +21,7 @@ RUN apk upgrade --no-cache \
         build-base \
         autoconf \
         geoip-dev" \
-    && apk add --no-cache \
+    && apk add --update \
         ${BUILD_DEPS} \
         geoip \
         php7-fpm@commuedge \

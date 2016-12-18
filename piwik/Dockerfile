@@ -39,10 +39,12 @@ RUN apk upgrade --no-cache \
     && curl -fsSL -o /usr/src/piwik/misc/GeoIPCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz \
     && gunzip /usr/src/piwik/misc/GeoIPCity.dat.gz \
     && addgroup -g 82 -S www-data \
-    && adduser -u 82 -G www-data -h /home/www-data -s /bin/false -S www-data \
+    && adduser -u 82 -D -S -G www-data www-data \
     && rm -rf /var/cache/apk/*
 
-COPY php.ini /usr/local/etc/php/php.ini
+COPY php.ini /etc/php7/conf.d/php.ini
+
+COPY docker.ini /etc/php7/php-fpm.d/docker.ini
 
 COPY docker-entrypoint.sh /entrypoint.sh
 

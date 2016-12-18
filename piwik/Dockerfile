@@ -44,7 +44,7 @@ RUN apk upgrade --no-cache \
 
 COPY php.ini /etc/php7/conf.d/php.ini
 
-COPY docker.ini /etc/php7/php-fpm.d/docker.ini
+COPY docker.conf /etc/php7/php-fpm.d/docker.conf
 
 COPY docker-entrypoint.sh /entrypoint.sh
 

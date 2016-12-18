@@ -20,10 +20,6 @@ RUN apk upgrade --no-cache \
         gnupg \
         geoip \
         php7-fpm@commuedge \
-        php7-curl@commuedge \
-        php7-session@commuedge \
-        php7-json@commuedge \
-        php7-ctype@commuedge \
         php7-pdo_mysql@commuedge \
         php7-gd@commuedge \
         php7-opcache@commuedge \
@@ -32,12 +28,8 @@ RUN apk upgrade --no-cache \
         php7-ldap@commuedge \
         php7-mbstring@commuedge \
         php7-apcu@commuedge \
-        php7-iconv@commuedge \
-        php7-dom@commuedge \
-        php7-openssl@commuedge \
         php7-mysqli@commuedge \
         php7-dev@commuedge \
-        php7-pear@commuedge \
     && mkdir /usr/src \
     && curl -fsSL -o piwik.tar.gz "https://builds.piwik.org/piwik-${PIWIK_VERSION}.tar.gz" \
     && curl -fsSL -o piwik.tar.gz.asc "https://builds.piwik.org/piwik-${PIWIK_VERSION}.tar.gz.asc" \

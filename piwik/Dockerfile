@@ -23,7 +23,7 @@ RUN apk upgrade --no-cache \
         && --with-png-dir=/usr/include/ \
         && --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-configure ldap \
-        && --with-libdir=/usr/include/ \
+        && --with-libdir=lib/ \
     && NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
     && docker-php-ext-install -j${NPROC} \
         && gd \

@@ -12,31 +12,37 @@ RUN apk upgrade --no-cache \
     && apk add --no-cache bash tzdata \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
-    && echo "@commuedge https://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
     && BUILD_DEPS=" \
         git \
         curl \
         gnupg \
         build-base \
         autoconf \
+        libjpeg-turbo-dev \
+        freetype-dev \
+        libpng-dev \
+        openldap-dev \
+        zip \
         geoip-dev" \
     && apk add --update \
 	tar \
         geoip \
         ${BUILD_DEPS} \
-        php7-pdo_mysql@commuedge \
-        php7-gd@commuedge \
-        php7-opcache@commuedge \
-        php7-zlib@commuedge \
-        php7-zip@commuedge \
-        php7-ldap@commuedge \
-        php7-mbstring@commuedge \
-        php7-apcu@commuedge \
-        php7-mysqli@commuedge \
-        php7-dev@commuedge \
-        php7-pear@commuedge \
-    && pecl install geoip-1.1.1 \
-    && docker-php-ext-install -j2 mysqlnd \
+    && docker-php-ext-configure gd \
+        --with-freetype-dir=/usr/include/ \
+        --with-png-dir=/usr/include/ \
+        --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-configure ldap \
+        --with-libdir=lib/ \
+    && NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
+    && docker-php-ext-install -j${NPROC} \
+        gd \
+        mbstring \
+        pdo_mysql \
+        zip \
+        ldap \
+        opcache \
+    && pecl install APCu  geoip-1.1.1 \
     && curl -fsSL -o piwik.tar.gz "https://builds.piwik.org/piwik-${PIWIK_VERSION}.tar.gz" \
     && curl -fsSL -o piwik.tar.gz.asc "https://builds.piwik.org/piwik-${PIWIK_VERSION}.tar.gz.asc" \
     && GNUPGHOME="$(mktemp -d)" \

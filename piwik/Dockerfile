@@ -24,6 +24,7 @@ RUN apk upgrade --no-cache \
         php7-ldap \
         php7-mbstring \
         php7-apcu \
+    && mkdir /usr/src \
     && curl -fsSL -o piwik.tar.gz "https://builds.piwik.org/piwik-${PIWIK_VERSION}.tar.gz" \
     && curl -fsSL -o piwik.tar.gz.asc "https://builds.piwik.org/piwik-${PIWIK_VERSION}.tar.gz.asc" \
     && GNUPGHOME="$(mktemp -d)" \

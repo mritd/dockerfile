@@ -6,4 +6,6 @@ if [ ! -e piwik.php ]; then
 	chown -R www-data .
 fi
 
+crond -l 8 -L /var/log/cron.log
+
 exec "$@"

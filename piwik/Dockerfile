@@ -13,11 +13,14 @@ RUN apk upgrade --no-cache \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && echo "@commuedge https://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
-    && apk add --no-cache \
-        tar \
+    && BUILD_DEPS=" \
         git \
+        tar \
         curl \
         gnupg \
+        geoip-dev" \
+    && apk add --no-cache \
+        ${BUILD_DEPS} \
         geoip \
         php7-fpm@commuedge \
         php7-pdo_mysql@commuedge \
@@ -30,6 +33,7 @@ RUN apk upgrade --no-cache \
         php7-apcu@commuedge \
         php7-mysqli@commuedge \
         php7-dev@commuedge \
+        php7-pear@commuedge \
     && mkdir /usr/src \
     && curl -fsSL -o piwik.tar.gz "https://builds.piwik.org/piwik-${PIWIK_VERSION}.tar.gz" \
     && curl -fsSL -o piwik.tar.gz.asc "https://builds.piwik.org/piwik-${PIWIK_VERSION}.tar.gz.asc" \
@@ -47,6 +51,7 @@ RUN apk upgrade --no-cache \
     && make && make install \
     && addgroup -g 82 -S www-data \
     && adduser -u 82 -D -S -G www-data www-data \
+    && apk del ${BUILD_DEPS} php7-dev php7-pear \
     && rm -rf /var/cache/apk/*
 
 COPY php.ini /etc/php7/conf.d/php.ini

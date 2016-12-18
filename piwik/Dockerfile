@@ -15,7 +15,6 @@ RUN apk upgrade --no-cache \
     && echo "@commuedge https://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
     && BUILD_DEPS=" \
         git \
-        tar \
         curl \
         gnupg \
         build-base \
@@ -23,6 +22,7 @@ RUN apk upgrade --no-cache \
         geoip-dev" \
     && apk add --update \
         ${BUILD_DEPS} \
+	tar \
         geoip \
         php7-fpm@commuedge \
         php7-pdo_mysql@commuedge \

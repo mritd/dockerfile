@@ -48,8 +48,7 @@ RUN apk upgrade --no-cache \
     && curl -fsSL -o /usr/src/piwik/misc/GeoIPCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz \
     && gunzip /usr/src/piwik/misc/GeoIPCity.dat.gz \
     && git clone https://github.com/Zakay/geoip \
-    && cd geoip && phpize7 && ./configure \
-        && --with-php-config=/usr/bin/php-config7 \
+    && cd geoip && phpize7 && ./configure --with-php-config=/usr/bin/php-config7 \
     && make && make install \
     && addgroup -g 82 -S www-data \
     && adduser -u 82 -D -S -G www-data www-data \

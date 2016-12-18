@@ -18,15 +18,15 @@ RUN apk upgrade --no-cache \
         gnupg \
         build-base \
         autoconf \
+        zip " \
+    && apk add --update \
+	tar \
+        geoip \
+        geoip-dev \
         libjpeg-turbo-dev \
         freetype-dev \
         libpng-dev \
         openldap-dev \
-        zip \
-        geoip-dev" \
-    && apk add --update \
-	tar \
-        geoip \
         ${BUILD_DEPS} \
     && docker-php-ext-configure gd \
         --with-freetype-dir=/usr/include/ \
@@ -53,7 +53,7 @@ RUN apk upgrade --no-cache \
     && rm piwik.tar.gz \
     && curl -fsSL -o /usr/src/piwik/misc/GeoIPCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz \
     && gunzip /usr/src/piwik/misc/GeoIPCity.dat.gz \
-    && apk del ${BUILD_DEPS} php7-dev php7-pear \
+    && apk del ${BUILD_DEPS} \
     && rm -rf /var/cache/apk/*
 
 COPY php.ini /usr/local/etc/php/php.ini
@@ -61,6 +61,8 @@ COPY php.ini /usr/local/etc/php/php.ini
 COPY docker-entrypoint.sh /entrypoint.sh
 
 COPY cron/15min/* /etc/periodic/15min
+
+VOLUME /var/www/html
 
 EXPOSE 9000
 

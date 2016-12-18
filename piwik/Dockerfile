@@ -11,6 +11,7 @@ RUN apk upgrade --no-cache \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && apk add --no-cache \
+        tar \
         curl \
         gnupg \
         geoip \

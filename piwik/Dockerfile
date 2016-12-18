@@ -48,6 +48,8 @@ COPY cron/15min/* /etc/periodic/15min
 
 VOLUME /var/www/html
 
+WORKDIR /var/www/html
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["php-fpm"]

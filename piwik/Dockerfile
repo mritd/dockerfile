@@ -1,4 +1,4 @@
-FROM php:7.1.0-fpm-alpine 
+FROM alpine:edge 
 
 MAINTAINER mritd <mritd@mritd.me>
 
@@ -11,28 +11,17 @@ RUN apk upgrade --no-cache \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && apk add --no-cache \
-        libjpeg-turbo-dev \
-        freetype-dev \
-        geoip-dev \
-        libpng-dev \
-        openldap-dev \
-        zip \
-        gnupg \
-    && docker-php-ext-configure gd \
-        && --with-freetype-dir=/usr/include/ \
-        && --with-png-dir=/usr/include/ \
-        && --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-configure ldap \
-        && --with-libdir=lib/ \
-    && NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
-    && docker-php-ext-install -j${NPROC} \
-        && gd \
-        && mbstring \
-        && pdo_mysql \
-        && zip \
-        && ldap \
-        && opcache \
-    && pecl install APCu geoip \
+        geoip \
+        php7 \
+        php7-fpm \
+        php7-pdo_mysql \
+        php7-gd \
+        php7-opcache \
+        php7-zlib \
+        php7-zip \
+        php7-ldap \
+        php7-mbstring \
+        php7-apcu \
     && curl -fsSL -o piwik.tar.gz "https://builds.piwik.org/piwik-${PIWIK_VERSION}.tar.gz" \
     && curl -fsSL -o piwik.tar.gz.asc "https://builds.piwik.org/piwik-${PIWIK_VERSION}.tar.gz.asc" \
     && GNUPGHOME="$(mktemp -d)" \

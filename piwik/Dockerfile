@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM php:7.1.0-fpm-alpine 
 
 MAINTAINER mritd <mritd@mritd.me>
 
@@ -21,10 +21,9 @@ RUN apk upgrade --no-cache \
         autoconf \
         geoip-dev" \
     && apk add --update \
-        ${BUILD_DEPS} \
 	tar \
         geoip \
-        php7-fpm@commuedge \
+        ${BUILD_DEPS} \
         php7-pdo_mysql@commuedge \
         php7-gd@commuedge \
         php7-opcache@commuedge \
@@ -36,7 +35,8 @@ RUN apk upgrade --no-cache \
         php7-mysqli@commuedge \
         php7-dev@commuedge \
         php7-pear@commuedge \
-    && mkdir /usr/src \
+    && pecl install geoip-1.1.1 \
+    && docker-php-ext-install -j2 mysqlnd \
     && curl -fsSL -o piwik.tar.gz "https://builds.piwik.org/piwik-${PIWIK_VERSION}.tar.gz" \
     && curl -fsSL -o piwik.tar.gz.asc "https://builds.piwik.org/piwik-${PIWIK_VERSION}.tar.gz.asc" \
     && GNUPGHOME="$(mktemp -d)" \
@@ -47,26 +47,17 @@ RUN apk upgrade --no-cache \
     && rm piwik.tar.gz \
     && curl -fsSL -o /usr/src/piwik/misc/GeoIPCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz \
     && gunzip /usr/src/piwik/misc/GeoIPCity.dat.gz \
-    && git clone https://github.com/Zakay/geoip \
-    && cd geoip && phpize7 && ./configure --with-php-config=/usr/bin/php-config7 \
-    && make && make install \
-    && addgroup -g 82 -S www-data \
-    && adduser -u 82 -D -S -G www-data www-data \
     && apk del ${BUILD_DEPS} php7-dev php7-pear \
     && rm -rf /var/cache/apk/*
 
-COPY php.ini /etc/php7/conf.d/php.ini
-
-COPY docker.conf /etc/php7/php-fpm.d/docker.conf
+COPY php.ini /usr/local/etc/php/php.ini
 
 COPY docker-entrypoint.sh /entrypoint.sh
 
 COPY cron/15min/* /etc/periodic/15min
 
-VOLUME /var/www/html
-
 EXPOSE 9000
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["php-fpm7"]
+CMD ["php-fpm"]

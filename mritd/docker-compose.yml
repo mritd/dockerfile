@@ -42,24 +42,9 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD
   piwik_app:
-    image: piwik:2.17.1
+    image: mritd/piwik
     restart: always
     links:
       - piwik_db
     volumes:
       - /data/piwik/config:/var/www/html/config
-  piwik_cron:
-    image: piwik:2.17.1
-    restart: always
-    links:
-      - piwik_db
-    volumes_from:
-      - piwik_app
-    entrypoint: |
-      bash -c 'bash -s <<EOF
-      trap "break;exit" SIGHUP SIGINT SIGTERM
-      while /bin/true; do
-        su -s "/bin/bash" -c "/usr/local/bin/php /var/www/html/console core:archive" www-data
-        sleep 3600
-      done
-      EOF'

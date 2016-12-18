@@ -18,7 +18,7 @@ RUN apk upgrade --no-cache \
         tar \
         curl \
         gnupg \
-        gcc \
+        build-base \
         autoconf \
         geoip-dev" \
     && apk add --no-cache \

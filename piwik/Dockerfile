@@ -36,6 +36,7 @@ RUN apk upgrade --no-cache \
     && rm piwik.tar.gz \
     && curl -fsSL -o /usr/src/piwik/misc/GeoIPCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz \
     && gunzip /usr/src/piwik/misc/GeoIPCity.dat.gz \
+    && adduser -u 82 -h /home/www-data -s /bin/false -S www-data
     && rm -rf /var/cache/apk/*
 
 COPY php.ini /usr/local/etc/php/php.ini

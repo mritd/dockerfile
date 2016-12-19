@@ -42,7 +42,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD
   piwik_app:
-    image: mritd/piwik
+    image: mritd/piwik:3.0.0
     restart: always
     links:
       - piwik_db

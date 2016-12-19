@@ -6,8 +6,6 @@ ENV TZ 'Asia/Shanghai'
 
 ENV PIWIK_VERSION 2.17.1
 
-WORKDIR /var/www/html
-
 RUN apk upgrade --no-cache \
     && apk add --no-cache bash tzdata \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \

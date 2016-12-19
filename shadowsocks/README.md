@@ -70,6 +70,10 @@ docker run -dt --name shadowsocks -p 5000:5000 -p 20000:20000/udp mritd/shadowso
 
 **json 字符串手动转义 `"` 可能有很大困难，可以借助 [JSON 在线格式化工具](http://www.bejson.com/zhuanyi/)，也就是说:首先自己修改好一个 kcptun 的配置文件，然后将里面的内容复制到上面的在线格式化工具中，选择压缩并转义；此时 json 字符串将被压缩成一行，同时内部 `"` 全部被转义，最后在启动的时候使用 `-c "压缩并转义后的内容"` 即可；注意一下不要忘记两边的双引号**
 
+
+**经网友 jxr111 验证，docker 内的 kcptun json 配置请不要监听 `127.0.0.1:SHADOWSOCKS端口`；由于 docker 的网络隔离机制，请在内部监听 `VPS` 公网地址，否则可能导致 shadowsocks 环路拒绝问题，出现类似 ` 2016/12/08 21:44:56 dial tcp 127.0.0.1:8777: getsockopt: connection` 这种错误**
+
+
 ### 环境变量支持
 
 14 号更新增加了对环境变量的支持，支持环境变量如下
@@ -120,3 +124,7 @@ docker run -dt --name shadowsocks -p 5000:5000 -e PASSWORD=ZQoPF2g6uwJE7cy4 -e F
 - 2016-11-30 更新 kcptun 版本
 
 更新 kcptun 版本到 20161118，修正样例命令中 kcptun 端口号使用 tcp 问题(应使用 udp)，感谢 Zheart 提出
+
+- 2016-12-19 更新 kcptun 到 20161202
+
+更新 kcptun 版本到 20161202，完善 README 中 kcptun 说明

@@ -4,7 +4,7 @@ MAINTAINER mritd <mritd@mritd.me>
 
 ENV TZ 'Asia/Shanghai'
 
-ENV PIWIK_VERSION 2.17.1
+ENV PIWIK_VERSION 3.0.0
 
 WORKDIR /var/www/html
 

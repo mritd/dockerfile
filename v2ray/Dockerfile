@@ -15,7 +15,7 @@ RUN apk upgrade --no-cache \
     && echo "Asia/Shanghai" > /etc/timezone \
     && VERSION="$(curl -s https://api.github.com/repos/v2ray/v2ray-core/releases/latest | grep 'tag_name' | cut -d\" -f4)" \
     && DOWNLOAD_URL="https://github.com/v2ray/v2ray-core/releases/download/${VERSION}/v2ray-linux-64.zip" \
-    && mkdir -p 
+    && mkdir -p \ 
         /var/log/v2ray \
         /usr/bin/v2ray \
         /tmp/v2ray \

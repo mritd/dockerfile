@@ -1,14 +1,14 @@
-FROM alpine:3.4
+FROM alpine:3.5
 
 MAINTAINER mritd <mritd@mritd.me>
 
-ENV LANG=C.UTF-8 \
-    TZ='Asia/Shanghai' \
-    JAVA_VERSION=8 \
-    JAVA_UPDATE=112 \
-    JAVA_BUILD=15 \
-    JAVA_HOME='/usr/lib/jvm/default-jvm' \
-    RESIN_VERSION=4.0.49
+ENV LANG=C.UTF-8
+ENV TZ='Asia/Shanghai'
+ENV JAVA_VERSION=8
+ENV JAVA_UPDATE=112
+ENV JAVA_BUILD=15
+ENV JAVA_HOME='/usr/lib/jvm/default-jvm'
+ENV RESIN_VERSION=4.0.49
 
 # install glibc
 RUN ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download" && \

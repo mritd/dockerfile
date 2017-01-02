@@ -1,11 +1,11 @@
-FROM nginx:1.11.6-alpine
+FROM nginx:1.11.8-alpine
 
 MAINTAINER mritd <mritd@mritd.me>
 
 ENV TZ 'Asia/Shanghai'
 
-RUN mkdir -p /etc/nginx/ssl && \
-    rm -f /etc/nginx/conf.d/default.conf
+RUN mkdir -p /etc/nginx/ssl \
+    && rm -f /etc/nginx/conf.d/default.conf
 
 ADD conf.d/*.conf /etc/nginx/conf.d/
 

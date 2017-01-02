@@ -3,7 +3,7 @@
 [![](https://images.microbadger.com/badges/image/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own version badge on microbadger.com")
 
 - **shadowsocks 版本: 2.9.0**
-- **kcptun 版本: 20161202**
+- **kcptun 版本: 20161222**
 
 ### 打开姿势
 
@@ -128,3 +128,7 @@ docker run -dt --name shadowsocks -p 5000:5000 -e PASSWORD=ZQoPF2g6uwJE7cy4 -e F
 - 2016-12-19 更新 kcptun 到 20161202
 
 更新 kcptun 版本到 20161202，完善 README 中 kcptun 说明
+
+- 2016-12-30 更新 kcptun 到 20161222
+
+更新 kcptun 版本到 20161222，更新基础镜像 alpine 到 3.5

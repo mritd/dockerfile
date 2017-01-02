@@ -2,7 +2,7 @@ version: '2'
 services: 
   consul:
     container_name: consul1
-    image: consul:0.7.0
+    image: consul:0.7.2
     restart: always
     network_mode: "host"  
     ports:

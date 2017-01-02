@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM alpine:3.5
 
 MAINTAINER mritd <mritd@mritd.me>
 
@@ -8,7 +8,7 @@ ENV TZ 'Asia/Shanghai'
 
 ENV SS_VERSION 2.9.0
 
-ENV KCP_VERSION 20161202
+ENV KCP_VERSION 20161222
 
 RUN apk upgrade --no-cache \
     && apk add --no-cache bash tzdata python py-setuptools wget libsodium \

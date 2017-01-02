@@ -1,4 +1,4 @@
-FROM ruby:2.3.3-alpine
+FROM nginx:1.11.8-alpine 
 
 MAINTAINER mritd <mritd@mritd.me>
 
@@ -10,4 +10,10 @@ RUN apk upgrade --no-cache \
     && echo "Asia/Shanghai" > /etc/timezone \
     && rm -rf /var/cache/apk/*
 
-CMD ["/bin/bash"]
+COPY index.html /usr/share/nginx/html/index.html
+
+COPY docker.png /usr/share/nginx/html/docker.png
+
+EXPOSE 80 443
+
+CMD ["nginx", "-g", "daemon off;"]

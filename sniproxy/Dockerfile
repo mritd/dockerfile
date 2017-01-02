@@ -14,6 +14,6 @@ COPY sniproxy.conf /etc/sniproxy.conf
 
 COPY entrypoint.sh /entrypoint.sh
 
-EXPOSE 53
+EXPOSE 443 
 
 ENTRYPOINT ["/entrypoint.sh"]

@@ -13,6 +13,8 @@ ADD cron/15min/* /etc/periodic/15min
 
 ADD entrypoint.sh /entrypoint.sh
 
+WORKDIR /root
+
 EXPOSE 53 53/udp
 
 ENTRYPOINT ["/entrypoint.sh"]

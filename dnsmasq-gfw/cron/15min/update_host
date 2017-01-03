@@ -1,0 +1,3 @@
+#!/bin/bash
+set -e
+cd /hosts && git pull >& /va/log/update.log

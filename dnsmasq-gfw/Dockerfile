@@ -2,7 +2,7 @@ FROM alpine:3.5
 
 MAINTAINER mritd <mritd@mritd.me>
 
-RUN apk upgrade --update && \
+RUN apk upgrade --update \
     && apk add --no-cache bash dnsmasq git \
     && git clone https://github.com/racaljk/hosts.git /root/hosts \
     && rm -rf /var/cache/apk/*

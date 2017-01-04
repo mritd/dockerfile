@@ -1,3 +1,5 @@
 #!/bin/bash
 set -e
 cd /root/hosts && git pull >> /var/log/update.log 2>&1
+ps | grep dnsmasq | awk '{print $1}' | head -n 1 | xargs kill
+masq -D -u root -g root

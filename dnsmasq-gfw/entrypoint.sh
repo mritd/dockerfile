@@ -2,4 +2,5 @@
 set -e
 
 crond -l 8 -L /root/cron.log
-dnsmasq --no-daemon
+dnsmasq -D -u root -g root 
+while true;do sleep 10;done

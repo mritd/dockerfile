@@ -14,7 +14,7 @@ ENV JAVA_MIN_MEM 1200m
 ENV EXTRA_JAVA_OPTS ""
 
 RUN apk upgrade --no-cache \
-    && apk add --no-cache bash tzdata wget gunzip tar \
+    && apk add --no-cache bash tzdata wget tar \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && wget --no-check-certificate https://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-unix.tar.gz \

@@ -18,11 +18,12 @@ RUN apk upgrade --no-cache \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && wget --no-check-certificate https://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-unix.tar.gz \
-    && tar -zxvf nexus-${NEXUS_VERSION}-unix.tar.gz \ 
+    && tar -zxvf nexus-${NEXUS_VERSION}-unix.tar.gz \
     && mv nexus-${NEXUS_VERSION} ${NEXUS_HOME} \
     && sed -e '/^nexus-context/ s:$:${NEXUS_CONTEXT}:' -i ${NEXUS_HOME}/etc/nexus-default.properties \
-    && adduser -r -u 200 -m -c "nexus role account" -d ${NEXUS_DATA} -s /bin/false nexus \
     && mkdir -p ${NEXUS_DATA}/etc ${NEXUS_DATA}/log ${NEXUS_DATA}/tmp ${SONATYPE_WORK} \
+    && addgroup -S nexus \
+    && adduser -S -h ${NEXUS_DATA} -s /bin/false -G nexus nexus \
     && ln -s ${NEXUS_DATA} ${SONATYPE_WORK}/nexus3 \
     && chown -R nexus:nexus ${NEXUS_DATA} \
     && rm -rf /var/cache/apk/*
@@ -32,5 +33,7 @@ USER nexus
 WORKDIR ${NEXUS_HOME}
 
 VOLUME ${NEXUS_DATA}
+
+EXPOSE 8081
 
 CMD ["bin/nexus", "run"]

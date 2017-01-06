@@ -21,7 +21,7 @@ RUN apk upgrade --no-cache \
     && tar -zxvf nexus-${NEXUS_VERSION}-unix.tar.gz \ 
     && mv nexus-${NEXUS_VERSION} ${NEXUS_HOME} \
     && sed -e '/^nexus-context/ s:$:${NEXUS_CONTEXT}:' -i ${NEXUS_HOME}/etc/nexus-default.properties \
-    && useradd -r -u 200 -m -c "nexus role account" -d ${NEXUS_DATA} -s /bin/false nexus \
+    && adduser -r -u 200 -m -c "nexus role account" -d ${NEXUS_DATA} -s /bin/false nexus \
     && mkdir -p ${NEXUS_DATA}/etc ${NEXUS_DATA}/log ${NEXUS_DATA}/tmp ${SONATYPE_WORK} \
     && ln -s ${NEXUS_DATA} ${SONATYPE_WORK}/nexus3 \
     && chown -R nexus:nexus ${NEXUS_DATA} \

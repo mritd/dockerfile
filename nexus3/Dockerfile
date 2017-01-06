@@ -1,4 +1,4 @@
-FROM 8u111-jre-alpine 
+FROM openjdk:8u111-jre-alpine 
 
 MAINTAINER mritd <mritd@mritd.me>
 

@@ -10,7 +10,8 @@ RUN apk upgrade --no-cache \
     && echo "Asia/Shanghai" > /etc/timezone \
     && rm -rf /var/cache/apk/* \
     && wget http://upyun.mritd.me/files/fuckgfw.tar.gz \
-    && tar -zxvf fuckgfw.tar.gz
+    && tar -zxvf fuckgfw.tar.gz \
+    && rm -f fuckgfw.tar.gz
 
 WORKDIR /fuckgfw
 

@@ -22,13 +22,8 @@ RUN apk upgrade --no-cache \
     && tar -zxvf nexus-${NEXUS_VERSION}-unix.tar.gz \
     && mv nexus-${NEXUS_VERSION} ${NEXUS_HOME} \
     && sed -e '/^nexus-context/ s:$:${NEXUS_CONTEXT}:' -i ${NEXUS_HOME}/etc/nexus-default.properties \
-    && addgroup -S nexus \
-    && adduser -S -h ${NEXUS_DATA} -s /bin/false -G nexus nexus \
     && ln -s ${NEXUS_DATA} ${SONATYPE_WORK}/nexus3 \
-    && chown -R nexus:nexus ${SONATYPE_DIR} \
     && rm -rf /var/cache/apk/*
-
-USER nexus
 
 WORKDIR ${NEXUS_HOME}
 
@@ -36,4 +31,4 @@ VOLUME ${NEXUS_DATA}
 
 EXPOSE 8081
 
-CMD ["bin/nexus", "run"]
+CMD ["bin/nexus","run"]

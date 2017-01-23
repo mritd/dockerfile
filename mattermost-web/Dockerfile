@@ -17,12 +17,11 @@ RUN apk upgrade --no-cache \
     && mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2 \ 
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
+    && rm -f mattermost-${MATTERMOST_VERSION}-linux-amd64.tar.gz \
     && rm -rf /var/cache/apk/*
 
 USER mattermost
 
 WORKDIR /usr/local/mattermost
-
-VOLUME /usr/local/mattermost/config/config.json
 
 CMD ["/bin/bash"]

@@ -132,3 +132,8 @@ docker run -dt --name shadowsocks -p 5000:5000 -e PASSWORD=ZQoPF2g6uwJE7cy4 -e F
 - 2016-12-30 更新 kcptun 到 20161222
 
 更新 kcptun 版本到 20161222，更新基础镜像 alpine 到 3.5
+
+- 2017-01-20 升级 kcptun 到 20170117
+
+更新 kcptun 到 20170117，kcptun 新版本 ack 结构中更准确的RTT估算，锁优化，更平滑的rtt计算jitter，建议更新；
+同时 20170120 处于 Pre-release 暂不更新；**最近比较忙，可能 kcptun 配置已经有更新，具体请参考 kcptun 官网及 [Github](https://github.com/xtaci/kcptun)**

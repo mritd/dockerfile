@@ -14,4 +14,4 @@ COPY IntelliJIDEALicenseServer.html /IntelliJIDEALicenseServer.html
 
 EXPOSE 80
 
-ENTRYPOINT ["/idea","-p","80"]
+ENTRYPOINT ["/idea","-p","80","-u","mritd"]

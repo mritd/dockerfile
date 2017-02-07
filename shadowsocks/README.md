@@ -135,5 +135,14 @@ docker run -dt --name shadowsocks -p 5000:5000 -e PASSWORD=ZQoPF2g6uwJE7cy4 -e F
 
 - 2017-01-20 升级 kcptun 到 20170117
 
-更新 kcptun 到 20170117，kcptun 新版本 ack 结构中更准确的RTT估算，锁优化，更平滑的rtt计算jitter，建议更新；
-同时 20170120 处于 Pre-release 暂不更新；**最近比较忙，可能 kcptun 配置已经有更新，具体请参考 kcptun 官网及 [Github](https://github.com/xtaci/kcptun)**
+更新 kcptun 到 20170117，kcptun 新版本 ack 结构中更准确的RTT估算，锁优化，更平滑的rtt计算jitter，
+建议更新；同时 20170120 处于 Pre-release 暂不更新；**最近比较忙，可能 kcptun 配置已经有更新，具体
+请参考 kcptun 官网及 [Github](https://github.com/xtaci/kcptun)**
+
+- 2017-01-25 升级 kcptun 到 20171222
+
+更新 kcptun 到 2017...... 别的我忘了......
+
+- 2017-0208 升级 kcptun 到 20170120
+
+更新 kcptun 到 20170120，**下个版本准备切换到 shadowsocks-libe 3.0，目前 3.0 还未正式发布，观望中!**

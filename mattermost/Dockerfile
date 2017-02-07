@@ -24,4 +24,4 @@ USER mattermost
 
 WORKDIR /usr/local/mattermost
 
-CMD ["/bin/bash"]
+CMD ["bin/platform"]

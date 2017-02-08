@@ -145,4 +145,4 @@ docker run -dt --name shadowsocks -p 5000:5000 -e PASSWORD=ZQoPF2g6uwJE7cy4 -e F
 
 - 2017-0208 升级 kcptun 到 20170120
 
-更新 kcptun 到 20170120，**下个版本准备切换到 shadowsocks-libe 3.0，目前 3.0 还未正式发布，观望中!**
+更新 kcptun 到 20170120，**下个版本准备切换到 shadowsocks-libev 3.0，目前 3.0 还未正式发布，观望中!**

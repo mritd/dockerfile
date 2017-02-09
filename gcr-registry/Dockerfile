@@ -14,8 +14,6 @@ RUN apk upgrade --no-cache \
 
 COPY ./registry/registry /bin/registry
 COPY ./registry/config-example.yml /etc/docker/registry/config.yml
-COPY ./registry/client_config.json /fuckgfw/client_config.json
-COPY ./registry/config /etc/privoxy/config
 COPY docker-entrypoint.sh /entrypoint.sh
 
 WORKDIR /fuckgfw

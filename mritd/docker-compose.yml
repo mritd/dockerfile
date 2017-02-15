@@ -11,6 +11,7 @@ services:
     links:
       - jekyll
       - idea
+      - yumrepo
       - rpm
       - piwik_app
     ports:
@@ -22,6 +23,9 @@ services:
   idea:
     image: mritd/idea
     restart: always
+  yumrepo:
+    image: mritd/yumrepo
+    restart: always  
   rpm:
     image: mritd/rpmrepository
     restart: always

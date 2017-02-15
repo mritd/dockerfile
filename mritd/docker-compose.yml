@@ -12,7 +12,6 @@ services:
       - jekyll
       - idea
       - rpm
-      - minio
       - piwik_app
     ports:
       - "80:80"
@@ -23,12 +22,6 @@ services:
   idea:
     image: mritd/idea
     restart: always
-  minio:
-    image: minio/minio
-    restart: always
-    volumes:
-      - /data/minio:/export
-    command: ["server","--address","0.0.0.0:80","/export"]
   rpm:
     image: mritd/rpmrepository
     restart: always

@@ -20,4 +20,6 @@ RUN apk upgrade --no-cache \
     && rm -f ${CODIS_FILENAME} \
     && rm -rf /var/cache/apk/*
 
+ADD codis-server.conf /etc/codis-erver.conf
+
 CMD ["/bin/bash"]

@@ -13,12 +13,12 @@ RUN apk upgrade --no-cache \
     && apk add --no-cache bash tzdata wget \
     && wget --no-check-certificate ${CODIS_URL} \ 
     && tar -zxf ${CODIS_FILENAME} \
-    && mv codis${CODIS_VERSION}-go${GOLANG_VERSION}-linux/${CODIS_MODULE} / \
-    && /${CODIS_MODULE} --default-config > /${CODIS_MODULE}.conf \
+    && mv codis${CODIS_VERSION}-go${GOLANG_VERSION}-linux/${CODIS_MODULE} /usr/bin \
+    && /${CODIS_MODULE} --default-config > /etc/${CODIS_MODULE}.toml \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && rm -rf codis${CODIS_VERSION}-go${GOLANG_VERSION}-linux \
     && rm -f ${CODIS_FILENAME} \
     && rm -rf /var/cache/apk/*
 
-CMD ["/codis-dashboard","--ncpu=1","--config=/codis-dashboard.toml","--log-level=INFO","--log=/dev/stdout"]
+CMD ["codis-dashboard","--ncpu=1","--config=/etc/${CODIS_MODULE}.toml","--log-level=INFO","--log=/dev/stdout"]

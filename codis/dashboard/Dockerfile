@@ -21,4 +21,4 @@ RUN apk upgrade --no-cache \
     && rm -f ${CODIS_FILENAME} \
     && rm -rf /var/cache/apk/*
 
-CMD ["/bin/bash"]
+CMD ["/codis-dashboard","--ncpu=1","--config=/codis-dashboard.toml","--log-level=INFO","--log=/dev/stdout"]

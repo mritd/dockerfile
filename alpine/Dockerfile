@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM frolvlad/alpine-glibc
 
 MAINTAINER mritd <mritd@mritd.me>
 

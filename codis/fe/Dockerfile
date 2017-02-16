@@ -21,6 +21,6 @@ RUN apk upgrade --no-cache \
     && rm -f ${CODIS_FILENAME} \
     && rm -rf /var/cache/apk/*
 
-ADD codis-fe.json /codis-fe.json
+ADD codis-fe.json /etc/codis-fe.json
 
 CMD ["/bin/bash"]

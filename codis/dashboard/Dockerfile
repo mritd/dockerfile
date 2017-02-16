@@ -14,7 +14,7 @@ RUN apk upgrade --no-cache \
     && wget --no-check-certificate ${CODIS_URL} \ 
     && tar -zxf ${CODIS_FILENAME} \
     && mv codis${CODIS_VERSION}-go${GOLANG_VERSION}-linux/${CODIS_MODULE} /usr/bin \
-    && /${CODIS_MODULE} --default-config > /etc/${CODIS_MODULE}.toml \
+    && ${CODIS_MODULE} --default-config > /etc/${CODIS_MODULE}.toml \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && rm -rf codis${CODIS_VERSION}-go${GOLANG_VERSION}-linux \

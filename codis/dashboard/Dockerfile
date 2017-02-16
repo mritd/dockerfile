@@ -18,6 +18,7 @@ RUN apk upgrade --no-cache \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && rm -rf codis${CODIS_VERSION}-go${GOLANG_VERSION}-linux \
+    && rm -f ${CODIS_FILENAME} \
     && rm -rf /var/cache/apk/*
 
 CMD ["/bin/bash"]

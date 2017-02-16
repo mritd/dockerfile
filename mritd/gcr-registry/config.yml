@@ -16,6 +16,5 @@ health:
     enabled: true
     interval: 10s
     threshold: 3
-# 指定反代仓库
 proxy:
   remoteurl: https://gcr.io

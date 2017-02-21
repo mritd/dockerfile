@@ -29,4 +29,4 @@ EXPOSE 8080
 
 VOLUME /data
 
-CMD ["upsource.sh","run"]
+CMD ["./upsource.sh","run"]

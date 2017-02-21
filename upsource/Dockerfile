@@ -18,4 +18,4 @@ RUN apk upgrade --no-cache \
 
 WORKDIR upsource-${UPSOURCE_VERSION}/bin
 
-CMD ["/bin/bash"]
+CMD ["upsource.sh","run"]

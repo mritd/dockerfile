@@ -1,4 +1,4 @@
 #!/bin/bash
 
 git pull
-nginx -g daemon off;
+nginx -g "daemon off;"

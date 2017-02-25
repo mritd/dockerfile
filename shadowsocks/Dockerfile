@@ -2,8 +2,6 @@ FROM alpine:3.5
 
 MAINTAINER mritd <mritd@mritd.me>
 
-WORKDIR /root
-
 ENV TZ 'Asia/Shanghai'
 
 ENV SS_LIBEV_VERSION 3.0.3
@@ -43,9 +41,11 @@ RUN apk upgrade --no-cache \
         )" \
     && apk add --no-cache --virtual .run-deps $runDeps \
     && apk del .build-deps \
-    && rm -f client_linux_amd64 kcptun-linux-amd64-$KCP_VERSION.tar.gz shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
-    && rm -rf shadowsocks-libev-$SS_LIBEV_VERSION \
-    && rm -rf /var/cache/apk/*
+    && rm -rf client_linux_amd64 \
+        kcptun-linux-amd64-$KCP_VERSION.tar.gz \
+        shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
+        shadowsocks-libev-$SS_LIBEV_VERSION \
+        /var/cache/apk/*
 
 ADD entrypoint.sh /entrypoint.sh
 

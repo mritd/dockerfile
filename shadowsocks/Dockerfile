@@ -27,7 +27,6 @@ RUN apk upgrade --no-cache \
         udns-dev \
     && curl -sSLO https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$SS_LIBEV_VERSION/shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
     && tar -zxf shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
-    && tar -zxvf $SS_VERSION.tar.gz \
     && cd shadowsocks-libev-$SS_LIBEV_VERSION \
     && ./configure --prefix=/usr --disable-documentation \
     && make install && cd ../ \

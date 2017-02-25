@@ -25,13 +25,13 @@ RUN apk upgrade --no-cache \
         pcre-dev \
         tar \
         udns-dev \
-    && curl -sSL https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$SS_LIBEV_VERSION/shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
+    && curl -sSLO https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$SS_LIBEV_VERSION/shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
     && tar -zxf shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
     && tar -zxvf $SS_VERSION.tar.gz \
     && cd shadowsocks-libev-$SS_LIBEV_VERSION \
     && ./configure --prefix=/usr --disable-documentation \
     && make install && cd ../ \
-    && curl -sSL https://github.com/xtaci/kcptun/releases/download/v$KCP_VERSION/kcptun-linux-amd64-$KCP_VERSION.tar.gz \
+    && curl -sSLO https://github.com/xtaci/kcptun/releases/download/v$KCP_VERSION/kcptun-linux-amd64-$KCP_VERSION.tar.gz \
     && tar -zxf kcptun-linux-amd64-$KCP_VERSION.tar.gz \
     && mv server_linux_amd64 /usr/bin/kcptun \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \

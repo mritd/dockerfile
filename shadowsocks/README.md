@@ -29,31 +29,32 @@ docker run -dt --name ss -p 6443:6443 mritd/shadowsocks -s "-s 0.0.0.0 -p 6443 -
 docker run -dt --name ss -p 6443:6443 -p 6500:6500/udp mritd/shadowsocks -s "-s 0.0.0.0 -p 6443 -m aes-256-cfb -k test123 --fast-open" -k "-t 127.0.0.1:6443 -l :6500 -mode fast2" -x
 ```
 
+**以上命令相当于执行了**
 
+``` sh
+ss-server -s 0.0.0.0 -p 6443 -m aes-256-cfb -k test123 --fast-open
+kcptun -t 127.0.0.1:6443 -l :6500 -mode fast2
+```
+
+**关于 shadowsocks-libev 和 kcptun 都支持哪些参数请自行查阅官方文档，本镜像只做一个拼接**
+
+**注意：kcptun 映射端口为 udp 模式(`6500:6500/udp`)，不写默认 tcp；shadowsocks 请监听 0.0.0.0**
 
 
 ### 环境变量支持
 
-14 号更新增加了对环境变量的支持，支持环境变量如下
 
 |环境变量|作用|取值|
 |-------|---|---|
-|SERVER_ADDR|服务器监听地址|IPV4(一般为 0.0.0.0)|
-|SERVER_PORT|服务器监听端口|0~65535|
-|PASSWORD|shadowsocks 密码|任意字符 默认 `ZQoPF2g6uwJE7cy4`|
-|METHOD|shadowsocks 加密方式|默认 aes-256-cfb|
-|TIMEOUT|shadowsocks 链接超时时间|默认 300|
-|WORKERS|shadowsocks 工作进程|默认 1|
-|ONE_TIME_AUTH|是否启用 0TA|为空或 `-a`|
-|FAST_OPEN|开启 fast-open|为空或 `--fast-open`|
-|PREFER_IPV6|优先处理 IPV6|为空或 `--prefer-ipv6`|
-|KCPTUN_FLAG|是否开启 kcptun 支持|`true` 或 `false`|
-|KCPTUN_CONFIG|自定义 kcptun 配置|压缩并转义后的 kcptun 配置|
+|SS_CONFIG|shadowsocks-libev 参数字符串|所有字符串内内容应当为 shadowsocks-libev 支持的选项参数|
+|KCP_CONFIG|kcptun 参数字符串|所有字符串内内容应当为 kcptun 支持的选项参数|
+|KCP_FLAG|是否开启 kcptun 支持|可选参数为 true 和 false，默认为 fasle 禁用 kcptun|
+
 
 使用时可指定环境变量，如下
 
 ``` sh
-docker run -dt --name shadowsocks -p 5000:5000 -e PASSWORD=ZQoPF2g6uwJE7cy4 -e FAST_OPEN=-a mritd/shadowsocks
+docker run -dt --name ss -p 6443:6443 -p 6500:6500/udp -e SS_CONFIG="-s 0.0.0.0 -p 6443 -m aes-256-cfb -k test123 --fast-open" -e KCP_CONFIG="-t 127.0.0.1:6443 -l :6500 -mode fast2" -e KCP_FLAG="true" mritd/shadowsocks
 ```
 
 
@@ -101,6 +102,10 @@ docker run -dt --name shadowsocks -p 5000:5000 -e PASSWORD=ZQoPF2g6uwJE7cy4 -e F
 
 更新 kcptun 到 2017...... 别的我忘了......
 
-- 2017-0208 升级 kcptun 到 20170120
+- 2017-02-08 升级 kcptun 到 20170120
 
 更新 kcptun 到 20170120，**下个版本准备切换到 shadowsocks-libev 3.0，目前 3.0 还未正式发布，观望中!**
+
+- 2017-02-25 切换到 shadowsocks-libev
+
+切换到 shadowsocks-libev 3.0 版本，同时更新 kcptun 和参数设定

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SS_CONFIG=${SS_CONFIG:-""}
-KCP_CONFIG=${KCPTUN_CONFIG:-""}
+KCP_CONFIG=${KCP_CONFIG:-""}
 KCP_FLAG=${KCP_FLAG:-"false"}
 
 while getopts "s:k:x" OPT; do

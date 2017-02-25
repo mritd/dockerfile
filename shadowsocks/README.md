@@ -2,76 +2,34 @@
 
 [![](https://images.microbadger.com/badges/image/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own version badge on microbadger.com")
 
-- **shadowsocks 版本: 2.9.0**
-- **kcptun 版本: 20170120**
+- **shadowsocks-libev 版本: 3.0.3**
+- **kcptun 版本: 20170221**
 
 ### 打开姿势
 
 ``` sh
-docker run -dt --name shadowsocks -p 5000:5000 mritd/shadowsocks -k mritd -w 2 -f
+docker run -dt --name ss -p 6443:6443 mritd/shadowsocks -s "-s 0.0.0.0 -p 6443 -m aes-256-cfb -k test123 --fast-open"
 ```
 
 ### 支持选项
 
-- `-s` : SERVER_ADDR
-- `-p` : SERVER_PORT
-- `-k` : PASSWORD
-- `-m` : METHOD
-- `-t` : TIMEOUT
-- `-w` : WORKERS
-- `-a` : 启用 ONE_TIME_AUTH
-- `-f` : 启用 FAST_OPEN
-- `-i` : 启用 PREFER_IPV6
-- `-x` : 禁用 kcptun
+- `-s` : shadowsocks-libev 参数字符串
+- `-k` : kcptun 参数字符串
+- `-x` : 开启 kcptun 支持
 
-### 具体选项含义如下
+### 选项描述
 
-``` sh
-Proxy options:
-  -c CONFIG              path to config file
-  -s SERVER_ADDR         server address, default: 0.0.0.0
-  -p SERVER_PORT         server port, default: 8388
-  -k PASSWORD            password
-  -m METHOD              encryption method, default: aes-256-cfb
-  -t TIMEOUT             timeout in seconds, default: 300
-  -a ONE_TIME_AUTH       one time auth
-  --fast-open            use TCP_FASTOPEN, requires Linux 3.7+
-  --workers WORKERS      number of workers, available on Unix/Linux
-  --forbidden-ip IPLIST  comma seperated IP list forbidden to connect
-  --manager-address ADDR optional server manager UDP address, see wiki
-  --prefer-ipv6          resolve ipv6 address first
+`-s` 参数后指定一个 shadowsocks-libev 的参数字符串，所有参数将被拼接到 `ss-server` 后；
+`-k` 参数后指定一个 kcptun 的参数字符串，所有参数将被拼接到 `kcptun` 后
+`-x` 指定该参数后才会开启 kcptun 支持，否则将默认禁用 kcptun
 
-General options:
-  -h, --help             show this help message and exit
-  -d start/stop/restart  daemon mode
-  --pid-file PID_FILE    pid file for daemon mode
-  --log-file LOG_FILE    log file for daemon mode
-  --user USER            username to run as
-  -v, -vv                verbose mode
-  -q, -qq                quiet mode, only show warnings/errors
-  --version              show version information
-```
-
-### kcptun 支持
-
-最新版本默认集成了 kcptun，打开姿势
+### 命令示例
 
 ``` sh
-docker run -dt --name shadowsocks -v KCP_CFG_PATH:/etc/kcptun.cfg -p 5000:5000 -p 20000:20000/udp mritd/shadowsocks -k mritd -w 2 -f
+docker run -dt --name ss -p 6443:6443 -p 6500:6500/udp mritd/shadowsocks -s "-s 0.0.0.0 -p 6443 -m aes-256-cfb -k test123 --fast-open" -k "-t 127.0.0.1:6443 -l :6500 -mode fast2" -x
 ```
 
-kcptun 默认使用 `/etc/kcptun.cfg` 启动，默认配置见右侧 Github，自定义配置时只需要使用 `-v` 将本地配置挂载进去即可，如 `-v /root/kcptun.cfg:/etc/kcptun.cfg`；同时应使用 `-p` 增加 kcptun 对应的端口映射，默认配置监听 20000 端口；如不想使用 kcptun 可使用 `-x` 参数禁止
 
-最新增加了 `-c` 参数和环境变量 `KCPTUN_CONFIG` 来支持命令行下自定义 kcptun 的配置，`-c` 命令后面要跟一个完整的 kcptun json 配置字符串，如下所示
-
-``` sh
-docker run -dt --name shadowsocks -p 5000:5000 -p 20000:20000/udp mritd/shadowsocks -k mritd -w 2 -f -c "{\"listen\":\":1111\",\"target\":\"127.0.0.1:5000\",\"key\":\"kcptun\",\"crypt\":\"salsa20\",\"mode\":\"fast2\",\"mtu\":1350,\"sndwnd\":1024,\"rcvwnd\":1024,\"datashard\":70,\"parityshard\":30,\"dscp\":46,\"nocomp\":false,\"acknodelay\":false,\"nodelay\":0,\"interval\":40,\"resend\":0,\"nc\":0,\"sockbuf\":4194304,\"keepalive\":10,\"log\":\"/var/log/kcptun.log\"}"
-```
-
-**json 字符串手动转义 `"` 可能有很大困难，可以借助 [JSON 在线格式化工具](http://www.bejson.com/zhuanyi/)，也就是说:首先自己修改好一个 kcptun 的配置文件，然后将里面的内容复制到上面的在线格式化工具中，选择压缩并转义；此时 json 字符串将被压缩成一行，同时内部 `"` 全部被转义，最后在启动的时候使用 `-c "压缩并转义后的内容"` 即可；注意一下不要忘记两边的双引号**
-
-
-**经网友 jxr111 验证，docker 内的 kcptun json 配置请不要监听 `127.0.0.1:SHADOWSOCKS端口`；由于 docker 的网络隔离机制，请在内部监听 `VPS` 公网地址，否则可能导致 shadowsocks 环路拒绝问题，出现类似 ` 2016/12/08 21:44:56 dial tcp 127.0.0.1:8777: getsockopt: connection` 这种错误**
 
 
 ### 环境变量支持

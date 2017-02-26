@@ -36,13 +36,6 @@ services:
     restart: always
     volumes:
       - /data/piwik/mysql/runtime:/var/lib/mysql
-  rpm:
-    image: mritd/rpmrepository
-    restart: always
-    volumes:
-      - /data/repo:/data/repo
-    environment:
-      - MYSQL_ROOT_PASSWORD
   piwik_app:
     image: mritd/piwik:3.0.1
     restart: always

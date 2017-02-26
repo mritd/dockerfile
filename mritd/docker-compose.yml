@@ -11,8 +11,8 @@ services:
     links:
       - jekyll
       - idea
-      - yumrepo
-      - rpm
+      - yum
+      - gcr
       - piwik_app
     ports:
       - "80:80"
@@ -23,19 +23,24 @@ services:
   idea:
     image: mritd/idea
     restart: always
-  yumrepo:
+  yum:
     image: mritd/yumrepo
     restart: always  
-  rpm:
-    image: mritd/rpmrepository
+  gcr:
+    lmage: mritd/gcr.io
     restart: always
-    volumes:
-      - /data/repo:/data/repo
+    volume:
+      - /data/registry:/var/lib/registry
   piwik_db:
     image: mysql:5.7.17
     restart: always
     volumes:
       - /data/piwik/mysql/runtime:/var/lib/mysql
+  rpm:
+    image: mritd/rpmrepository
+    restart: always
+    volumes:
+      - /data/repo:/data/repo
     environment:
       - MYSQL_ROOT_PASSWORD
   piwik_app:

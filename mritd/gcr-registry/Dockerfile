@@ -2,7 +2,7 @@ FROM registry:2.6.0
 
 MAINTAINER mritd <mritd@mritd.me>
 
-ENV TZ 'Asia/Shanghai'
+ADD config.yml /etc/docker/registry/config.yml
 
 RUN apk upgrade --no-cache \
     && apk add --no-cache bash tzdata \
@@ -10,6 +10,6 @@ RUN apk upgrade --no-cache \
     && echo "Asia/Shanghai" > /etc/timezone \
     && rm -rf /var/cache/apk/*
 
-ADD config.yml /etc/docker/registry/config.yml
-
 ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["/etc/docker/registry/config.yml"]

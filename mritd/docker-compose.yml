@@ -29,7 +29,7 @@ services:
   gcr:
     lmage: mritd/gcr.io
     restart: always
-    volume:
+    volumes:
       - /data/registry:/var/lib/registry
   piwik_db:
     image: mysql:5.7.17

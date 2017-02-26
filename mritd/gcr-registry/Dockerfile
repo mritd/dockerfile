@@ -10,6 +10,8 @@ RUN apk upgrade --no-cache \
     && echo "Asia/Shanghai" > /etc/timezone \
     && rm -rf /var/cache/apk/*
 
+EXPOSE 80
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["/etc/docker/registry/config.yml"]

@@ -57,6 +57,17 @@ kcptun -t 127.0.0.1:6443 -l :6500 -mode fast2
 docker run -dt --name ss -p 6443:6443 -p 6500:6500/udp -e SS_CONFIG="-s 0.0.0.0 -p 6443 -m aes-256-cfb -k test123 --fast-open" -e KCP_CONFIG="-t 127.0.0.1:6443 -l :6500 -mode fast2" -e KCP_FLAG="true" mritd/shadowsocks
 ```
 
+### 樱花用户说明
+
+本镜像 3.0.3 版本之后，原来的 `/root/entrypoint.sh` 被移动到了 `/entrypoint.sh`
+其他选项参数更新为只有两个参数 `-s`(shadowsocks) 和 `-k`(kcptun)，具体使用同上
+以下为在樱花上测试过的同时开启 shadowsocks 和 kcptun 的命令
+
+``` sh
+/entrypoint.sh -s "-s 0.0.0.0 -p 6443 -m aes-256-cfb -k test123 --fast-open" -k "-t 127.0.0.1:6443 -l :6500 -mode fast2" -x
+```
+
+如果仅使用 shadowsocks 那么请去除 `-k` 和 `-x` 参数即可
 
 ### 更新日志
 

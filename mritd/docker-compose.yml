@@ -24,7 +24,7 @@ services:
     image: mritd/idea
     restart: always
   yum:
-    image: mritd/yumrepo
+    image: mritd/yum
     restart: always  
   gcr:
     image: mritd/gcr.io

@@ -26,6 +26,8 @@ services:
   yum:
     image: mritd/yum
     restart: always  
+    volumes:
+      - /data/repo/centos:/usr/share/nginx/html/centos
   gcr:
     image: mritd/gcr.io
     restart: always

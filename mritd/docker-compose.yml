@@ -27,7 +27,7 @@ services:
     image: mritd/yumrepo
     restart: always  
   gcr:
-    lmage: mritd/gcr.io
+    image: mritd/gcr.io
     restart: always
     volumes:
       - /data/registry:/var/lib/registry

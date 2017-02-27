@@ -1,4 +1,4 @@
-FROM nginx:1.11.9-alpine 
+FROM nginx:1.11.10-alpine 
 
 MAINTAINER mritd <mritd@mritd.me>
 

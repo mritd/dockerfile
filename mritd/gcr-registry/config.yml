@@ -8,7 +8,7 @@ storage:
   filesystem:
     rootdirectory: /var/lib/registry
 http:
-  addr: :5000
+  addr: :80
   headers:
     X-Content-Type-Options: [nosniff]
 health:

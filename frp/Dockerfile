@@ -18,4 +18,4 @@ RUN apk upgrade --no-cache \
 
 ADD frps.ini /etc/frps.ini
 
-CMD ["/bin/bash"]
+CMD ["frps","-c","/etc/frps.ini"]

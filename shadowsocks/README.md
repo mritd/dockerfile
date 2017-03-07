@@ -120,3 +120,7 @@ docker run -dt --name ss -p 6443:6443 -p 6500:6500/udp -e SS_CONFIG="-s 0.0.0.0 
 - 2017-02-25 切换到 shadowsocks-libev
 
 切换到 shadowsocks-libev 3.0 版本，同时更新 kcptun 和参数设定
+
+- 2017-03-07 升级 kcptun 到 20170303
+
+更新 kcptun 到 20170303

@@ -3,7 +3,7 @@
 [![](https://images.microbadger.com/badges/image/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own version badge on microbadger.com")
 
 - **shadowsocks-libev 版本: 3.0.3**
-- **kcptun 版本: 20170303**
+- **kcptun 版本: 20170308**
 
 ### 打开姿势
 
@@ -124,3 +124,7 @@ docker run -dt --name ss -p 6443:6443 -p 6500:6500/udp -e SS_CONFIG="-s 0.0.0.0 
 - 2017-03-07 升级 kcptun 到 20170303
 
 更新 kcptun 到 20170303
+
+- 2017-03-09 升级 kcptun 到 20170308
+
+更新 kcptun 到 20170308

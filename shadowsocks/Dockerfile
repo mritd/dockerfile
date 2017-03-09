@@ -6,7 +6,7 @@ ENV TZ 'Asia/Shanghai'
 
 ENV SS_LIBEV_VERSION 3.0.3
 
-ENV KCP_VERSION 20170303 
+ENV KCP_VERSION 20170308 
 
 RUN apk upgrade --no-cache \
     && apk add --no-cache bash tzdata libsodium \

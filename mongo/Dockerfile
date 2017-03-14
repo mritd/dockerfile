@@ -19,6 +19,7 @@ RUN apk upgrade --no-cache \
     && mv mongodb-linux-x86_64-${MONGO_VERSION}/bin/* /usr/local/bin \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
+    && apk del curl \
     && rm -rf mongodb-linux-x86_64-${MONGO_VERSION}.tgz \
             mongodb-linux-x86_64-${MONGO_VERSION} \
             /var/cache/apk/*
@@ -27,8 +28,8 @@ COPY docker-entrypoint.sh /entrypoint.sh
 
 VOLUME /data/db /data/configdb
 
-ENTRYPOINT ["/entrypoint.sh"]
-
 EXPOSE 27017
+
+ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["mongod"]

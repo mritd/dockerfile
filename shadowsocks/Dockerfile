@@ -4,9 +4,9 @@ MAINTAINER mritd <mritd@mritd.me>
 
 ENV TZ 'Asia/Shanghai'
 
-ENV SS_LIBEV_VERSION 3.0.3
+ENV SS_LIBEV_VERSION 3.0.4
 
-ENV KCP_VERSION 20170308 
+ENV KCP_VERSION 20170315 
 
 RUN apk upgrade --no-cache \
     && apk add --no-cache bash tzdata libsodium \

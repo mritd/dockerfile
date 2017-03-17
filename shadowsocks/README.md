@@ -2,8 +2,8 @@
 
 [![](https://images.microbadger.com/badges/image/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own version badge on microbadger.com")
 
-- **shadowsocks-libev 版本: 3.0.3**
-- **kcptun 版本: 20170308**
+- **shadowsocks-libev 版本: 3.0.4**
+- **kcptun 版本: 20170315**
 
 ### 打开姿势
 
@@ -128,3 +128,8 @@ docker run -dt --name ss -p 6443:6443 -p 6500:6500/udp -e SS_CONFIG="-s 0.0.0.0 
 - 2017-03-09 升级 kcptun 到 20170308
 
 更新 kcptun 到 20170308
+
+- 2017-03-17 升级 kcptun 和 shadowsocks-libev
+
+升级 shadowsocks-libev 到 3.0.4 版本，支持 `TCP Fast Open in ss-redir`、`TOS/DESCP in ss-redir` 和
+细化 MPTCP；升级 kcptun 到 315 打假版本 `(:`

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 SS_CONFIG=${SS_CONFIG:-""}
+SS_MODULE=${SS_MODULE:-"ss-server"}
 KCP_CONFIG=${KCP_CONFIG:-""}
 KCP_FLAG=${KCP_FLAG:-"false"}
 
@@ -8,6 +9,8 @@ while getopts "s:k:x" OPT; do
     case $OPT in
         s)
             SS_CONFIG=$OPTARG;;
+        m)
+            SS_MODULE=$OPTARG;;
         k)
             KCP_CONFIG=$OPTARG;;
         x)
@@ -24,7 +27,7 @@ fi
 
 echo -e "\033[32mStarting shadowsocks......\033[0m"
 if [ "$SS_CONFIG" != "" ]; then
-    ss-server $SS_CONFIG
+    $SS_MODULE $SS_CONFIG
 else
     echo -e "\033[31mError: SS_CONFIG is blank!\033[0m"
     exit 1

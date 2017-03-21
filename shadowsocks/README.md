@@ -64,6 +64,7 @@ ss-local -c /etc/shadowsocks-libev/test.json
 
 |环境变量|作用|取值|
 |-------|---|---|
+|SS_MODULE|shadowsocks 启动命令| `ss-local`、`ss-manager`、`ss-nat`、`ss-redir`、`ss-server`、`ss-tunnel`|
 |SS_CONFIG|shadowsocks-libev 参数字符串|所有字符串内内容应当为 shadowsocks-libev 支持的选项参数|
 |KCP_CONFIG|kcptun 参数字符串|所有字符串内内容应当为 kcptun 支持的选项参数|
 |KCP_FLAG|是否开启 kcptun 支持|可选参数为 true 和 false，默认为 fasle 禁用 kcptun|
@@ -77,9 +78,9 @@ docker run -dt --name ss -p 6443:6443 -p 6500:6500/udp -e SS_CONFIG="-s 0.0.0.0 
 
 ### 樱花用户说明
 
-本镜像 3.0.3 版本之后，原来的 `/root/entrypoint.sh` 被移动到了 `/entrypoint.sh`
-其他选项参数更新为只有两个参数 `-s`(shadowsocks) 和 `-k`(kcptun)，具体使用同上
-以下为在樱花上测试过的同时开启 shadowsocks 和 kcptun 的命令
+本镜像 3.0.3 版本之后，原来的 `/root/entrypoint.sh` 被移动到了 `/entrypoint.sh` 其他选项参数
+更新为只有两个参数 `-s`(shadowsocks) 和 `-k`(kcptun)，具体使用同上以下为在樱花上测试过的同时
+开启 shadowsocks 和 kcptun 的命令
 
 ``` sh
 /entrypoint.sh -s "-s 0.0.0.0 -p 6443 -m aes-256-cfb -k test123 --fast-open" -k "-t 127.0.0.1:6443 -l :6500 -mode fast2" -x

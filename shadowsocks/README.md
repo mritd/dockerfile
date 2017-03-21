@@ -16,24 +16,42 @@ docker run -dt --name ss -p 6443:6443 mritd/shadowsocks -s "-s 0.0.0.0 -p 6443 -
 - `-s` : shadowsocks-libev 参数字符串
 - `-k` : kcptun 参数字符串
 - `-x` : 开启 kcptun 支持
+- `-m` : 指定 shadowsocks 命令，默认为 `ss-server`
 
 ### 选项描述
 
 `-s` 参数后指定一个 shadowsocks-libev 的参数字符串，所有参数将被拼接到 `ss-server` 后；
 `-k` 参数后指定一个 kcptun 的参数字符串，所有参数将被拼接到 `kcptun` 后
 `-x` 指定该参数后才会开启 kcptun 支持，否则将默认禁用 kcptun
+`-m` 参数后指定一个 shadowsocks 命令，如 ss-local；不写默认为 ss-server，此参数用于将
+     此镜像用于不同环境，如作为客户端使用等，可选项如下：
+     `ss-local`、`ss-manager`、`ss-nat`、`ss-redir`、`ss-server`、`ss-tunnel`
 
 ### 命令示例
 
+**Server 端**
+
 ``` sh
-docker run -dt --name ss -p 6443:6443 -p 6500:6500/udp mritd/shadowsocks -s "-s 0.0.0.0 -p 6443 -m aes-256-cfb -k test123 --fast-open" -k "-t 127.0.0.1:6443 -l :6500 -mode fast2" -x
+docker run -dt --name ss -p 6443:6443 -p 6500:6500/udp mritd/shadowsocks -s "-s :: -s 0.0.0.0 -p 6443 -m aes-256-cfb -k test123 --fast-open" -k "-t 127.0.0.1:6443 -l :6500 -mode fast2" -x
 ```
 
 **以上命令相当于执行了**
 
 ``` sh
-ss-server -s 0.0.0.0 -p 6443 -m aes-256-cfb -k test123 --fast-open
+ss-server -s :: -s 0.0.0.0 -p 6443 -m aes-256-cfb -k test123 --fast-open
 kcptun -t 127.0.0.1:6443 -l :6500 -mode fast2
+```
+
+**Client 端**
+
+``` sh
+docker run -dt --name ss -p 1080:1080 mritd/shadowsocks -m "ss-local" -s "-c /etc/shadowsocks-libev/test.json" 
+```
+
+**以上命令相当于执行了** 
+
+``` sh
+ss-local -c /etc/shadowsocks-libev/test.json
 ```
 
 **关于 shadowsocks-libev 和 kcptun 都支持哪些参数请自行查阅官方文档，本镜像只做一个拼接**
@@ -131,5 +149,10 @@ docker run -dt --name ss -p 6443:6443 -p 6500:6500/udp -e SS_CONFIG="-s 0.0.0.0 
 
 - 2017-03-17 升级 kcptun 和 shadowsocks-libev
 
-升级 shadowsocks-libev 到 3.0.4 版本，支持 `TCP Fast Open in ss-redir`、`TOS/DESCP in ss-redir` 和
-细化 MPTCP；升级 kcptun 到 315 打假版本 `(:`
+升级 shadowsocks-libev 到 3.0.4 版本，支持 `TCP Fast Open in ss-redir`、`TOS/DESCP in 
+ss-redir` 和细化 MPTCP；升级 kcptun 到 315 打假版本 `(:`
+
+- 2017-03-21 增加多命令支持
+
+新增 `-m` 参数用于指定使用那个 shadowsocks 命令，如果作为客户端使用 `-m ss-local`,
+不写的情况下默认为服务端命令，即 `ss-server`

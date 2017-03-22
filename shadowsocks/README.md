@@ -157,3 +157,7 @@ ss-redir` 和细化 MPTCP；升级 kcptun 到 315 打假版本 `(:`
 
 新增 `-m` 参数用于指定使用那个 shadowsocks 命令，如果作为客户端使用 `-m ss-local`,
 不写的情况下默认为服务端命令，即 `ss-server`
+
+- 2017-03-17 Bug 修复
+
+修复增加 `-m` 参数后 SS_CONFIG 变量为空导致启动失败问题

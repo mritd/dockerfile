@@ -5,7 +5,7 @@ SS_MODULE=${SS_MODULE:-"ss-server"}
 KCP_CONFIG=${KCP_CONFIG:-""}
 KCP_FLAG=${KCP_FLAG:-"false"}
 
-while getopts "s:k:x" OPT; do
+while getopts "s:m:k:x" OPT; do
     case $OPT in
         s)
             SS_CONFIG=$OPTARG;;

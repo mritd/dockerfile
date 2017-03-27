@@ -2,8 +2,8 @@
 
 [![](https://images.microbadger.com/badges/image/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own version badge on microbadger.com")
 
-- **shadowsocks-libev 版本: 3.0.4**
-- **kcptun 版本: 20170315**
+- **shadowsocks-libev 版本: 3.0.5**
+- **kcptun 版本: 20170322**
 
 ### 打开姿势
 
@@ -161,3 +161,7 @@ ss-redir` 和细化 MPTCP；升级 kcptun 到 315 打假版本 `(:`
 - 2017-03-22 Bug 修复
 
 修复增加 `-m` 参数后 SS_CONFIG 变量为空导致启动失败问题
+
+- 2017-03-27 例行升级
+
+升级 shadowsocks-libev 到 3.0.5、kcptun 到 20170322；kcptun 该版本主要做了 CPU 优化

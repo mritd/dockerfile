@@ -4,7 +4,7 @@ MAINTAINER mritd <mritd@mritd.me>
 
 ENV TZ 'Asia/Shanghai'
 
-ENV PIWIK_VERSION 3.0.2
+ENV PIWIK_VERSION 3.0.3
 
 RUN apk upgrade --no-cache \
     && apk add --no-cache bash tzdata \

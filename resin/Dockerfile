@@ -1,14 +1,14 @@
-FROM alpine:3.4
+FROM alpine:3.5
 
 MAINTAINER mritd <mritd@mritd.me>
 
-ENV LANG=C.UTF-8 \
-    TZ='Asia/Shanghai' \
-    JAVA_VERSION=8 \
-    JAVA_UPDATE=112 \
-    JAVA_BUILD=15 \
-    JAVA_HOME='/usr/lib/jvm/default-jvm' \
-    RESIN_VERSION=4.0.49
+ENV LANG=C.UTF-8
+ENV TZ='Asia/Shanghai'
+ENV JAVA_VERSION=8
+ENV JAVA_UPDATE=112
+ENV JAVA_BUILD=15
+ENV JAVA_HOME='/usr/lib/jvm/default-jvm'
+ENV RESIN_VERSION=4.0.49
 
 # install glibc
 RUN ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download" && \
@@ -42,7 +42,7 @@ RUN ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases
         "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
         "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME"
 
-# instal oracle jdk
+# install oracle jdk
 RUN apk add --no-cache --virtual=build-dependencies wget ca-certificates && \
     cd "/tmp" && \
     wget --header "Cookie: oraclelicense=accept-securebackup-cookie;" \
@@ -76,7 +76,8 @@ RUN apk add --no-cache --virtual=build-dependencies wget ca-certificates && \
     rm "/tmp/"*
 
 # install resin
-RUN apk add --no-cache bash tzdata gcc libc-dev make openssl-dev linux-headers && \
+RUN apk add --no-cache bash tzdata && \
+    apk add --no-cache --virtual=build-dependencies gcc libc-dev make openssl-dev linux-headers && \
     wget http://www.caucho.com/download/resin-$RESIN_VERSION.tar.gz && \
     tar -zxvf resin-$RESIN_VERSION.tar.gz && \
     (cd resin-$RESIN_VERSION && \
@@ -89,6 +90,7 @@ RUN apk add --no-cache bash tzdata gcc libc-dev make openssl-dev linux-headers &
     echo "Asia/Shanghai" > /etc/timezone && \
     rm -rf resin-$RESIN_VERSION.tar.gz \
            resin-$RESIN_VERSION && \
+    apk del build-dependencies && \
     rm -rf /var/cache/apk/*
 
 CMD ["resinctl","start-with-foreground"]

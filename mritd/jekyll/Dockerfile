@@ -1,27 +1,19 @@
-FROM alpine:3.4
+FROM nginx:1.11.10-alpine 
 
 MAINTAINER mritd <mritd@mritd.me>
 
 ENV TZ 'Asia/Shanghai'
 
-RUN apk upgrade --update && \
-    apk add --update bash libatomic readline readline-dev libxml2 libxml2-dev \
-      ncurses-terminfo-base ncurses-terminfo libxslt libxslt-dev zlib-dev zlib \
-      ruby ruby-dev yaml yaml-dev libffi-dev build-base git ruby-io-console \
-      ruby-irb ruby-json ruby-rake tzdata && \
-    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-    echo "Asia/Shanghai" > /etc/timezone && \
-    rm -rf /root/src /tmp/* /usr/share/man /var/cache/apk/*
+RUN apk upgrade --no-cache \
+    && apk add --no-cache bash git \
+    && rm -rf /usr/share/nginx/html \ 
+    && git clone https://github.com/mritd/mritd.me.git /usr/share/nginx/html \
+    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo "Asia/Shanghai" > /etc/timezone \
+    && rm -rf /var/cache/apk/*
 
-RUN git clone https://github.com/mritd/mritd.github.io.git /root/mritd.github.io && \
-    cd /root/mritd.github.io && \
-    gem install --no-document bundle && \
-    bundle install
+ADD entrypoint.sh /entrypoint.sh
 
-ADD cron/15min/* /etc/periodic/15min
+WORKDIR /usr/share/nginx/html
 
-ADD entrypoint.sh /root/entrypoint.sh
-
-WORKDIR /root
-
-CMD ["/root/entrypoint.sh"]
+CMD ["/entrypoint.sh"]

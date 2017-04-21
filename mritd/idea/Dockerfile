@@ -1,19 +1,17 @@
-FROM alpine:3.4
+FROM alpine:3.5
 
 MAINTAINER mritd <mritd@mritd.me>
 
 ENV TZ 'Asia/Shanghai'
 
-RUN apk upgrade --update && \
-    apk add --update bash && \
-    apk add --update python && \
-    apk add --update py-pip && \
-    rm -rf /var/cache/apk/*
+RUN apk upgrade --update \
+    && apk add --no-cache bash \
+    && rm -rf /var/cache/apk/*
 
-ADD idea.tar.gz /idea
+COPY IntelliJIDEALicenseServer_linux_amd64 /idea 
 
-RUN pip install --upgrade pip
+COPY IntelliJIDEALicenseServer.html /IntelliJIDEALicenseServer.html 
 
-RUN pip install -r /idea/ideaLicenseServer/requirements.txt
+EXPOSE 80
 
-CMD ["python","/idea/ideaLicenseServer/jetbrains_license_server/manage.py","runserver","0.0.0.0:80"]
+ENTRYPOINT ["/idea","-p","80","-u","mritd"]

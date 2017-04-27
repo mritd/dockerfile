@@ -4,7 +4,7 @@ MAINTAINER mritd <mritd@mritd.me>
 
 ENV TZ 'Asia/Shanghai'
 
-ENV SS_LIBEV_VERSION 3.0.5
+ENV SS_LIBEV_VERSION 3.0.6
 
 ENV KCP_VERSION 20170329 
 

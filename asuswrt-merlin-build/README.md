@@ -1,122 +1,42 @@
-```
-docker run -h="koolshare-merlin-debian" --name koolshare-merlin-debian -v /home/merlin-docker-home:/home -t -i "debian:latest"
+
+## Asuswrt Merlin 固件交叉编译环境
+
+> 本镜像基于 ubuntu 16.04 制作，默认安装了大部分编译所需依赖包，**但尚未打包 Merlin 固件源码(打包后镜像体积 2G)，使用时需要先从 [Merlin Release](https://github.com/RMerl/asuswrt-merlin/releases) 下载源码，并挂载到 `/home/asuswrt-merlin` 目录(如不想挂载，镜像内也提供了下载脚本)，编译前请先执行 `/root/build.sh` 初始化相关环境变量(默认已经执行)**
+
+
+### 1、下载源码
+
+编译能够在 Merlin、Tomato 固件上运行的程序之前，需要先获取 Merlin 固件源码(需要其交叉编译工具链)，下载地址可从 [Merlin Release](https://github.com/RMerl/asuswrt-merlin/releases) 获取
+
+``` sh
+export ASUSWRT_MERLIN_VERSION=380.66
+wget https://github.com/RMerl/asuswrt-merlin/archive/${ASUSWRT_MERLIN_VERSION}.tar.gz
+tar -zxf ${ASUSWRT_MERLIN_VERSION}.tar.gz
+mv asuswrt-merlin-${ASUSWRT_MERLIN_VERSION} asuswrt-merlin
 ```
 
-```
-#================== Dockerfile START ==================
-##########################################################
-# version : koolshare/koolshare-merlin-debian:20170222v03
-##########################################################
-# 设置继承自官方镜像
-FROM debian:latest
-MAINTAINER clang (clangcn@gmail.com)
-ENV DEBIAN_FRONTEND noninteractive
-RUN rm -rf /var/lib/apt/lists/*
-RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak && \
-    echo "deb http://mirrors.ustc.edu.cn/debian/ jessie main contrib non-free" >/etc/apt/sources.list && \
-    echo "deb-src http://mirrors.ustc.edu.cn/debian/ jessie main contrib non-free" >>/etc/apt/sources.list && \
-    echo "deb http://mirrors.ustc.edu.cn/debian/ jessie-updates main contrib non-free" >>/etc/apt/sources.list && \
-    echo "deb-src http://mirrors.ustc.edu.cn/debian/ jessie-updates main contrib non-free" >>/etc/apt/sources.list && \
-    echo "deb http://mirrors.ustc.edu.cn/debian/ jessie-backports main contrib non-free" >>/etc/apt/sources.list && \
-    echo "deb-src http://mirrors.ustc.edu.cn/debian/ jessie-backports main contrib non-free" >>/etc/apt/sources.list && \
-    echo "deb http://mirrors.ustc.edu.cn/debian-security/ jessie/updates main contrib non-free" >>/etc/apt/sources.list && \
-    echo "deb-src http://mirrors.ustc.edu.cn/debian-security/ jessie/updates main contrib non-free" >>/etc/apt/sources.list && \
-    rm -rf /etc/localtime && \
-    ln -s /usr/share/zoneinfo/Asia/Harbin /etc/localtime && \
-    dpkg --add-architecture i386 && \
-    apt-get update && \
-    apt-get --no-install-recommends install -y openssh-server sudo nano net-tools cron e2fsprogs tmux wget vim supervisor openssl curl psmisc git heirloom-mailx autoconf automake bash bison bzip2 diffutils file flex g++ gawk gcc-multilib gettext gperf groff-base libncurses-dev libexpat1-dev libslang2 libssl-dev libtool libxml-parser-perl make patch perl pkg-config python sed shtool tar texinfo unzip zlib1g zlib1g-dev intltool autopoint libltdl7-dev lib32z1-dev lib32stdc++6 automake1.11 libelf-dev:i386 libelf1:i386 && \
-    apt-get -y autoremove && \
-    mkdir -p /var/run/sshd && \
-    sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config && \
-    echo "UseDNS no" >> /etc/ssh/sshd_config && \
-    sed -i 's/#ListenAddress 0.0.0.0/ListenAddress 0.0.0.0/g' /etc/ssh/sshd_config && \
-    sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/g' /etc/ssh/sshd_config && \
-    sed -i 's/PermitRootLogin .*/PermitRootLogin yes/g' /etc/ssh/sshd_config && \
-    echo "alias ls='ls --color=auto'" >> /root/.bashrc && \
-    echo "alias ll='ls -lh'" >> /root/.bashrc && \
-    echo "alias l='ls -lAh'" >> /root/.bashrc && \
-    echo "alias wget='wget --no-check-certificate'" >> /root/.bashrc && \
-    echo ". ~/build.sh" >> /root/.bashrc && \
-    echo "root:Koolshare123" | chpasswd && \
-    mkdir -p /usr/shell/ && \
-    wget --no-check-certificate -q https://soft.clang.cn/shell/tmux.sh -O /usr/shell/tmux.sh && \
-    wget --no-check-certificate -q https://soft.clang.cn/shell/tmux.conf -O /root/.tmux.conf && \
-    chmod +x /usr/shell/tmux.sh && \
-    ln -s /usr/shell/tmux.sh /usr/bin/win && \
-    mkdir -p /var/log/supervisor
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY build.sh /root/build.sh
-RUN chmod +x /root/build.sh
-EXPOSE 22
-CMD ["/usr/bin/supervisord"]
-#================== Dockerfile END ==================
-```
+**如果 tar 命令解压出现 `Directory renamed before its status could be extracted` 错误，请安装 `bsdtar` 命令，Ubunut 下执行 `sudo apt-get install -y bsdtar`；然后使用 `bsdtar` 解压，用法同 `tar` 命令**
+
+
+### 2、运行编译环境
+
+准备好 Merlin 源码后，只需要将其挂载到 `/home/asuswrt-merlin` 目录(当然可能你需要同时挂载你要编译程序的源码目录)，并运行容器即可
 
 ```
-docker build -t="koolshare/koolshare-merlin-debian:20170222v03" .
+docker run -dt --name build -v /data/asuswrt-merlin:/home/asuswrt-merlin -v /data/curl-7.54.0:/root/curl-7.54.0 mritd/asuswrt-merlin-build
 ```
 
-```
-docker login
-docker tag koolshare/koolshare-merlin-debian:20170222v03 koolshare/koolshare-merlin-debian:latest
-docker push koolshare/koolshare-merlin-debian:latest
+**`/data/asuswrt-merlin` 为刚刚下载的 Merlin 固件源码目录，`/data/curl-7.54.0` 为要编译的程序源码目录**
+
+### 3、进入容器编译
+
+容器运行后，可以通过 `docker ps` 查看其运行状态，并通过 `docker exec` 命令进入容器，**容器内默认已经安装了 `oh-my-zsh`，可以做直接已 `zsh` 进入**
+
+``` sh
+docker exec -it build zsh
 ```
 
-```
-docker run -d -h="koolshare-merlin-debian" \
---name koolshare-merlin-debian \
--v /home/merlin-docker-home/asuswrt-merlin:/home/asuswrt-merlin \
--p 2222:22 \
-"koolshare/koolshare-merlin-debian"
-```
+如果不习惯 `zsh` 也可以使用 `bash` 进入容器，只需替换命令即可；交叉编译时请确保 C 编译器为 `arm-linux-gcc`，即可以声明变量 `export CC=/home/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/bin/arm-linux-gcc`
 
-```
-# 导出镜像
-docker save "koolshare/koolshare-merlin-debian:latest" >/home/docker-images/koolshare-merlin-debian_20170222v03.tar
-# 导入镜像
-docker load < /home/docker-images/koolshare-merlin-debian_20170222v03.tar
-```
 
-########   build.sh  ########
-```
-#!/bin/bash
-fun_set_text_color(){
-    COLOR_RED='\E[1;31m'
-    COLOR_GREEN='\E[1;32m'
-    COLOR_YELOW='\E[1;33m'
-    COLOR_BLUE='\E[1;34m'
-    COLOR_PINK='\E[1;35m'
-    COLOR_PINKBACK_WHITEFONT='\033[45;37m'
-    COLOR_GREEN_LIGHTNING='\033[32m \033[05m'
-    COLOR_END='\E[0m'
-}
-main(){
-    echo -e "${COLOR_YELOW}============== Initialized build environment ==============${COLOR_END}"
-    if [ -d "/home/asuswrt-merlin/tools/brcm" ] && [ -d "/home/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3" ]; then
-        if [ ! -L /opt/brcm-arm ] || [ ! -L /opt/brcm ]; then
-            echo -e -n "${COLOR_PINK}link brcm & brcm-arm${COLOR_END}"
-            ln -s /home/asuswrt-merlin/tools/brcm /opt/brcm
-            ln -s /home/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3 /opt/brcm-arm
-            if [ -L /opt/brcm-arm ] && [ -L /opt/brcm ];then
-                echo -e " ${COLOR_GREEN}done${COLOR_END}"
-            else
-                echo -e " ${COLOR_RED}failed${COLOR_END}"
-                return 1
-            fi
-        fi
-    else
-        echo -e "${COLOR_RED}[error] /home/asuswrt-merlin/ not found${COLOR_END}"
-        return 1
-    fi
-    echo -e -n "${COLOR_PINK}setting Environment...${COLOR_END}"
-    CROSS_TOOLCHAINS_DIR=/opt/brcm-arm
-    export PATH=$PATH:/opt/brcm/hndtools-mipsel-linux/bin:/opt/brcm/hndtools-mipsel-uclibc/bin:/opt/brcm-arm/bin
-    export LD_LIBRARY_PATH=$CROSS_TOOLCHAINS_DIR/lib
-    echo -e " ${COLOR_GREEN}done${COLOR_END}"
-    #echo "$PATH"
-}
-fun_set_text_color
-main
-```
 

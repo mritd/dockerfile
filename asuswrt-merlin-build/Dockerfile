@@ -20,8 +20,8 @@ RUN dpkg --add-architecture i386 \
     && apt-get autoremove -y \
     && apt-get autoclean -y \
     && rm -rf /var/lib/apt/lists/* \
-    && wget https://github.com/RMerl/asuswrt-merlin/archive/${ASUSWRT_MERLIN_VERSION}.tar.gz \
-    && tar -zxvf ${ASUSWRT_MERLIN_VERSION}.tar.gz \
+    && wget -q https://github.com/RMerl/asuswrt-merlin/archive/${ASUSWRT_MERLIN_VERSION}.tar.gz \
+    && tar -zxf ${ASUSWRT_MERLIN_VERSION}.tar.gz \
     && mv asuswrt-merlin-${ASUSWRT_MERLIN_VERSION} /home/asuswrt-merlin \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \

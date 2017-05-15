@@ -1,7 +1,7 @@
 
 ## Asuswrt Merlin 固件交叉编译环境
 
-> 本镜像基于 ubuntu 16.04 制作，默认安装了大部分编译所需依赖包，**但尚未打包 Merlin 固件源码(打包后镜像体积 2G)，使用时需要先从 [Merlin Release](https://github.com/RMerl/asuswrt-merlin/releases) 下载源码，并挂载到 `/home/asuswrt-merlin` 目录(如不想挂载，镜像内也提供了下载脚本)，编译前请先执行 `/root/build.sh` 初始化相关环境变量(默认已经执行)**
+> 本镜像基于 ubuntu 16.04 制作，参考了 `koolshare/koolshare-merlin-debian` 镜像(感谢原作者[Clang](https://github.com/clangcn))；本镜像默认安装了大部分编译所需依赖包，**但尚未打包 Merlin 固件源码(打包后镜像体积 2G)，使用时需要先从 [Merlin Release](https://github.com/RMerl/asuswrt-merlin/releases) 下载源码，并挂载到 `/home/asuswrt-merlin` 目录(如不想挂载，镜像内也提供了下载脚本)，编译前请先执行 `/root/build.sh` 初始化相关环境变量(默认已经执行)**
 
 
 ### 1、下载源码

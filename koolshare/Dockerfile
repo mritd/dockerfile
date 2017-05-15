@@ -12,7 +12,7 @@ COPY build.sh /root/build.sh
 
 RUN dpkg --add-architecture i386 \
     && apt-get update -y \
-    && apt-get install -y --no-install-recommends \
+    && apt-get install -y \
         openssh-server sudo nano net-tools cron e2fsprogs \
         wget vim openssl curl psmisc git heirloom-mailx autoconf \
         automake bison bzip2 diffutils file flex g++ gawk \

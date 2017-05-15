@@ -6,7 +6,7 @@ ENV TZ 'Asia/Shanghai'
 ENV MATTERMOST_VERSION 3.8.2
 
 RUN apk upgrade --no-cache \
-    && apk add --no-cache bash tzdata wget \
+    && apk add --no-cache bash tzdata wget ca-certificates \
     && wget --no-check-certificate https://releases.mattermost.com/${MATTERMOST_VERSION}/mattermost-${MATTERMOST_VERSION}-linux-amd64.tar.gz \
     && tar -xzf mattermost*.gz \
     && mv mattermost /usr/local/mattermost \

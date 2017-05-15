@@ -2,9 +2,6 @@ FROM ubuntu:16.04
 
 MAINTAINER mritd <mritd1234@gmail.com> 
 
-ENV ASUSWRT_MERLIN_VERSION 380.66
-
-# add build shell
 COPY build.sh /root/build.sh
 
 RUN dpkg --add-architecture i386 \
@@ -20,9 +17,6 @@ RUN dpkg --add-architecture i386 \
     && apt-get autoremove -y \
     && apt-get autoclean -y \
     && rm -rf /var/lib/apt/lists/* \
-    && wget -q https://github.com/RMerl/asuswrt-merlin/archive/${ASUSWRT_MERLIN_VERSION}.tar.gz \
-    && tar -zxf ${ASUSWRT_MERLIN_VERSION}.tar.gz \
-    && mv asuswrt-merlin-${ASUSWRT_MERLIN_VERSION} /home/asuswrt-merlin \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" \

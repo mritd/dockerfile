@@ -2,6 +2,19 @@ FROM ubuntu:16.04
 
 MAINTAINER mritd <mritd1234@gmail.com> 
 
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION
+LABEL org.label-schema.build-date=$BUILD_DATE \
+      org.label-schema.name="Asuswrt Merlin Build" \
+      org.label-schema.description="Asuswrt Merlin 固件交叉编译环境" \
+      org.label-schema.url="https://mritd.me" \
+      org.label-schema.vcs-ref=$VCS_REF \
+      org.label-schema.vcs-url="https://github.com/mritd/dockerfile/tree/master/asuswrt-merlin-build" \
+      org.label-schema.vendor="mritd" \
+      org.label-schema.version=$VERSION \
+      org.label-schema.schema-version="1.0"
+
 ENV ASUSWRT_MERLIN_VERSION 380.66
 
 COPY build.sh /root/build.sh

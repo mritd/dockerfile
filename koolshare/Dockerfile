@@ -2,8 +2,6 @@ FROM ubuntu:16.04
 
 MAINTAINER mritd <mritd@mritd.me> 
 
-ENV DEBIAN_FRONTEND noninteractive
-
 ENV ASUSWRT_MERLIN_VERSION 380.66
 
 # add apt-get mirror

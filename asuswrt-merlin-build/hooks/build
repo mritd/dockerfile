@@ -7,6 +7,5 @@ IMAGE_VERSION=`cat VERSION`
 docker build --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
              --build-arg VCS_REF=`git rev-parse --short HEAD` \
              --build-arg VERSION=$IMAGE_VERSION \
-             -t mritd/asuswrt-merlin-build:$IMAGE_VERSION .
+             -t $IMAGE_NAME .
 
-docker push mritd/asuswrt-merlin-build:$IMAGE_VERSION

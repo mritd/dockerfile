@@ -45,4 +45,4 @@ COPY afp.conf /etc/afp.conf
 
 VOLUME ["/data"]
 
-CMD ["/bin/bash"]
+ENTRYPOINT ["/entrypoint.sh"]

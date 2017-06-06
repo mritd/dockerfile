@@ -76,6 +76,7 @@ RUN ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases
         "http://download.oracle.com/otn-pub/java/jce/${JAVA_VERSION}/jce_policy-${JAVA_VERSION}.zip" \
     && unzip -jo -d "${JAVA_HOME}/jre/lib/security" "jce_policy-${JAVA_VERSION}.zip" \
     && rm "${JAVA_HOME}/jre/lib/security/README.txt" \
+    && rm jce_policy-${JAVA_VERSION}.zip \
     && rm jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz \
     && wget http://www.caucho.com/download/resin-$RESIN_VERSION.tar.gz \
     && tar -zxvf resin-$RESIN_VERSION.tar.gz \

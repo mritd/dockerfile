@@ -11,17 +11,11 @@ RUN apk upgrade --update \
     && apk add --no-cache --virtual .build-deps \
         build-base libffi-dev zlib-dev libxml2-dev \
         libxslt-dev ruby-dev \
-    && git clone -b gh-pages https://github.com/zeroclipboard/zeroclipboard.org.git /root/zeroclipboard.org \
     && echo 'gem: --no-document' >> ~/.gemrc \
     && cp ~/.gemrc /etc/gemrc \
     && chmod uog+r /etc/gemrc \
-    && echo "gem 'ffi','1.9.18'" >> /root/zeroclipboard.org/Gemfile \
-    && echo "gem 'posix-spawn','0.3.13'" >> /root/zeroclipboard.org/Gemfile \
     && gem install bundler \
     && bundle config build.jekyll --no-rdoc \
-    && bundle install \
-    && cd /root/zeroclipboard.org \
-    && rm -f Gemfile.lock \
     && bundle install \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
@@ -31,6 +25,6 @@ RUN apk upgrade --update \
     && rm -rf /usr/lib/lib/ruby/gems/*/cache/* \
     && rm -rf ~/.gem
 
-WORKDIR /root/zeroclipboard.org
+WORKDIR /root
 
-CMD ["jekyll","serve","-H","0.0.0.0"]
+CMD ["/bin/bash"]

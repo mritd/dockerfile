@@ -5,7 +5,7 @@ MAINTAINER mritd <mritd@mritd.me>
 ENV TZ 'Asia/Shanghai'
 
 RUN apk upgrade --update \
-    && apk add bash tzdata openjdk8 libpcap-dev iptables ca-certificates wget \
+    && apk add bash tzdata openjdk8-jre libpcap-dev iptables ca-certificates wget \
     && update-ca-certificates \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \

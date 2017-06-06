@@ -9,10 +9,10 @@ RUN apk upgrade --no-cache \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && rm -rf /var/cache/apk/* \
-    && wget http://upyun.mritd.me/files/fuckgfw.tar.gz \
+    && wget http://mritdftp.b0.upaiyun.com/files/fuckgfw.tar.gz \
     && tar -zxvf fuckgfw.tar.gz \
     && rm -f fuckgfw.tar.gz
 
 WORKDIR /fuckgfw
 
-CMD ["java","-jar","/fuckgfw/fuckgfw.jar","-b"]
+CMD ["java","-jar","fuckgfw.jar","-b"]

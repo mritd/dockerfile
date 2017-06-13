@@ -4,7 +4,7 @@ MAINTAINER mritd <mritd@mritd.me>
 
 ENV TZ 'Asia/Shanghai'
 
-ENV V2RAY_VERSION 2.33 
+ENV V2RAY_VERSION v2.33 
 
 WORKDIR /root
 

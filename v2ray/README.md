@@ -2,21 +2,21 @@
 
 [![](https://images.microbadger.com/badges/version/mritd/v2ray.svg)](https://microbadger.com/images/mritd/v2ray "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/mritd/v2ray.svg)](https://microbadger.com/images/mritd/v2ray "Get your own image badge on microbadger.com")
 
-> 截至目前该镜像为 v2ray 2.3.3 版本，Dockerfile 每次 build 会自动获取最新稳定版
+> 截至目前该镜像为 v2ray 2.33 版本
 
 ### 打开姿势
 
 ``` sh
 docker pull mritd/v2ray
-docker run -dt --name v2ray mritd/v2ray
+docker run -dt --name v2ray -p 1028:1028 mritd/v2ray
 ```
 
-**Container 默认监听 10086 端口**
+**Container 默认监听 1028 端口**
 **v2ray 默认 ID 为 `23ad6b10-8d1a-40f7-8ad0-e3e35cd38297`**
 
 ### 自定义配置
 
-**镜像支持写入自定义的 v2ray 配置，挂载覆盖 `/root/config.json` 或使用 `-c` 选项并跟上 JSON 字符串即可，如下所示**
+**镜像支持写入自定义的 v2ray 配置，挂载覆盖 `/etc/v2ray/config.json` 或使用 `-c` 选项并跟上 JSON 字符串即可，如下所示**
 
 ``` sh
 docker run -dt --name v2ray mritd/v2ray -c "{\"log\" : {     \"access\": \"/var/log/v2ray/access.log\",     \"error\": \"/var/log/v2ray/error.log\",     \"loglevel\": \"warning\"   },   \"inbound\": {     \"port\": 4500,     \"protocol\": \"vmess\",     \"settings\": {       \"clients\": [         {           \"id\": \"23ad6b10-8d1a-40f7-8ad0-e3e35cd38297\",           \"level\": 1,           \"alterId\": 64         }       ]     }   },   \"outbound\": {     \"protocol\": \"freedom\",     \"settings\": {}   },   \"outboundDetour\": [     {       \"protocol\": \"blackhole\",       \"settings\": {},       \"tag\": \"blocked\"     }   ], \"routing\": {     \"strategy\": \"rules\",     \"settings\": {       \"rules\": [         {           \"type\": \"field\",           \"ip\": [             \"0.0.0.0/8\",             \"10.0.0.0/8\",             \"100.64.0.0/10\",             \"127.0.0.0/8\",             \"169.254.0.0/16\",             \"172.16.0.0/12\",             \"192.0.0.0/24\",             \"192.0.2.0/24\",             \"192.168.0.0/16\",             \"198.18.0.0/15\",             \"198.51.100.0/24\",             \"203.0.113.0/24\",             \"::1/128\",             \"fc00::/7\",             \"fe80::/10\"           ],           \"outboundTag\": \"blocked\"         }       ]     }   },   \"transport\": {     \"kcpSettings\": {       \"uplinkCapacity\": 10,       \"downlinkCapacity\": 10     }   } }"

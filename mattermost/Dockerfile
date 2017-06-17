@@ -3,7 +3,7 @@ FROM alpine:3.6
 MAINTAINER mritd <mritd@mritd.me>
 
 ENV TZ 'Asia/Shanghai'
-ENV MATTERMOST_VERSION 3.8.2
+ENV MATTERMOST_VERSION 3.10.0
 
 RUN apk upgrade --no-cache \
     && apk add --no-cache bash tzdata wget ca-certificates \
@@ -18,5 +18,7 @@ RUN apk upgrade --no-cache \
     && rm -rf /var/cache/apk/*
 
 WORKDIR /usr/local/mattermost
+
+EXPOSE 8065
 
 CMD ["bin/platform"]

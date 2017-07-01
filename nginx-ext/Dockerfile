@@ -1,6 +1,6 @@
 FROM alpine:3.6
 
-MAINTAINER mritd <mritd@mritd.me>
+LABEL maintainer="mritd <mritd@mritd.me>"
 
 ENV NGINX_VERSION 1.11.8
 ENV LUAJIT_VERSION 2.0.4

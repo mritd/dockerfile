@@ -1,6 +1,6 @@
 FROM php:7.1.0-fpm-alpine 
 
-MAINTAINER mritd <mritd@mritd.me>
+LABEL maintainer="mritd <mritd@mritd.me>"
 
 ENV TZ 'Asia/Shanghai'
 

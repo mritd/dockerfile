@@ -1,6 +1,6 @@
 FROM alpine:3.4
 
-MAINTAINER mritd <mritd@mritd.me>
+LABEL maintainer="mritd <mritd@mritd.me>"
 
 ENV TZ 'Asia/Shanghai'
 

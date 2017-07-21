@@ -1,5 +1,7 @@
 FROM alpine:3.5
-MAINTAINER mritd@mritd.me 
+
+LABEL maintainer="mritd <mritd@mritd.me>"
+
 # prepare go env
 ENV GOPATH /go
 ENV NAME cloud-torrent

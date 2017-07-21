@@ -1,6 +1,6 @@
 FROM registry:2.6.0 
 
-MAINTAINER mritd <mritd@mritd.me>
+LABEL maintainer="mritd <mritd@mritd.me>"
 
 ADD config.yml /etc/docker/registry/config.yml
 

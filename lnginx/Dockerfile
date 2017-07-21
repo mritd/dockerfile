@@ -1,6 +1,6 @@
 FROM mritd/nginx-ext
 
-MAINTAINER mritd <mritd@mritd.me>
+LABEL maintainer="mritd <mritd@mritd.me>"
 
 ENV TZ 'Asia/Shanghai'
 

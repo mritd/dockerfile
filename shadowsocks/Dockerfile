@@ -2,7 +2,8 @@ FROM alpine:3.6
 
 LABEL maintainer="mritd <mritd@mritd.me>"
 
-ENV TZ 'Asia/Shanghai'
+ARG TZ='Asia/Shanghai'
+ENV TZ $TZ
 
 ENV SS_LIBEV_VERSION 3.0.7
 
@@ -31,8 +32,8 @@ RUN apk upgrade --no-cache \
     && curl -sSLO https://github.com/xtaci/kcptun/releases/download/v$KCP_VERSION/kcptun-linux-amd64-$KCP_VERSION.tar.gz \
     && tar -zxf kcptun-linux-amd64-$KCP_VERSION.tar.gz \
     && mv server_linux_amd64 /usr/bin/kcptun \
-    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo "Asia/Shanghai" > /etc/timezone \
+    && ln -sf /usr/share/zoneinfo/$TZ /etc/localtime \
+    && echo $TZ > /etc/timezone \
     && runDeps="$( \
         scanelf --needed --nobanner /usr/bin/ss-* \
             | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \

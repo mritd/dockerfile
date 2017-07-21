@@ -1,6 +1,6 @@
 FROM mritd/alpine-oracle-jdk8:8.131.11 
 
-MAINTAINER mritd <mritd@mritd.me>
+LABEL maintainer="mritd <mritd@mritd.me>"
 
 ENV TOMCAT_MAJOR 8
 ENV TOMCAT_VERSION 8.5.16

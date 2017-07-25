@@ -1,7 +1,7 @@
 FROM mritd/alpine-glibc:3.6 
 
 ENV TZ 'Asia/Shanghai'
-ENV FILEBEAT_VERSION 5.4.3
+ENV FILEBEAT_VERSION 5.5.0
 ENV FILEBEAT_DOWNLOAD_URL https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz 
 
 RUN apk upgrade --update \

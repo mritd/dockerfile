@@ -2,7 +2,7 @@
 
 [![](https://images.microbadger.com/badges/image/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own version badge on microbadger.com")
 
-- **shadowsocks-libev 版本: 3.0.7**
+- **shadowsocks-libev 版本: 3.0.8**
 - **kcptun 版本: 20170525**
 
 ### 打开姿势

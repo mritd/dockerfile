@@ -14,7 +14,7 @@ RUN echo '@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/re
     && ln -sf /dev/stdout /var/log/tor/notices.log \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && chmod +x /usr/local/bin/gosu \
-    && chown tor:tor /var/log/tor/notices.log \
+    && chown tor:nogroup /var/log/tor/notices.log \
     && echo "Asia/Shanghai" > /etc/timezone \
     && apk del curl \
     && rm -rf /var/cache/apk/*

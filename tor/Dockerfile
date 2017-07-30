@@ -21,4 +21,6 @@ RUN echo '@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/re
 
 COPY torrc /etc/tor/torrc
 
-CMD ["gosu","tor","tor"]
+COPY entrypoint.sh /entrypoint.sh
+
+CMD ["/entrypoint.sh"]

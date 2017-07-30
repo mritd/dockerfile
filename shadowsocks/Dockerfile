@@ -5,7 +5,7 @@ LABEL maintainer="mritd <mritd@mritd.me>"
 ARG TZ='Asia/Shanghai'
 ENV TZ $TZ
 
-ENV SS_LIBEV_VERSION 3.0.7
+ENV SS_LIBEV_VERSION 3.0.8
 
 ENV KCP_VERSION 20170525 
 

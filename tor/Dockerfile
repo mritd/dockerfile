@@ -6,9 +6,9 @@ ENV TZ 'Asia/Shanghai'
 
 ENV GOSU_VERSION 1.10
 
-RUN apk upgrade --no-cache \
-    && echo '@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories \
-    && apk add --no-cache tor@testing curl bash tzdata \
+RUN echo '@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories \
+    && apk upgrade --update \
+    && apk add tor@testing curl bash tzdata \
     && curl -L -H "Cache-Control: no-cache" -o /usr/local/bin/gosu \
         https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64 \
     && chmod +x /usr/local/bin/gosu \

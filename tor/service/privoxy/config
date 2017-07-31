@@ -1,2 +1,2 @@
-listen-address 0.0.0.0:8118
+listen-address 0.0.0.0:8123
 forward-socks5 / localhost:9100 .

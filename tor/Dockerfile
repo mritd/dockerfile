@@ -8,7 +8,7 @@ ENV GOSU_VERSION 1.10
 
 RUN echo '@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories \
     && apk upgrade --update \
-    && apk add tor@testing curl bash tzdata \
+    && apk add tor@testing runit@testing curl privoxy bash tzdata \
     && curl -L -H "Cache-Control: no-cache" -o /usr/local/bin/gosu \
         https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64 \
     && ln -sf /dev/stdout /var/log/tor/notices.log \
@@ -20,6 +20,6 @@ RUN echo '@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/re
 
 COPY torrc /etc/tor/torrc
 
-COPY entrypoint.sh /entrypoint.sh
+COPY service /etc/service
 
-CMD ["/entrypoint.sh"]
+CMD ["runsvdir","/etc/service"]

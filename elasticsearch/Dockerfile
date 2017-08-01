@@ -18,7 +18,7 @@ RUN set -ex apk upgrade --update \
     # grab su-exec for easy step-down from root
     # and bash for "bin/elasticsearch" among others
     && apk add --update 'su-exec>=0.2' bash tzdata \
-    && apk add --no-cache --virtual .fetch-deps \
+    && apk add --virtual .fetch-deps \
         ca-certificates \
         gnupg \
         openssl \

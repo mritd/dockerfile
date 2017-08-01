@@ -17,7 +17,7 @@ RUN set -ex apk upgrade --update \
     && addgroup -S elasticsearch && adduser -S -G elasticsearch elasticsearch \
     # grab su-exec for easy step-down from root
     # and bash for "bin/elasticsearch" among others
-    && apk add 'su-exec>=0.2' bash tzdata \
+    && apk add --update 'su-exec>=0.2' bash tzdata \
     && apk add --no-cache --virtual .fetch-deps \
         ca-certificates \
         gnupg \

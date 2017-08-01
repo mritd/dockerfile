@@ -4,7 +4,7 @@ LABEL maintainer="mritd <mritd@mritd.me>"
 
 # https://artifacts.elastic.co/GPG-KEY-elasticsearch
 ENV GPG_KEY 46095ACC8548582C1A2699A9D27D666CD88E42B4
-ENV PATH /usr/share/elasticsearch/bin:$PATH
+ENV PATH /usr/local/elasticsearch/bin:$PATH
 ENV ELASTICSEARCH_VERSION 5.5.1
 ENV ELASTICSEARCH_HOME /usr/share/elasticsearch
 ENV ELASTICSEARCH_TARBALL https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz
@@ -35,8 +35,8 @@ RUN set -ex apk upgrade --update \
     && mv elasticsearch-${ELASTICSEARCH_VERSION} ${ELASTICSEARCH_HOME} \
     && rm -f elasticsearch.tar.gz \
     && apk del .fetch-deps \
-    && bash -c "mkdir -p ${ELASTICSEARCH_HOME}/{plugins,data,logs}" \
-    && chown -R elasticsearch:elasticsearch ${ELASTICSEARCH_HOME} \
+    && mkdir -p /data/elasticsearch \
+    && chown -R elasticsearch:elasticsearch ${ELASTICSEARCH_HOME} /data/elasticsearch \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && rm -rf /var/cache/apk/*
@@ -45,7 +45,7 @@ COPY config ${ELASTICSEARCH_HOME}/config
 
 COPY docker-entrypoint.sh /entrypoint.sh
 
-VOLUME /usr/share/elasticsearch/data
+VOLUME /data/elasticsearch 
 
 EXPOSE 9200 9300
 

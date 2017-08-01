@@ -13,32 +13,37 @@ ENV ELASTICSEARCH_TARBALL_SHA1 cb5648a6723527bdccee98caef7a9d08885a5b0f
 ENV ES_JAVA_OPTS "-Xms2G -Xmx2G"
 
 # ensure elasticsearch user exists
-RUN set -ex apk upgrade --update \
-    && addgroup -S elasticsearch && adduser -S -G elasticsearch elasticsearch \
+RUN set -ex \
+    && addgroup -S elasticsearch \
+    && adduser -S -G elasticsearch elasticsearch \
+    && apk upgrade --update \
     # grab su-exec for easy step-down from root
     # and bash for "bin/elasticsearch" among others
-    && apk add --update 'su-exec>=0.2' bash tzdata \
+    && apk add 'su-exec>=0.2' bash tzdata \
     && apk add --virtual .fetch-deps \
         ca-certificates \
         gnupg \
         openssl \
         tar \
     && wget -O elasticsearch.tar.gz "$ELASTICSEARCH_TARBALL" \
-    && echo "$ELASTICSEARCH_TARBALL_SHA1 *elasticsearch.tar.gz" | sha1sum -c - \
     && wget -O elasticsearch.tar.gz.asc "$ELASTICSEARCH_TARBALL_ASC" \
+    && echo "$ELASTICSEARCH_TARBALL_SHA1 *elasticsearch.tar.gz" | sha1sum -c - \
     && export GNUPGHOME="$(mktemp -d)" \
     && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY" \
     && gpg --batch --verify elasticsearch.tar.gz.asc elasticsearch.tar.gz \
-    && rm -rf "$GNUPGHOME" elasticsearch.tar.gz.asc \
     && tar -zxf elasticsearch.tar.gz \
     && mv elasticsearch-${ELASTICSEARCH_VERSION} ${ELASTICSEARCH_HOME} \
-    && rm -f elasticsearch.tar.gz \
-    && apk del .fetch-deps \
     && mkdir -p /data/elasticsearch /var/log/elasticsearch \
     && chown -R elasticsearch:elasticsearch ${ELASTICSEARCH_HOME} /data/elasticsearch /var/log/elasticsearch \
     && ln -sf ${ELASTICSEARCH_HOME}/bin/* /usr/local/bin \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
+    && apk del .fetch-deps \
+    && rm -rf "$GNUPGHOME" \
+        elasticsearch.tar.gz.asc \
+        elasticsearch.tar.gz \
+        ${ELASTICSEARCH_HOME}/bin/*.exe \
+        ${ELASTICSEARCH_HOME}/bin/*.bat \
     && rm -rf /var/cache/apk/*
 
 COPY config ${ELASTICSEARCH_HOME}/config

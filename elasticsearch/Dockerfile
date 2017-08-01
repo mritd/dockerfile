@@ -6,6 +6,7 @@ LABEL maintainer="mritd <mritd@mritd.me>"
 ENV GPG_KEY 46095ACC8548582C1A2699A9D27D666CD88E42B4
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV ELASTICSEARCH_VERSION 5.5.1
+ENV ELASTICSEARCH_HOME /usr/share/elasticsearch
 ENV ELASTICSEARCH_TARBALL https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz
 ENV ELASTICSEARCH_TARBALL_ASC https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz.asc
 ENV ELASTICSEARCH_TARBALL_SHA1 cb5648a6723527bdccee98caef7a9d08885a5b0f
@@ -31,23 +32,23 @@ RUN set -ex apk upgrade --update \
     && gpg --batch --verify elasticsearch.tar.gz.asc elasticsearch.tar.gz \
     && rm -rf "$GNUPGHOME" elasticsearch.tar.gz.asc \
     && tar -zxf elasticsearch.tar.gz \
-    && mv elasticsearch-${ELASTICSEARCH_VERSION} /usr/share/elasticsearch \
+    && mv elasticsearch-${ELASTICSEARCH_VERSION} ${ELASTICSEARCH_HOME} \
     && rm -f elasticsearch.tar.gz \
     && apk del .fetch-deps \
-    && mkdir -p /usr/share/elasticsearch/{plugins,data,logs,config/scripts} \
-    && chown -R elasticsearch:elasticsearch /usr/share/elasticsearch \
+    && bash -c "mkdir -p ${ELASTICSEARCH_HOME}/{plugins,data,logs}" \
+    && chown -R elasticsearch:elasticsearch ${ELASTICSEARCH_HOME} \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && rm -rf /var/cache/apk/*
 
-COPY config /usr/share/elasticsearch/config
+COPY config ${ELASTICSEARCH_HOME}/config
 
-COPY docker-entrypoint.sh /docker-entrypoint.sh
+COPY docker-entrypoint.sh /entrypoint.sh
 
 VOLUME /usr/share/elasticsearch/data
 
 EXPOSE 9200 9300
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["elasticsearch"]

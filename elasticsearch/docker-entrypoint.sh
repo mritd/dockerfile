@@ -12,7 +12,7 @@ fi
 if [ "$1" = 'elasticsearch' -a "$(id -u)" = '0' ]; then
 
     # Change the ownership of user-mutable directories to elasticsearch
-    chown -R elasticsearch:elasticsearch "${ELASTICSEARCH_HOME}"
+    chown -R elasticsearch:elasticsearch "${ELASTICSEARCH_HOME}" /data/elasticsearch /var/log/elasticsearch
 
     #exec su-exec elasticsearch "$BASH_SOURCE" "$@"
     set -- su-exec elasticsearch "$@"

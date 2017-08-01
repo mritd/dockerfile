@@ -35,8 +35,8 @@ RUN set -ex apk upgrade --update \
     && mv elasticsearch-${ELASTICSEARCH_VERSION} ${ELASTICSEARCH_HOME} \
     && rm -f elasticsearch.tar.gz \
     && apk del .fetch-deps \
-    && mkdir -p /data/elasticsearch \
-    && chown -R elasticsearch:elasticsearch ${ELASTICSEARCH_HOME} /data/elasticsearch \
+    && mkdir -p /data/elasticsearch /var/log/elasticsearch \
+    && chown -R elasticsearch:elasticsearch ${ELASTICSEARCH_HOME} /data/elasticsearch /var/log/elasticsearch \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && rm -rf /var/cache/apk/*

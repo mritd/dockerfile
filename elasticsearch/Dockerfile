@@ -31,6 +31,7 @@ RUN set -ex apk upgrade --update \
     && gpg --batch --verify elasticsearch.tar.gz.asc elasticsearch.tar.gz \
     && rm -rf "$GNUPGHOME" elasticsearch.tar.gz.asc \
     && tar -zxf elasticsearch.tar.gz \
+    && mv elasticsearch-${ELASTICSEARCH_VERSION} /usr/share/elasticsearch \
     && rm -f elasticsearch.tar.gz \
     && apk del .fetch-deps \
     && mkdir -p /usr/share/elasticsearch/{plugins,data,logs,config/scripts} \

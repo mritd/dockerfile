@@ -9,8 +9,6 @@ ENV ELASTICSEARCH_HOME /usr/local/elasticsearch
 ENV ELASTICSEARCH_TARBALL https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz
 ENV ELASTICSEARCH_TARBALL_ASC https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz.asc
 ENV ELASTICSEARCH_TARBALL_SHA1 cb5648a6723527bdccee98caef7a9d08885a5b0f
-# we shouldn't need much RAM to test --version (default is 2gb, which gets Jenkins in trouble sometimes)
-ENV ES_JAVA_OPTS "-Xms2G -Xmx2G"
 
 # ensure elasticsearch user exists
 RUN set -ex \

@@ -17,12 +17,12 @@ docker run -dt --name lgtm  -e LGTM_COUNT=1 \
 
 **新建 LGTM 用户，并赋予相应项目的合并权限；同时获取该用户的 AccessToken 作为 LGTM 服务器 Token 和回调 Token**
 
-![LGTM User](https://mritd.b0.upaiyun.com/markdown/616cn.jpg)
+![LGTM User](http://imgur.com/abW1BHo.jpg)
 
 **配置 GitLab 项目的回调地址**
 
 
-![GitLab WebHook](https://mritd.b0.upaiyun.com/markdown/ulv3g.jpg)
+![GitLab WebHook](http://i.imgur.com/Wkt4PoN.jpg)
 
 
 **配置完成后，发起 PR 在其下 回复 `LGTM` 即可完成自动合并**

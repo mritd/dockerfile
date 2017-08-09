@@ -9,9 +9,9 @@ ENV SS_LIBEV_VERSION 3.0.8
 
 ENV KCP_VERSION 20170525 
 
-RUN apk upgrade --no-cache \
-    && apk add --no-cache bash tzdata libsodium \
-    && apk add --no-cache --virtual .build-deps \
+RUN apk upgrade --update \
+    && apk add bash tzdata libsodium \
+    && apk add --virtual .build-deps \
         autoconf \
         build-base \
         curl \

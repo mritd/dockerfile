@@ -44,7 +44,7 @@ RUN apk upgrade --update \
     && ln -sf /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo $TZ > /etc/timezone \
     && runDeps="$( \
-        scanelf --needed --nobanner /usr/bin/ss-* \
+        scanelf --needed --nobanner /usr/bin/ss-* /usr/local/bin/obfs-* \
             | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
             | xargs -r apk info --installed \
             | sort -u \

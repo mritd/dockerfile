@@ -13,6 +13,9 @@ RUN apk upgrade --update \
     && apk add bash tzdata libsodium \
     && apk add --virtual .build-deps \
         autoconf \
+        automake \
+        asciidoc \
+        xmlto \
         build-base \
         curl \
         libev-dev \
@@ -22,13 +25,19 @@ RUN apk upgrade --update \
         libsodium-dev \
         mbedtls-dev \
         pcre-dev \
-        tar \
         udns-dev \
+        tar \
+        git \
     && curl -sSLO https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$SS_LIBEV_VERSION/shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
     && tar -zxf shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
-    && cd shadowsocks-libev-$SS_LIBEV_VERSION \
+    && (cd shadowsocks-libev-$SS_LIBEV_VERSION \
     && ./configure --prefix=/usr --disable-documentation \
-    && make install && cd ../ \
+    && make install ) \
+    && git clone https://github.com/shadowsocks/simple-obfs.git \
+    && ( cd simple-obfs \
+    && git submodule update --init --recursive \
+    && ./autogen.sh && ./configure \
+    && make && make install ) \
     && curl -sSLO https://github.com/xtaci/kcptun/releases/download/v$KCP_VERSION/kcptun-linux-amd64-$KCP_VERSION.tar.gz \
     && tar -zxf kcptun-linux-amd64-$KCP_VERSION.tar.gz \
     && mv server_linux_amd64 /usr/bin/kcptun \
@@ -46,6 +55,7 @@ RUN apk upgrade --update \
         kcptun-linux-amd64-$KCP_VERSION.tar.gz \
         shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
         shadowsocks-libev-$SS_LIBEV_VERSION \
+        simple-obfs \
         /var/cache/apk/*
 
 ADD entrypoint.sh /entrypoint.sh

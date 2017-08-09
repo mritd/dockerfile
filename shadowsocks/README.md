@@ -181,3 +181,11 @@ ss-redir` 和细化 MPTCP；升级 kcptun 到 315 打假版本 `(:`
 - 2017-06-28 例行升级
 
 升级 shadowsocks 到 3.0.7
+
+- 2017-07-28 例行升级
+
+升级 shadowsocks 到 3.0.8
+
+- 2017-08-09 obfs 支持
+
+添加对 simple-obfs 支持

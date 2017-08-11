@@ -3,10 +3,9 @@ FROM alpine:3.6
 LABEL maintainer="mritd <mritd@mritd.me>"
 
 ARG TZ='Asia/Shanghai'
+
 ENV TZ $TZ
-
 ENV SS_LIBEV_VERSION 3.0.8
-
 ENV KCP_VERSION 20170525 
 
 RUN apk upgrade --update \

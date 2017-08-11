@@ -4,7 +4,7 @@ LABEL maintainer="mritd <mritd@mritd.me>"
 
 ENV TZ 'Asia/Shanghai'
 
-ENV BROOK_VERSION v20170516
+ENV BROOK_VERSION v20170809
 
 RUN apk upgrade --update \
     && apk add bash tzdata wget \

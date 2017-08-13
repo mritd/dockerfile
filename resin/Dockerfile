@@ -9,7 +9,7 @@ ENV JAVA_UPDATE 131
 ENV JAVA_BUILD 11
 ENV JAVA_PATH d54c1d3a095b4ff2b6607d096fa80163
 ENV JAVA_HOME '/usr/lib/jvm/default-jvm'
-ENV RESIN_VERSION 4.0.49
+ENV RESIN_VERSION 4.0.53
 
 RUN ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download" \
     && ALPINE_GLIBC_PACKAGE_VERSION="2.23-r3" \

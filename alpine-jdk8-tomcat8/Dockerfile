@@ -1,9 +1,9 @@
-FROM mritd/alpine-oracle-jdk8:8.131.11 
+FROM mritd/alpine-oracle-jdk8:8.144.01 
 
 LABEL maintainer="mritd <mritd@mritd.me>"
 
 ENV TOMCAT_MAJOR 8
-ENV TOMCAT_VERSION 8.5.16
+ENV TOMCAT_VERSION 8.5.20
 ENV CATALINA_HOME /usr/local/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
 ENV TOMCAT_NATIVE_LIBDIR $CATALINA_HOME/native-jni-lib

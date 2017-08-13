@@ -5,10 +5,10 @@ LABEL maintainer="mritd <mritd@mritd.me>"
 ENV LANG C.UTF-8
 ENV TZ 'Asia/Shanghai'
 ENV JAVA_VERSION 8
-ENV JAVA_UPDATE 131
-ENV JAVA_BUILD 11
-ENV JAVA_PATH d54c1d3a095b4ff2b6607d096fa80163
-ENV JAVA_HOME '/usr/lib/jvm/default-jvm'
+ENV JAVA_UPDATE 144 
+ENV JAVA_BUILD 01
+ENV JAVA_PATH 090f390dda5b47b9b721c7dfaa008135 
+ENV JAVA_HOME /usr/lib/jvm/default-jvm
 ENV RESIN_VERSION 4.0.53
 
 RUN ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download" \

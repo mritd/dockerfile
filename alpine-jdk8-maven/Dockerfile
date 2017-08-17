@@ -22,7 +22,7 @@ RUN set -ex \
     && unzip -jo -d ${JAVA_HOME}/jre/lib/security jce_policy-${JAVA_VERSION}.zip \
     && wget ${MAVEN_DOWNLOAD_URL} \
     && tar -zxf apache-maven-${MAVEN_VERSION}-bin.tar.gz -C ${MAVEN_HOME} --strip-components=1 \
-    && ln -s ${JAVA_HOME}/bin/* /usr/bin/local \
+    && ln -s ${JAVA_HOME}/bin/* /usr/local/bin \
     && ln -s ${MAVEN_HOME}/bin/mvn /usr/local/bin/mvn \
     && apk del build-dependencies \
     && rm -rf   jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz \

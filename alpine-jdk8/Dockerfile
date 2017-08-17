@@ -23,4 +23,6 @@ RUN apk add --no-cache --virtual=build-dependencies wget ca-certificates unzip \
     && unzip -jo -d "${JAVA_HOME}/jre/lib/security" "jce_policy-${JAVA_VERSION}.zip" \
     && rm -f "${JAVA_HOME}/jre/lib/security/README.txt" \
     && apk del build-dependencies \
-    && rm -rf "/tmp/"*
+    && rm -rf "${JAVA_HOME}/jre/lib/security/README.txt" \
+                "jce_policy-${JAVA_VERSION}.zip" \
+                "/tmp/"*

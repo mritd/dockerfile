@@ -16,7 +16,7 @@ RUN apk upgrade --update \
             openssl \
             unzip \
     && wget ${GRADLE_DOWNLOAD_URL} \
-    && echo "${GRADLE_DOWNLOAD_SHA256} gradle-${GRADLE_VERSION}-bin.zip" | sha256sum -c - \
+    && echo "${GRADLE_DOWNLOAD_SHA256}  gradle-${GRADLE_VERSION}-bin.zip" | sha256sum -c - \
     && mkdir -p ${GRADLE_HOME} \
     && unzip -jo -d ${GRADLE_HOME} gradle-${GRADLE_VERSION}-bin.zip \
     && ln -s ${GRADLE_HOME}/bin/gradle /usr/local/bin/gradle \

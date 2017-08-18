@@ -26,7 +26,7 @@ RUN apk add --no-cache --virtual .build-deps \
     && wget -O tomcat.tar.gz ${TOMCAT_TGZ_URL} \
     && tar -xvf tomcat.tar.gz -C ${CATALINA_HOME} --strip-components=1 \
     && nativeBuildDir=$(mktemp -d) \
-    && tar -xvf bin/tomcat-native.tar.gz -C ${nativeBuildDir} --strip-components=1 \
+    && tar -xvf ${CATALINA_HOME}/bin/tomcat-native.tar.gz -C ${nativeBuildDir} --strip-components=1 \
     && ( cd ${nativeBuildDir}/native \
     && gnuArch=$(dpkg-architecture --query DEB_BUILD_GNU_TYPE) \
     && ./configure \

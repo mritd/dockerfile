@@ -15,9 +15,8 @@ RUN apk add --no-cache --virtual=build-dependencies tar wget ca-certificates unz
     && wget --header "Cookie: oraclelicense=accept-securebackup-cookie;" ${JAVA_DOWNLOAD_URL} \
     && tar -xzf jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz -C ${JAVA_HOME} --strip-components=1 \
     && wget --header "Cookie: oraclelicense=accept-securebackup-cookie;" ${JCE_DOWNLOAD_URL} \
-    && unzip -jo -d "${JAVA_HOME}/jre/lib/security" "jce_policy-${JAVA_VERSION}.zip" \
-    && ln -s "java-${JAVA_VERSION}-oracle" "$JAVA_HOME" \
-    && ln -s "$JAVA_HOME/bin/"* "/usr/bin/" \
+    && unzip -jo -d ${JAVA_HOME}/jre/lib/security jce_policy-${JAVA_VERSION}.zip \
+    && ln -s ${JAVA_HOME}/bin/* /usr/bin/ \
     && apk del build-dependencies \
     && rm -rf   jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz \
                 ${JAVA_HOME}/*src.zip \

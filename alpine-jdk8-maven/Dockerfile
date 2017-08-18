@@ -14,7 +14,7 @@ ENV MAVEN_HOME /usr/lib/maven/default-maven
 ENV MAVEN_DOWNLOAD_URL http://mirror.bit.edu.cn/apache/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
 
 RUN set -ex \
-    && apk add --no-cache --virtual=build-dependencies tar wget ca-certificates unzip \
+    && apk add --no-cache bash tar wget ca-certificates unzip \
     && mkdir -p ${JAVA_HOME} ${MAVEN_HOME} \
     && wget --header "Cookie: oraclelicense=accept-securebackup-cookie;" ${JAVA_DOWNLOAD_URL} \
     && tar -xzf jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz -C ${JAVA_HOME} --strip-components=1 \
@@ -24,7 +24,7 @@ RUN set -ex \
     && tar -zxf apache-maven-${MAVEN_VERSION}-bin.tar.gz -C ${MAVEN_HOME} --strip-components=1 \
     && ln -s ${JAVA_HOME}/bin/* /usr/local/bin \
     && ln -s ${MAVEN_HOME}/bin/mvn /usr/local/bin/mvn \
-    && apk del build-dependencies \
+    && apk del tar wget ca-certificates unzip \
     && rm -rf   jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz \
                 ${JAVA_HOME}/*src.zip \
                 ${JAVA_HOME}/jre/lib/security/README.txt \

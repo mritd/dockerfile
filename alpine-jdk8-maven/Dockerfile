@@ -32,3 +32,5 @@ RUN set -ex \
                 apache-maven-${MAVEN_VERSION}-bin.tar.gz \
                 ${MAVEN_HOME}/bin/*.bat \
                 /tmp/*
+
+CMD ["bash"]

@@ -17,8 +17,8 @@ RUN apk upgrade --update \
             unzip \
     && wget ${GRADLE_DOWNLOAD_URL} \
     && echo "${GRADLE_DOWNLOAD_SHA256}  gradle-${GRADLE_VERSION}-bin.zip" | sha256sum -c - \
-    && mkdir -p ${GRADLE_HOME} \
-    && unzip -jo -d ${GRADLE_HOME} gradle-${GRADLE_VERSION}-bin.zip \
+    && unzip gradle-${GRADLE_VERSION}-bin.zip \
+    && mv gradle-${GRADLE_VERSION} ${GRADLE_HOME} \
     && ln -s ${GRADLE_HOME}/bin/gradle /usr/local/bin/gradle \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && addgroup -S -g 1000 gradle \

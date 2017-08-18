@@ -32,4 +32,8 @@ RUN apk add --no-cache bash tar wget ca-certificates unzip \
                 ${MAVEN_HOME}/bin/*.bat \
                 /tmp/*
 
+COPY settings.xml ${MAVEN_HOME}/conf/settings.xml
+
+VOLUME /data/repo
+
 CMD ["bash"]

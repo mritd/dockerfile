@@ -13,8 +13,7 @@ ENV MAVEN_VERSION 3.5.0
 ENV MAVEN_HOME /usr/lib/maven/default-maven
 ENV MAVEN_DOWNLOAD_URL http://mirror.bit.edu.cn/apache/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
 
-RUN set -ex \
-    && apk add --no-cache bash tar wget ca-certificates unzip \
+RUN apk add --no-cache bash tar wget ca-certificates unzip \
     && mkdir -p ${JAVA_HOME} ${MAVEN_HOME} \
     && wget --header "Cookie: oraclelicense=accept-securebackup-cookie;" ${JAVA_DOWNLOAD_URL} \
     && tar -xzf jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz -C ${JAVA_HOME} --strip-components=1 \

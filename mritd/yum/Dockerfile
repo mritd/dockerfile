@@ -1,12 +1,12 @@
-FROM nginx:1.11.10-alpine 
+FROM nginx:1.13.3-alpine
 
 LABEL maintainer="mritd <mritd@mritd.me>"
 
 ENV TZ 'Asia/Shanghai'
 
-RUN apk upgrade --no-cache \
-    && apk add --no-cache bash git \
-    && rm -rf /usr/share/nginx/html \ 
+RUN apk upgrade --update \
+    && apk add bash git \
+    && rm -rf /usr/share/nginx/html \
     && git clone https://github.com/mritd/k8s-repo-website.git /usr/share/nginx/html \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \

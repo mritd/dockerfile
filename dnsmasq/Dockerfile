@@ -1,6 +1,6 @@
 FROM alpine:3.6
 
-LABEL maintainer="mritd <mritd@mritd.me>"
+LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 RUN apk upgrade --update && \
     && apk add --no-cache bash dnsmasq \

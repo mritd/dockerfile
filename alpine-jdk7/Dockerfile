@@ -1,6 +1,6 @@
 FROM mritd/alpine-glibc:3.6 
 
-MAINTAINER mritd <mritd@mritd.me>
+MAINTAINER mritd <mritd1234@gmail.com>
 
 ENV JAVA_VERSION 7
 ENV JAVA_UPDATE 80 

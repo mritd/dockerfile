@@ -1,6 +1,6 @@
 FROM frolvlad/alpine-glibc 
 
-LABEL maintainer="mritd <mritd@mritd.me>"
+LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 ENV TZ 'Asia/Shanghai'
 ENV CODIS_VERSION 3.1.5

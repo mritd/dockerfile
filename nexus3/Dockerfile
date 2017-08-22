@@ -1,6 +1,6 @@
 FROM openjdk:8u111-jre-alpine 
 
-LABEL maintainer="mritd <mritd@mritd.me>"
+LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 ENV TZ 'Asia/Shanghai'
 ENV SONATYPE_DIR /usr/local/sonatype

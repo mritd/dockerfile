@@ -39,7 +39,8 @@ RUN apk upgrade --update \
     && make && make install ) \
     && curl -sSLO https://github.com/xtaci/kcptun/releases/download/v$KCP_VERSION/kcptun-linux-amd64-$KCP_VERSION.tar.gz \
     && tar -zxf kcptun-linux-amd64-$KCP_VERSION.tar.gz \
-    && mv server_linux_amd64 /usr/bin/kcptun \
+    && mv server_linux_amd64 /usr/bin/kcpserver \
+    && mv client_linux_amd64 /usr/bin/kcpclient \
     && ln -sf /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo $TZ > /etc/timezone \
     && runDeps="$( \

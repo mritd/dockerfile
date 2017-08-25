@@ -22,14 +22,8 @@ RUN apk upgrade --update \
     && mv gradle-${GRADLE_VERSION} ${GRADLE_HOME} \
     && ln -s ${GRADLE_HOME}/bin/gradle /usr/local/bin/gradle \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && addgroup -S -g 1000 gradle \
-    && adduser -D -S -G gradle -u 1000 -s /bin/bash gradle \
-    && mkdir -p ${GRADLE_USER_HOME} \
-    && chown -R gradle:gradle ${GRADLE_USER_HOME} \
     && echo "Asia/Shanghai" > /etc/timezone \
     && apk del .build-deps \
     && rm -rf gradle-${GRADLE_VERSION}-bin.zip /var/cache/apk/*
-
-USER gradle
 
 CMD ["/bin/bash"]

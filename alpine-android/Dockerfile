@@ -9,7 +9,7 @@ ENV GRADLE_VERSION 4.0.1
 ENV GRADLE_DOWNLOAD_SHA256 d717e46200d1359893f891dab047fdab98784143ac76861b53c50dbd03b44fd4
 ENV GRADLE_DOWNLOAD_URL https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip
 ENV SDK_HOME /usr/local/andorid
-ENV SDK_TOOLS_HOME ${SDK_HOME}/sdktools
+ENV SDK_TOOLS_HOME /usr/local/sdktools
 ENV SDK_TOOLS_VERSION 3859397
 ENV SDK_TOOLS_DOWNLOAD_URL https://dl.google.com/android/repository/sdk-tools-linux-${SDK_TOOLS_VERSION}.zip
 

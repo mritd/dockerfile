@@ -5,6 +5,7 @@ services:
     restart: always
     volumes:
       - /etc/nginx/ssl:/etc/nginx/ssl
+      - ./nginx/conf.d:/etc/nginx/conf.d
       - /var/log/nginx/:/var/log/nginx/
     volumes_from:
       - piwik_app

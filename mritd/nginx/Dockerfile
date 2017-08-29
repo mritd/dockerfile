@@ -1,13 +1,14 @@
-FROM nginx:1.11.10-alpine
+FROM nginx:1.13.3-alpine
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 ENV TZ 'Asia/Shanghai'
 
-RUN mkdir -p /etc/nginx/ssl \
-    && rm -f /etc/nginx/conf.d/default.conf
-
-ADD conf.d/*.conf /etc/nginx/conf.d/
+RUN apk upgrade --update \
+    && apk add bash tzdata \
+    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo "Asia/Shanghai" > /etc/timezone \
+    && rm -rf /var/cache/apk/* 
 
 EXPOSE 80 443
 

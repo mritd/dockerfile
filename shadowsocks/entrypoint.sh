@@ -28,8 +28,8 @@ else
     echo -e "\033[33mKcptun not started......\033[0m"
 fi
 
-echo -e "\033[32mStarting shadowsocks......\033[0m"
 if [ "$SS_CONFIG" != "" ]; then
+    echo -e "\033[32mStarting shadowsocks......\033[0m"
     $SS_MODULE $SS_CONFIG
 else
     echo -e "\033[31mError: SS_CONFIG is blank!\033[0m"

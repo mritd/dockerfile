@@ -1,0 +1,17 @@
+[server]
+hosts = 0.0.0.0:5232
+max_connections = 100
+max_content_length = 100000000
+timeout = 10
+
+[auth]
+type = htpasswd
+htpasswd_filename = /data/radicale/users
+htpasswd_encryption = md5
+
+[storage]
+filesystem_folder = /data/radicale/collections
+
+[logging]
+full_environment = True
+mask_passwords = True

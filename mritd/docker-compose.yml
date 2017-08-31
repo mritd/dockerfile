@@ -15,6 +15,7 @@ services:
       - yum
       - gcr
       - piwik_app
+      - radicale
     ports:
       - "80:80"
       - "443:443"
@@ -46,3 +47,8 @@ services:
       - piwik_db
     volumes:
       - /data/piwik/config:/var/www/html/config
+  radicale:
+    image: mritd/radicale:2.1.5
+    restart: always
+    volumes:
+      - /data/radicale:/data/radicale

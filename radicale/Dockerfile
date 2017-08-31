@@ -13,5 +13,6 @@ RUN apk upgrade --update \
     && rm -rf /var/cache/apk/*
 
 COPY config /etc/radicale/config
+COPY users /data/radicale/users 
 
 CMD ["radicale"]

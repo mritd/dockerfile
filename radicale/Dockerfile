@@ -6,8 +6,12 @@ ENV TZ 'Asia/Shanghai'
 
 RUN apk upgrade --update \
     && apk add bash tzdata \
+    && mkdir -p /data/radicale /etc/radicale \
+    && pip install --upgrade radicale \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && rm -rf /var/cache/apk/*
 
-CMD ["/bin/bash"]
+COPY config /etc/radicale/config
+
+CMD ["radicale"]

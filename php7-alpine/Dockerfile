@@ -83,6 +83,8 @@ RUN apk upgrade --update \
         )" \
     && apk add --virtual .php-rundeps $runDeps \
     && pecl update-channels \
+    && addgroup -g 82 -S www-data \
+    && adduser -u 82 -D -S -G www-data www-data \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && apk del .build-deps .fetch-deps \
@@ -91,4 +93,6 @@ RUN apk upgrade --update \
             /usr/src \
             /var/cache/apk/*
 
-CMD ["/bin/bash"]
+ENTRYPOINT ["docker-php-entrypoint"]
+
+CMD ["php", "-a"]

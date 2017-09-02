@@ -1,4 +1,4 @@
-FROM mritd/php7:7.1.9 
+FROM alpine:3.6 
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
@@ -9,8 +9,8 @@ ENV OWNCLOUD_DOWNLOAD_URL https://download.owncloud.org/community/owncloud-${OWN
 ENV OWNCLOUD_DOWNLOAD_ASC_URL https://download.owncloud.org/community/owncloud-${OWNCLOUD_VERSION}.tar.bz2.asc
 
 RUN apk upgrade --update \
-    && apk add bash tzdata gnupg openssl curl ca-certificates \
-    && apk add php7-exif php7-gd php7-intl php7-ldap \
+    && apk add bash tzdata gnupg openssl tar curl ca-certificates \
+        php7-fpm php7-exif php7-gd php7-intl php7-ldap \
         php7-mbstring php7-mcrypt php7-opcache php7-pdo \
         php7-pdo_mysql php7-pdo_pgsql php7-pgsql php7-zip \
         php7-apcu php7-memcached php7-redis \
@@ -19,7 +19,10 @@ RUN apk upgrade --update \
     && export GNUPGHOME="$(mktemp -d)" \
     && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys ${OWNCLOUD_GPGKEY} \
     && gpg --batch --verify owncloud.tar.bz2.asc owncloud.tar.bz2 \
-    && tar -xjf owncloud.tar.bz2 -C /usr/src/ \
+    && mkdir /usr/src \
+    && tar -xjf owncloud.tar.bz2 -C /usr/src \
+    && addgroup -g 82 -S www-data \
+    && adduser -u 82 -D -S -G www-data www-data \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && rm -rf ${GNUPGHOME} \
@@ -29,10 +32,12 @@ RUN apk upgrade --update \
 
 VOLUME /var/www/html
 
+WORKDIR /var/www/html
+
 COPY opcache-recommended.ini /usr/local/etc/php/conf.d
 
 COPY docker-entrypoint.sh /usr/local/bin
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-CMD ["php-fpm"]
+CMD ["php-fpm7"]

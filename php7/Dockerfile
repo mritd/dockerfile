@@ -90,7 +90,7 @@ RUN apk upgrade --update \
     && apk del .build-deps .fetch-deps \
     && rm -rf /tmp/pear \
             ~/.pearrc \
-            /usr/src \
+            /usr/src/* \
             /var/cache/apk/*
 
 ENTRYPOINT ["docker-php-entrypoint"]

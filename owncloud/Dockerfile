@@ -9,7 +9,7 @@ ENV OWNCLOUD_DOWNLOAD_URL https://download.owncloud.org/community/owncloud-${OWN
 ENV OWNCLOUD_DOWNLOAD_ASC_URL https://download.owncloud.org/community/owncloud-${OWNCLOUD_VERSION}.tar.bz2.asc
 
 RUN apk upgrade --update \
-    && apk add bash tzdata curl ca-certificates \
+    && apk add bash tzdata gnupg openssl curl ca-certificates \
     && apk add php7-exif php7-gd php7-intl php7-ldap \
         php7-mbstring php7-mcrypt php7-opcache php7-pdo \
         php7-pdo_mysql php7-pdo_pgsql php7-pgsql php7-zip \
@@ -28,6 +28,8 @@ RUN apk upgrade --update \
         /var/cache/apk/*
 
 VOLUME /var/www/html
+
+COPY opcache-recommended.ini /usr/local/etc/php/conf.d
 
 COPY docker-entrypoint.sh /usr/local/bin
 

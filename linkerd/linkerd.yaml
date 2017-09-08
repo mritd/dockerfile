@@ -1,0 +1,72 @@
+admin:
+  ip: 0.0.0.0  
+  port: 9990
+# Port for the http identifier debug endpoint.
+#  httpIdentifierPort: 9991
+#  tls:
+#    certPath: /foo/cert.pem
+#    keyPath: /foo/key.pem
+
+routers:
+- protocol: http
+  dtab: /svc => /$/inet/127.1/9990;
+  servers:
+  - port: 8080
+    ip: 0.0.0.0
+#    tls:
+#      certPath: /foo/cert.pem
+#      keyPath: /foo/key.pem
+    # The maximum number of concurrent requests the server will accept.
+    maxConcurrentRequests: 1000
+#    announce:
+#    - /#/io.l5d.serversets/discovery/prod/web
+    # If true, all headers that set linkerd contexts are removed from inbound requests. 
+    # Useful for servers exposed on untrusted networks.
+    clearContext: false
+  service:
+    # io.l5d.global or io.l5d.static
+    kind: io.l5d.static
+    # if kind use the io.l5d.global, configs/prefix is not support.
+    configs:
+    - prefix: /svc
+      # The timeout for an entire request, including all retries, in milliseconds.
+      totalTimeoutMs: 500
+      # A (sometimes protocol-specific) response classifier that determines which responses
+      # should be considered failures and, of those, which should be considered retryable.
+      # Either io.l5d.http.nonRetryable5XX,  io.l5d.h2.nonRetryable5XX,  io.l5d.http.retryableRead5XX,
+      # io.l5d.h2.retryableRead5XX,  io.l5d.http.retryableIdempotent5XX, or  io.l5d.h2.retryableIdempotent5XX
+      # see https://linkerd.io/config/1.1.3/linkerd/index.html#http-response-classifiers
+      responseClassifier: 
+        kind: io.l5d.http.nonRetryable5XX
+      # A retry policy for application-level retries.
+      retries:
+        # Object that determins how many failed requests are eligible to be retried.
+        budget:
+          # The minimum rate of retries allowed in order to accommodate clients that have just 
+          # started issuing requests, as well as clients that do not issue many requests per window. 
+          # Must be non-negative. If 0, no reserve is given.
+          minRetriesPerSec: 5
+          # The percentage of calls that can be retried. This is in addition to any retries 
+          # allowed via minRetriesPerSec. Must be >= 0 and <= 1000.
+          percentCanRetry: 0.5
+          # The amount of time in seconds that successful calls are considered when calculating retry budgets.
+          ttlSecs: 15
+        # Object that determines which backoff algorithm should be used.
+        backoff:
+          # constant or jittered
+          kind: jittered
+          # The minimum number of milliseconds to wait before each retry.
+          minMs: 10
+          # The maximum number of milliseconds to wait before each retry.
+          maxMs: 10000
+  bindingCache:
+    paths: 100
+    trees: 100
+    bounds: 100
+    clients: 10
+    idleTtlSecs: 3600
+
+
+# disable data collection
+usage:
+  enabled: false

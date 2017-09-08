@@ -5,7 +5,7 @@ LABEL maintainer="mritd <mritd1234@gmail.com>"
 ARG TZ='Asia/Shanghai'
 
 ENV TZ ${TZ}
-ENV LINKERD_VERSION 1.1.3
+ENV LINKERD_VERSION 1.2.0 
 ENV LINKERD_DOWNLOAD_URL https://github.com/linkerd/linkerd/releases/download/${LINKERD_VERSION}/linkerd-${LINKERD_VERSION}-exec
 
 RUN apk upgrade --update \
@@ -16,5 +16,6 @@ RUN apk upgrade --update \
     && echo ${TZ} > /etc/timezone \
     && rm -rf /var/cache/apk/*
 
+COPY linkerd.yaml /etc/linkerd.yaml
 
-CMD ["/bin/bash"]
+CMD ["linkerd","/etc/linkerd.yaml"]

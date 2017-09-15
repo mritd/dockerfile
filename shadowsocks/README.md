@@ -3,7 +3,7 @@
 [![](https://images.microbadger.com/badges/image/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own version badge on microbadger.com")
 
 - **shadowsocks-libev 版本: 3.1.0**
-- **kcptun 版本: 20170525**
+- **kcptun 版本: 20170904**
 
 ### 打开姿势
 
@@ -190,4 +190,4 @@ ss-redir` 和细化 MPTCP；升级 kcptun 到 315 打假版本 `(:`
 
 - 2017-11-38 例行升级
 
-升级 shadowsocks-libev 到 3.1.0
+升级 shadowsocks-libev 到 3.1.0，升级 kcptun 到 20170904

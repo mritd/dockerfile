@@ -187,3 +187,7 @@ ss-redir` 和细化 MPTCP；升级 kcptun 到 315 打假版本 `(:`
 - 2017-08-23 kcptun client 支持
 
 增加镜像对 kcptun client 支持
+
+- 2017-11-38 例行升级
+
+升级 shadowsocks-libev 到 3.1.0

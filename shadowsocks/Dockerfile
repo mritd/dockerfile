@@ -5,7 +5,7 @@ LABEL maintainer="mritd <mritd1234@gmail.com>"
 ARG TZ='Asia/Shanghai'
 
 ENV TZ $TZ
-ENV SS_LIBEV_VERSION 3.0.8
+ENV SS_LIBEV_VERSION 3.1.0 
 ENV KCP_VERSION 20170525 
 
 RUN apk upgrade --update \

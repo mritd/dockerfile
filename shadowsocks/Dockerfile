@@ -7,6 +7,9 @@ ARG TZ='Asia/Shanghai'
 ENV TZ $TZ
 ENV SS_LIBEV_VERSION 3.1.0 
 ENV KCP_VERSION 20170904 
+ENV SS_DOWNLOAD_URL https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$SS_LIBEV_VERSION/shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz
+ENV OBFS_DOWNLOAD_URL https://github.com/shadowsocks/simple-obfs.git
+ENV KCP_DOWNLOAD_URL https://github.com/xtaci/kcptun/releases/download/v$KCP_VERSION/kcptun-linux-amd64-$KCP_VERSION.tar.gz
 
 RUN apk upgrade --update \
     && apk add bash tzdata libsodium \
@@ -28,18 +31,18 @@ RUN apk upgrade --update \
         udns-dev \
         tar \
         git \
-    && curl -sSLO https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$SS_LIBEV_VERSION/shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
-    && tar -zxf shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
-    && (cd shadowsocks-libev-$SS_LIBEV_VERSION \
+    && curl -sSLO ${SS_DOWNLOAD_URL} \
+    && tar -zxf shadowsocks-libev-${SS_LIBEV_VERSION}.tar.gz \
+    && (cd shadowsocks-libev-${SS_LIBEV_VERSION} \
     && ./configure --prefix=/usr --disable-documentation \
-    && make install ) \
-    && git clone https://github.com/shadowsocks/simple-obfs.git \
-    && ( cd simple-obfs \
+    && make install) \
+    && git clone ${OBFS_DOWNLOAD_URL} \
+    && (cd simple-obfs \
     && git submodule update --init --recursive \
     && ./autogen.sh && ./configure \
-    && make && make install ) \
-    && curl -sSLO https://github.com/xtaci/kcptun/releases/download/v$KCP_VERSION/kcptun-linux-amd64-$KCP_VERSION.tar.gz \
-    && tar -zxf kcptun-linux-amd64-$KCP_VERSION.tar.gz \
+    && make && make install) \
+    && curl -sSLO ${KCP_DOWNLOAD_URL} \
+    && tar -zxf kcptun-linux-amd64-${KCP_VERSION}.tar.gz \
     && mv server_linux_amd64 /usr/bin/kcpserver \
     && mv client_linux_amd64 /usr/bin/kcpclient \
     && ln -sf /usr/share/zoneinfo/$TZ /etc/localtime \
@@ -52,9 +55,9 @@ RUN apk upgrade --update \
         )" \
     && apk add --virtual .run-deps $runDeps \
     && apk del .build-deps \
-    && rm -rf kcptun-linux-amd64-$KCP_VERSION.tar.gz \
-        shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
-        shadowsocks-libev-$SS_LIBEV_VERSION \
+    && rm -rf kcptun-linux-amd64-${KCP_VERSION}.tar.gz \
+        shadowsocks-libev-${SS_LIBEV_VERSION}.tar.gz \
+        shadowsocks-libev-${SS_LIBEV_VERSION} \
         simple-obfs \
         /var/cache/apk/*
 

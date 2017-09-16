@@ -17,6 +17,7 @@ RUN apk upgrade --update \
         xmlto \
         build-base \
         curl \
+        c-ares-dev \
         libev-dev \
         libtool \
         linux-headers \

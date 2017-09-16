@@ -50,7 +50,7 @@ RUN apk upgrade --update \
             | xargs -r apk info --installed \
             | sort -u \
         )" \
-    && apk add --no-cache --virtual .run-deps $runDeps \
+    && apk add --virtual .run-deps $runDeps \
     && apk del .build-deps \
     && rm -rf kcptun-linux-amd64-$KCP_VERSION.tar.gz \
         shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \

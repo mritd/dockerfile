@@ -2,12 +2,14 @@ FROM alpine:3.6
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
-ENV TZ 'Asia/Shanghai'
+ARG TZ="Asia/Shanghai"
+
+ENV TZ ${TZ}
 
 RUN apk upgrade --update \
     && apk add bash tzdata \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo "Asia/Shanghai" > /etc/timezone \
+    && echo ${TZ} > /etc/timezone \
     && rm -rf /var/cache/apk/*
 
 CMD ["/bin/bash"]

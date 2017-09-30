@@ -8,7 +8,7 @@ ENV TZ ${TZ}
 
 RUN apk upgrade --update \
     && apk add bash tzdata \
-    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && rm -rf /var/cache/apk/*
 

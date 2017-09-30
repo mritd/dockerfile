@@ -4,7 +4,7 @@ LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 # https://artifacts.elastic.co/GPG-KEY-elasticsearch
 ENV GPG_KEY 46095ACC8548582C1A2699A9D27D666CD88E42B4
-ENV ELASTICSEARCH_VERSION 5.5.1
+ENV ELASTICSEARCH_VERSION 5.5.2
 ENV ELASTICSEARCH_HOME /usr/local/elasticsearch
 ENV ELASTICSEARCH_TARBALL https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz
 ENV ELASTICSEARCH_TARBALL_ASC https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz.asc

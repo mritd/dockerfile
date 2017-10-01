@@ -20,7 +20,8 @@ RUN apk upgrade --update \
     && chmod -R 644 skywalking-collector \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
-    && rm -rf /skywalking-collector/bin \
+    && rm -rf skywalking-collector.tar.gz \
+            /skywalking-collector/bin \
             /var/cache/apk/*
 
 COPY entrypoint.sh /entrypoint.sh

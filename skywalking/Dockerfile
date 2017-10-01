@@ -6,11 +6,11 @@ ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
 ENV JAVA_OPTS "-Xms256M -Xmx512M"
-ENV JAVA_CLASSPATH "/skywalking-collector/libs/*:/skywalking-collector/config"
 ENV SKYWALKING_VERSION 3.2.2
 ENV SKYWALKING_COLLECTOR_OPTS ""
-ENV SKYWALKING_HOME /skywalking-collector
+ENV SKYWALKING_HOME /usr/local//skywalking-collector
 ENV SKYWALKING_CONFIG_DIR ${SKYWALKING_HOME}/config
+ENV SKYWALKING_CLASSPATH "${SKYWALKING_HOME}/libs/*:/skywalking-collector/config"
 ENV SKYWALKING_DOWNLOAD_URL https://github.com/wu-sheng/sky-walking/releases/download/v${SKYWALKING_VERSION}/skywalking-collector.tar.gz
 
 RUN apk upgrade --update \

@@ -17,12 +17,13 @@ RUN apk upgrade --update \
     && apk add bash tzdata curl \
     && curl -sfSL ${SKYWALKING_DOWNLOAD_URL} -o skywalking-collector.tar.gz \
     && tar -zxf skywalking-collector.tar.gz \
+    && mv skywalking-collector ${SKYWALKING_HOME} \
     && chmod -R 644 skywalking-collector \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && apk del curl \
     && rm -rf skywalking-collector.tar.gz \
-            /skywalking-collector/bin \
+            ${SKYWALKING_HOME}/bin \
             /var/cache/apk/*
 
 COPY entrypoint.sh /entrypoint.sh

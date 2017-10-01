@@ -18,7 +18,7 @@ RUN apk upgrade --update \
     && curl -sfSL ${SKYWALKING_DOWNLOAD_URL} -o skywalking-collector.tar.gz \
     && tar -zxf skywalking-collector.tar.gz \
     && mv skywalking-collector ${SKYWALKING_HOME} \
-    && chmod -R 644 skywalking-collector \
+    && chmod -R 644 ${SKYWALKING_HOME} \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && apk del curl \

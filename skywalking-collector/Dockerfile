@@ -26,6 +26,7 @@ RUN apk upgrade --update \
             ${SKYWALKING_HOME}/bin \
             /var/cache/apk/*
 
+COPY log4j2.xml ${SKYWALKING_CONFIG_DIR}
 COPY entrypoint.sh /entrypoint.sh
 
 EXPOSE 10800 11800 12800

@@ -4,11 +4,11 @@ LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 # https://artifacts.elastic.co/GPG-KEY-elasticsearch
 ENV GPG_KEY 46095ACC8548582C1A2699A9D27D666CD88E42B4
-ENV ELASTICSEARCH_VERSION 5.5.1
+ENV ELASTICSEARCH_VERSION 5.5.2
 ENV ELASTICSEARCH_HOME /usr/local/elasticsearch
 ENV ELASTICSEARCH_TARBALL https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz
 ENV ELASTICSEARCH_TARBALL_ASC https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz.asc
-ENV ELASTICSEARCH_TARBALL_SHA1 cb5648a6723527bdccee98caef7a9d08885a5b0f
+ENV ELASTICSEARCH_TARBALL_SHA1 91b3b3c823fafce54609ed5c9075d9cf50b2edff 
 
 # ensure elasticsearch user exists
 RUN set -ex \

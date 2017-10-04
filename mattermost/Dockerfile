@@ -24,4 +24,4 @@ WORKDIR /usr/local/mattermost/bin
 
 EXPOSE 8065
 
-CMD ["platform"]
+CMD ["./platform"]

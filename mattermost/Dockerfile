@@ -2,23 +2,25 @@ FROM alpine:3.6
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
-ENV TZ 'Asia/Shanghai'
-ENV MATTERMOST_VERSION 3.10.0
+ARG TZ="Asia/Shanghai"
 
-RUN apk upgrade --no-cache \
-    && apk add --no-cache bash tzdata wget ca-certificates \
+ENV TZ ${TZ} 
+ENV MATTERMOST_VERSION 4.2.0 
+
+RUN apk upgrade --update \
+    && apk add bash tzdata wget ca-certificates \
     && wget --no-check-certificate https://releases.mattermost.com/${MATTERMOST_VERSION}/mattermost-${MATTERMOST_VERSION}-linux-amd64.tar.gz \
     && tar -xzf mattermost*.gz \
     && mv mattermost /usr/local/mattermost \
-    && mkdir /usr/local/mattermost/data \
-    && mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2 \ 
-    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo "Asia/Shanghai" > /etc/timezone \
-    && rm -f mattermost-${MATTERMOST_VERSION}-linux-amd64.tar.gz \
-    && rm -rf /var/cache/apk/*
-
-WORKDIR /usr/local/mattermost
+    && mkdir /data /lib64 \
+    && ln -s /usr/local/mattermost/bin/* /usr/local/bin \
+    && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2 \
+    && ln -s /data /usr/local/mattermost/data \
+    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
+    && rm -rf mattermost-${MATTERMOST_VERSION}-linux-amd64.tar.gz \
+            /var/cache/apk/*
 
 EXPOSE 8065
 
-CMD ["bin/platform"]
+CMD ["platform"]

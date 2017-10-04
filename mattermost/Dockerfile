@@ -13,13 +13,14 @@ RUN apk upgrade --update \
     && tar -xzf mattermost*.gz \
     && mv mattermost /usr/local/mattermost \
     && mkdir /data /lib64 \
-    && ln -s /usr/local/mattermost/bin/* /usr/local/bin \
     && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2 \
     && ln -s /data /usr/local/mattermost/data \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && rm -rf mattermost-${MATTERMOST_VERSION}-linux-amd64.tar.gz \
             /var/cache/apk/*
+
+WORKDIR /usr/local/mattermost/bin
 
 EXPOSE 8065
 

@@ -2,16 +2,18 @@ FROM docker:dind
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
-ENV TZ 'Asia/Shanghai'
+ARG TZ="Asia/Shanghai"
 
-ENV KUBE_VERSION v1.7.4
+ENV TZ ${TZ}
+
+ENV KUBE_VERSION v1.8.0
 
 RUN apk upgrade --update \
     && apk add bash tzdata wget ca-certificates \
-    && wget https://storage.googleapis.com/kubernetes-release/release/$KUBE_VERSION/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl \
+    && wget https://storage.googleapis.com/kubernetes-release/release/${KUBE_VERSION}/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl \
     && chmod +x /usr/local/bin/kubectl \
-    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo "Asia/Shanghai" > /etc/timezone \
+    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
     && rm -rf /var/cache/apk/*
 
 CMD ["/bin/bash"]

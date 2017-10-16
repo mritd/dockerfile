@@ -12,8 +12,6 @@ RUN apk upgrade --update \
     && wget ${FILEBEAT_DOWNLOAD_URL} \
     && tar -zxvf filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz -C /usr/local \
     && rm -f filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz \
-        /usr/lcoal/filebeat-${FILEBEAT_VERSION}-linux-x86_64/*.yml \
-        /usr/lcoal/filebeat-${FILEBEAT_VERSION}-linux-x86_64/*.json \
         /usr/lcoal/filebeat-${FILEBEAT_VERSION}-linux-x86_64/.build_hash.txt \
         /usr/lcoal/filebeat-${FILEBEAT_VERSION}-linux-x86_64/NOTICE \
         /usr/lcoal/filebeat-${FILEBEAT_VERSION}-linux-x86_64/README.md \

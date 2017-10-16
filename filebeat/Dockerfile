@@ -1,7 +1,9 @@
 FROM mritd/alpine-glibc:3.6 
 
-ENV TZ 'Asia/Shanghai'
-ENV FILEBEAT_VERSION 5.5.0
+ARGS TZ 'Asia/Shanghai'
+
+ENV TZ ${TZ}
+ENV FILEBEAT_VERSION 5.6.3 
 ENV FILEBEAT_DOWNLOAD_URL https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz 
 
 RUN apk upgrade --update \
@@ -16,8 +18,8 @@ RUN apk upgrade --update \
         /usr/lcoal/filebeat-${FILEBEAT_VERSION}-linux-x86_64/NOTICE \
         /usr/lcoal/filebeat-${FILEBEAT_VERSION}-linux-x86_64/README.md \
     && ln -s /usr/lcoal/filebeat-${FILEBEAT_VERSION}-linux-x86_64/filebeat /usr/local/bin/filebeat \
-    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo "Asia/Shanghai" > /etc/timezone \
+    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
     && mkdir /etc/filebeat \
     && apk del build-dependencies \
     && rm -rf /var/cache/apk/*

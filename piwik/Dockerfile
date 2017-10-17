@@ -4,7 +4,7 @@ LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 ENV TZ 'Asia/Shanghai'
 
-ENV PIWIK_VERSION 3.1.2-b2
+ENV PIWIK_VERSION 3.2.0 
 
 RUN apk upgrade --no-cache \
     && apk add --no-cache bash tzdata \

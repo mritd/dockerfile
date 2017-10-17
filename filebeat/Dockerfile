@@ -1,6 +1,6 @@
 FROM mritd/alpine-glibc:3.6 
 
-ARG TZ 'Asia/Shanghai'
+ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
 ENV FILEBEAT_VERSION 5.6.3 

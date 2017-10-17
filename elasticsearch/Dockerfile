@@ -8,7 +8,7 @@ ENV ELASTICSEARCH_VERSION 5.6.3
 ENV ELASTICSEARCH_HOME /usr/local/elasticsearch
 ENV ELASTICSEARCH_TARBALL https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz
 ENV ELASTICSEARCH_TARBALL_ASC https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz.asc
-env elasticsearch_tarball_sha1 d5e4b61038f2cc3ec7ae5cbecf3406c7ecc7a1c4
+ENV ELASTICSEARCH_TARBALL_SHA1 d5e4b61038f2cc3ec7ae5cbecf3406c7ecc7a1c4
 
 # ensure elasticsearch user exists
 RUN set -ex \
@@ -25,7 +25,7 @@ RUN set -ex \
         tar \
     && wget -O elasticsearch.tar.gz "$ELASTICSEARCH_TARBALL" \
     && wget -O elasticsearch.tar.gz.asc "$ELASTICSEARCH_TARBALL_ASC" \
-    && echo "$ELASTICSEARCH_TARBALL_SHA1 *elasticsearch.tar.gz" | sha1sum -c - \
+    && echo "$ELASTICSEARCH_TARBALL_SHA1  elasticsearch.tar.gz" | sha1sum -c - \
     && export GNUPGHOME="$(mktemp -d)" \
     && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY" \
     && gpg --batch --verify elasticsearch.tar.gz.asc elasticsearch.tar.gz \

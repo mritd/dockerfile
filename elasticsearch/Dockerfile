@@ -48,7 +48,7 @@ COPY config ${ELASTICSEARCH_HOME}/config
 
 COPY docker-entrypoint.sh /entrypoint.sh
 
-VOLUME /data/elasticsearch 
+VOLUME /data/elasticsearch /var/log/elasticsearch 
 
 EXPOSE 9200 9300
 

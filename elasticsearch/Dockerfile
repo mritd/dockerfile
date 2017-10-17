@@ -4,11 +4,11 @@ LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 # https://artifacts.elastic.co/GPG-KEY-elasticsearch
 ENV GPG_KEY 46095ACC8548582C1A2699A9D27D666CD88E42B4
-ENV ELASTICSEARCH_VERSION 5.5.2
+ENV ELASTICSEARCH_VERSION 5.6.3
 ENV ELASTICSEARCH_HOME /usr/local/elasticsearch
 ENV ELASTICSEARCH_TARBALL https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz
 ENV ELASTICSEARCH_TARBALL_ASC https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz.asc
-ENV ELASTICSEARCH_TARBALL_SHA1 91b3b3c823fafce54609ed5c9075d9cf50b2edff 
+env elasticsearch_tarball_sha1 d5e4b61038f2cc3ec7ae5cbecf3406c7ecc7a1c4
 
 # ensure elasticsearch user exists
 RUN set -ex \
@@ -48,7 +48,7 @@ COPY config ${ELASTICSEARCH_HOME}/config
 
 COPY docker-entrypoint.sh /entrypoint.sh
 
-VOLUME /data/elasticsearch 
+VOLUME /data/elasticsearch /var/log/elasticsearch 
 
 EXPOSE 9200 9300
 

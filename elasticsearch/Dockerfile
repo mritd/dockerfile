@@ -2,6 +2,9 @@ FROM openjdk:8-jre-alpine
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
+ARG TZ="Asia/Shanghai"
+
+ENV TZ ${TZ}
 # https://artifacts.elastic.co/GPG-KEY-elasticsearch
 ENV GPG_KEY 46095ACC8548582C1A2699A9D27D666CD88E42B4
 ENV ELASTICSEARCH_VERSION 5.6.3
@@ -34,8 +37,8 @@ RUN set -ex \
     && mkdir -p /data/elasticsearch /var/log/elasticsearch \
     && chown -R elasticsearch:elasticsearch ${ELASTICSEARCH_HOME} /data/elasticsearch /var/log/elasticsearch \
     && ln -sf ${ELASTICSEARCH_HOME}/bin/* /usr/local/bin \
-    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo "Asia/Shanghai" > /etc/timezone \
+    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
     && apk del .fetch-deps \
     && rm -rf "$GNUPGHOME" \
         elasticsearch.tar.gz.asc \

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ex
+
 SS_CONFIG=${SS_CONFIG:-""}
 SS_MODULE=${SS_MODULE:-"ss-server"}
 KCP_CONFIG=${KCP_CONFIG:-""}
@@ -30,6 +32,8 @@ fi
 
 if [ "$SS_CONFIG" != "" ]; then
     echo -e "\033[32mStarting shadowsocks......\033[0m"
+    echo "---------------"
+    echo $SS_CONFIG
     $SS_MODULE $SS_CONFIG
 else
     echo -e "\033[31mError: SS_CONFIG is blank!\033[0m"

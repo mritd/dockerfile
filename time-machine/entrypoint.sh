@@ -23,6 +23,8 @@ cat /etc/passwd | grep $USERNAME >& /dev/null
 if [ $? -ne 0 ];then
     echo "Add user: $USERNAME..."
     adduser -S -H -G root $USERNAME
+    echo ${USERNAME}:${PASSWORD} | chpasswd &> /dev/null
+
 else
     echo "User: $USERNAME already exists!"
 fi

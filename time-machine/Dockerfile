@@ -1,10 +1,12 @@
-FROM alpine:3.5
+FROM alpine:3.6
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
-ENV TZ 'Asia/Shanghai'
+ARG TZ="Asia/Shanghai"
 
-ENV NETATALK_VERSION 3.1.10
+ENV TZ ${TZ}
+ENV NETATALK_VERSION 3.1.11
+ENV NETATALK_DOWNLOAD_URL https://downloads.sourceforge.net/project/netatalk/netatalk/${NETATALK_VERSION}/netatalk-${NETATALK_VERSION}.tar.gz
 
 RUN apk --update upgrade \
     && apk add bash tzdata libldap libgcrypt python \
@@ -13,7 +15,7 @@ RUN apk --update upgrade \
     && apk add --no-cache --virtual .build-deps \
         build-base autoconf automake libtool libgcrypt-dev \
         linux-pam-dev cracklib-dev acl-dev db-dev dbus-dev libevent-dev \
-    && wget https://downloads.sourceforge.net/project/netatalk/netatalk/${NETATALK_VERSION}/netatalk-${NETATALK_VERSION}.tar.gz \
+    && wget ${NETATALK_DOWNLOAD_URL} \
     && tar -zxvf netatalk-${NETATALK_VERSION}.tar.gz \
     && (cd netatalk-${NETATALK_VERSION} \
     && CFLAGS="-Wno-unused-result -O2" ./configure \
@@ -31,9 +33,9 @@ RUN apk --update upgrade \
         --enable-pgp-uam \
         --with-acls \
     && make && make install) \
-    && rm -rf ../netatalk-${NETATALK_VERSION}* \
-    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo "Asia/Shanghai" > /etc/timezone \
+    && rm -rf /netatalk-${NETATALK_VERSION}* \
+    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
     && apk del .build-deps \
     && rm -rf /var/cache/apk/*
 

@@ -192,7 +192,7 @@
 #   * trace
 #
 log.level: info
-# path.logs:
+path.logs: /var/log/logstash
 #
 # ------------ Other Settings --------------
 #

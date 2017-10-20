@@ -54,4 +54,4 @@ VOLUME /data/logstash /var/log/logstash
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["logstash"]
+CMD ["-e",""]

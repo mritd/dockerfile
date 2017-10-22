@@ -20,4 +20,6 @@ RUN apk upgrade --update \
             readme.md \
             /var/cache/apk/*
 
-CMD ["lightsocks-server"]
+COPY entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]

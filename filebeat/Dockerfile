@@ -22,6 +22,6 @@ RUN apk upgrade --update \
     && apk del build-dependencies \
     && rm -rf /var/cache/apk/*
 
-VOLUME /etc/filebeat/filebeat.yml
+VOLUME /etc/filebeat
 
 CMD ["filebeat","-e","-c","/etc/filebeat/filebeat.yml"]

@@ -34,7 +34,7 @@ RUN set -ex \
     && tar -zxf logstash.tar.gz \
     && mv logstash-${LOGSTASH_VERSION} ${LOGSTASH_HOME} \
     && mkdir -p /data/logstash /var/log/logstash \
-    && chown -R logstash:logstash ${LOGSTASH_HOME} /data/logstash /var/log/logstash \
+    && chown -R logstash:logstash ${LOGSTASH_HOME} /data /var/log/logstash \
     && ln -sf ${LOGSTASH_HOME}/bin/* /usr/local/bin \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
@@ -50,7 +50,7 @@ COPY config ${logstash_HOME}/config
 
 COPY docker-entrypoint.sh /entrypoint.sh
 
-VOLUME /data/logstash /var/log/logstash 
+VOLUME /data /var/log/logstash 
 
 ENTRYPOINT ["/entrypoint.sh"]
 

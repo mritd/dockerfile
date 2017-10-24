@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+chown -R logstash:logstash ${LOGSTASH_HOME} /data /var/log/logstash 
+
 # first arg is `-f` or `--some-option`
 if [ "${1#-}" != "$1" ]; then
     set -- logstash "$@"

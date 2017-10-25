@@ -22,7 +22,6 @@ RUN set -ex \
         ca-certificates \
         tar \
     && wget -O logstash.tar.gz "${LOGSTASH_TARBALL}" \
-    && wget -O logstash.tar.gz.asc "${LOGSTASH_TARBALL_ASC}" \
     && tar -zxf logstash.tar.gz \
     && mv logstash-${LOGSTASH_VERSION} ${LOGSTASH_HOME} \
     && mkdir -p /data/logstash /var/log/logstash \

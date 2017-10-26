@@ -4,6 +4,8 @@ LABEL maintainer="mritd <mritd1234@gmail.com>"
 # set TimeZone
 ARG TZ="Asia/Shanghai"
 ENV TZ ${TZ}
+# copy git config 
+COPY ./git.config /git.config
 # install git bash tzdata
 RUN apk --update --no-progress add git bash tzdata  && \
 # set npm to install hexp
@@ -14,9 +16,10 @@ RUN apk --update --no-progress add git bash tzdata  && \
     hexo init Hexo  && \
 # init hexo & config generator
     (cd Hexo && \
-    npm install hexo-generator-sitemap --save && \
-    npm install hexo-generator-feed --save && \
-    npm install hexo-deployer-git --save)\
+    npm install && \
+    npm install hexo-deployer-git --save && \
+    cat /git.config > _config.yml && \
+    rm -f /git.config )  \
 # add link & clean 
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \

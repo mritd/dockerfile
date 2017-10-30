@@ -1,10 +1,10 @@
-FROM alpine:3.5
+FROM alpine:3.6
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 ENV TZ 'Asia/Shanghai'
 
-ENV FRP_VERSION 0.9.3
+ENV FRP_VERSION 0.13.0
 
 RUN apk upgrade --no-cache \
     && apk add --no-cache bash tzdata curl \

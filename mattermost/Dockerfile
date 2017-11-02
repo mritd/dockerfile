@@ -5,7 +5,7 @@ LABEL maintainer="mritd <mritd1234@gmail.com>"
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ} 
-ENV MATTERMOST_VERSION 4.2.0 
+ENV MATTERMOST_VERSION 4.3.1 
 
 RUN apk upgrade --update \
     && apk add bash tzdata wget ca-certificates \

@@ -2,7 +2,9 @@ FROM openjdk:8-jdk-alpine
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
-ENV TZ 'Asia/Shanghai'
+ARG TZ='Asia/Shanghai'
+
+ENV TZ ${TZ}
 ENV GRADLE_HOME /usr/local/gradle
 ENV GRADLE_USER_HOME /data/gradle
 ENV GRADLE_VERSION 4.0.1
@@ -21,8 +23,8 @@ RUN apk upgrade --update \
     && unzip gradle-${GRADLE_VERSION}-bin.zip \
     && mv gradle-${GRADLE_VERSION} ${GRADLE_HOME} \
     && ln -s ${GRADLE_HOME}/bin/gradle /usr/local/bin/gradle \
-    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo "Asia/Shanghai" > /etc/timezone \
+    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
     && apk del .build-deps \
     && rm -rf gradle-${GRADLE_VERSION}-bin.zip /var/cache/apk/*
 

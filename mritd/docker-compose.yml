@@ -7,10 +7,12 @@ services:
       - /etc/nginx/ssl:/etc/nginx/ssl
       - ./nginx/conf.d:/etc/nginx/conf.d
       - /var/log/nginx/:/var/log/nginx/
+      - ./vippasswd:/etc/nginx/conf/vippasswd
     volumes_from:
       - piwik_app
     links:
       - jekyll
+      - videovip
       - idea
       - yum
       - piwik_app
@@ -20,6 +22,9 @@ services:
       - "443:443"
   jekyll:
     image: mritd/jekyll
+    restart: always
+  videovip:
+    image: mritd/videovip
     restart: always
   idea:
     image: mritd/idea

@@ -1,15 +1,17 @@
-FROM nginx:1.11.10-alpine 
+FROM nginx:1.13.6-alpine 
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
-ENV TZ 'Asia/Shanghai'
+ARG TZ='Asia/Shanghai'
 
-RUN apk upgrade --no-cache \
-    && apk add --no-cache bash git \
-    && rm -rf /usr/share/nginx/html \ 
+ENV TZ ${TZ}
+
+RUN apk upgrade --update \
+    && apk add bash git \
+    && rm -rf /usr/share/nginx/html \
     && git clone https://github.com/mritd/mritd.me.git /usr/share/nginx/html \
-    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo "Asia/Shanghai" > /etc/timezone \
+    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
     && rm -rf /var/cache/apk/*
 
 ADD entrypoint.sh /entrypoint.sh

@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>看电影</title>
+    <link href="./favicon.ico" rel="shortcut icon" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <script language="javascript" src=""></script>
+    <script src="./js/jquery-1.12.4.min.js" type="text/javascript"></script>
+    <link href="./css/newcommons.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="head-v3">
+        <div class="navigation-up">
+            <div class="navigation-inner">
+                <div class="navigation-v3">
+                    <ul>
+                        <li class="nav-up-selected-inpage" _t_nav="home">
+                            <h2>
+                                <a href="https://vip.mritd.me" target="_blank">首页</a>
+                            </h2>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </br>
+        <div class="centers">
+            <!--接口自行修改-->
+            <select style="border:0px;font-size:18px" onChange="xuanzejiekou(this)">
+                <option value="http://www.52jiexi.com/tong.php?url=">不知道接口1</option>
+                <option value="http://api.baiyug.cn/vip/index.php?url=">不知道接口2</option>
+                <option value="http://jx.2012net.com/index.php?url=">不知道接口3</option>
+                <option value="http://jx.vgoodapi.com/jx.php?url=">不知道接口4</option>
+                <option value="http://api.nepian.com/ckparse/?url=">不知道接口5</option>
+                <option value="https://api.flvsp.com/?url=">不知道接口6</option>
+                <option value="http://vip.jlsprh.com/index.php?url=">不知道接口7</option>
+                <option value="http://2gty.com/apiurl/yun.php?url=">不知道接口8</option>
+                <option value="http://api.baiyug.cn/vip/?url=">百域阁</option>
+            </select>
+            <div class="searchs">
+                <div class="from">
+                    <input name="url" id="url" type="text" class="text" value="http://v.youku.com/v_show/id_XMzEyNzYxODQ0OA==.html?spm=a2h1n.8261147.0.0">
+                    <input name="doplayers" type="button" id="doplayers" class="button" onClick="jiexi()" value="立即播放">
+                </div>
+                <div id="clear"></div>
+            </div>
+            <div id="ckplays">
+                <iframe id="jiekou" name="jiekou" width="100%" height="550px"></iframe>
+            </div>
+            <div class="tips">
+                <div id="clear" class="height20"></div>
+
+
+
+                <div class="wait">本站所有接口均来至互联网仅提供本地测试使用，请勿用于任何商业用途，否则后果自负。
+                    <p/>
+                    <span>
+                        <b>声明：本站仅提供私人在线播放服务，不参与录制、上传，且不储存任何资源，仅提供资源引用和分享。</b>
+                    </span>
+                </div>
+
+
+
+                <script type="text/javascript">
+                    players();
+                    $("#doplayers").bind("click", function () {
+                        players()
+                    });
+
+                    function players() {
+                        var a = $('#url').val();
+                        if ($('#url').val() == "") {
+                            alert('请输入视频网站网址！');
+                            $('#url').focus();
+                            return (false)
+                        }
+                    }
+                    var jiekou = ""
+                    function jiexi() {
+                        var url = document.getElementById("url").value;
+                        var dizhi = ""
+
+                        if (url.indexOf("://") == -1) {
+                            url = "http://" + document.getElementById("url").value;
+                        }
+
+                        if (jiekou == "") {
+                            document.getElementById("jiekou").src = "https://api.47ks.com/webcloud/?v=" + url;
+                        } else {
+                            document.getElementById("jiekou").src = jiekou + url;
+                        }
+                    }
+
+                    function xuanzejiekou(v) {
+                        var url = document.getElementById("url").value;
+                        if (url == "") {
+                            alert('请输入视频网站网址！');
+                        } else {
+                            jiekou = v.value
+                        }
+                    }
+                </script>
+                <div id="code"></div>
+                <div id="code_img"></div>
+
+            </div>
+
+            </script>
+</body>
+
+</html>

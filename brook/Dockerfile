@@ -6,7 +6,7 @@ ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
 
-ENV BROOK_VERSION 20171111 
+ENV BROOK_VERSION 20171113
 
 RUN apk upgrade --update \
     && apk add bash tzdata wget \

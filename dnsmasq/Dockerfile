@@ -16,4 +16,4 @@ COPY config/* /etc/
 
 EXPOSE 53 53/udp
 
-CMD ["dnsmasq","-k","-u","root"]
+CMD ["dnsmasq","-d","-u","root"]

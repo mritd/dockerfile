@@ -5,11 +5,12 @@ LABEL maintainer="mritd <mritd1234@gmail.com>"
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ} 
-ENV MATTERMOST_VERSION 4.3.1 
+ENV MATTERMOST_VERSION 4.4.1
+ENV MATTERMOST_DOWNLOAD_URL https://releases.mattermost.com/${MATTERMOST_VERSION}/mattermost-${MATTERMOST_VERSION}-linux-amd64.tar.gz
 
 RUN apk upgrade --update \
     && apk add bash tzdata wget ca-certificates \
-    && wget --no-check-certificate https://releases.mattermost.com/${MATTERMOST_VERSION}/mattermost-${MATTERMOST_VERSION}-linux-amd64.tar.gz \
+    && wget --no-check-certificate ${MATTERMOST_DOWNLOAD_URL} \
     && tar -xzf mattermost*.gz \
     && mv mattermost /usr/local/mattermost \
     && mkdir /data /lib64 \

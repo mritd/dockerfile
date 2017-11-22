@@ -2,7 +2,7 @@
 
 [![](https://images.microbadger.com/badges/image/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own version badge on microbadger.com")
 
-- **shadowsocks-libev 版本: 3.1.0**
+- **shadowsocks-libev 版本: 3.1.1**
 - **kcptun 版本: 20171113**
 
 ### 打开姿势
@@ -203,3 +203,7 @@ ss-redir` 和细化 MPTCP；升级 kcptun 到 315 打假版本 `(:`
 - 2017-11-19 update kcptun
 
 升级 kcptun 到 20171113
+
+- 2017-11-22 Fix a security issue in ss-manager. (CVE-2017-15924)
+
+Fix a security issue in ss-manager. (CVE-2017-15924)

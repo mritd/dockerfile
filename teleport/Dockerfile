@@ -4,7 +4,7 @@ LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 ENV TZ 'Asia/Shanghai'
 
-ENV TELEPORT_VERSION v2.2.4
+ENV TELEPORT_VERSION v2.3.5
 ENV TELEPORT_DOWNLOAD_URL https://github.com/gravitational/teleport/releases/download/${TELEPORT_VERSION}/teleport-${TELEPORT_VERSION}-linux-amd64-bin.tar.gz
 
 RUN apk upgrade --update \

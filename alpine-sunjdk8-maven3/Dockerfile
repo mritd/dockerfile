@@ -1,4 +1,4 @@
-FROM mritd/alpine-glibc:3.6 
+FROM mritd/alpine-glibc:2.26-r0
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 

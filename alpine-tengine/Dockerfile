@@ -1,12 +1,10 @@
-FROM alpine:3.6
+FROM alpine:3.7
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
-#set TimeZone
 ARG TZ="Asia/Shanghai"
+
 ENV TZ ${TZ}
-# set Config 
-#Tengine Version 2.2.1
 ENV Version 2.2.1
 
 RUN \
@@ -14,7 +12,7 @@ RUN \
     && adduser -D -S -h /var/lib/tengine -s /sbin/nologin -G tengine tengine \
     && addgroup -S www-data \
     && adduser tengine www-data \
-# install make Dependence
+    # install make Dependence
     && apk add --update \
         gcc \
         libc-dev \
@@ -29,9 +27,8 @@ RUN \
         wget \
         tar \
         gzip \
-# compile & install 
+    # compile & install 
     && mkdir /install \
-# download 
     && (cd /install \ 
     && wget http://tengine.taobao.org/download/tengine-$Version.tar.gz  \
     && tar -zxC .  -f /install/tengine-$Version.tar.gz ) \
@@ -84,10 +81,10 @@ RUN \
     && chmod 750 /var/log/tengine \
     && install -d /var/lib/tengine /var/www/tengine \
     && chown tengine:www-data /var/www/tengine) \
-# forward request and error logs to docker log collector
+    # forward request and error logs to docker log collector
     && ln -sf /dev/stdout /var/log/tengine/access.log \
     && ln -sf /dev/stderr /var/log/tengine/error.log \
-# Remove unneeded packages/files
+    # Remove unneeded packages/files
     && apk del gcc linux-headers make wget tar gzip \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \

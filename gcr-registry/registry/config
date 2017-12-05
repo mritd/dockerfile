@@ -1,8 +1,0 @@
-# 转发地址
-forward-socks5   /               127.0.0.1:1083 .
-# 监听地址
-listen-address  0.0.0.0:8123
-# local network do not use proxy
-forward         192.168.*.*/     .
-forward            10.*.*.*/     .
-forward           127.*.*.*/     .

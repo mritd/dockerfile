@@ -43,4 +43,6 @@ RUN apt update -y \
             ${GRADLE_HOME}/bin/*.bat \
             /tmp/*
 
+COPY cnpm /usr/local/bin/cnpm
+
 CMD ["bash"]

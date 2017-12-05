@@ -1,11 +1,11 @@
-FROM alpine:3.6
+FROM alpine:3.7
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ} 
-ENV MATTERMOST_VERSION 4.4.1
+ENV MATTERMOST_VERSION 4.4.2
 ENV MATTERMOST_DOWNLOAD_URL https://releases.mattermost.com/${MATTERMOST_VERSION}/mattermost-${MATTERMOST_VERSION}-linux-amd64.tar.gz
 
 RUN apk upgrade --update \

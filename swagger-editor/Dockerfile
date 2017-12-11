@@ -1,4 +1,4 @@
-FROM nginx:1.13.6-alpine
+FROM nginx:1.13.7-alpine
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
@@ -6,7 +6,7 @@ ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
 
-ENV SWAGGERUI_VERSION 3.1.15
+ENV SWAGGERUI_VERSION 3.1.19
 ENV SWAGGERUI_DOWNLOAD_URL https://github.com/swagger-api/swagger-editor/archive/v${SWAGGERUI_VERSION}.tar.gz
 
 RUN apk upgrade --update \

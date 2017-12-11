@@ -1,11 +1,11 @@
-FROM openjdk:8u111-jre-alpine 
+FROM openjdk:8u151-jdk-alpine
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 ENV TZ 'Asia/Shanghai'
 ENV SONATYPE_DIR /usr/local/sonatype
 ENV SONATYPE_WORK ${SONATYPE_DIR}/sonatype-work
-ENV NEXUS_VERSION 3.6.0-02 
+ENV NEXUS_VERSION 3.6.2-01
 ENV NEXUS_HOME ${SONATYPE_DIR}/nexus
 ENV NEXUS_DATA /data/nexus-data
 ENV NEXUS_CONTEXT ''

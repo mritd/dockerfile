@@ -1,10 +1,10 @@
-FROM php:7.1.0-fpm-alpine 
+FROM php:7.2.0-fpm-alpine3.6
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 ENV TZ 'Asia/Shanghai'
 
-ENV PIWIK_VERSION 3.2.0 
+ENV PIWIK_VERSION 3.2.1
 
 RUN apk upgrade --no-cache \
     && apk add --no-cache bash tzdata \

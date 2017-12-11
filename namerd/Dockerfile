@@ -1,11 +1,11 @@
-FROM openjdk:8u131-jdk-alpine 
+FROM openjdk:8u151-jdk-alpine
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 ARG TZ='Asia/Shanghai'
 
 ENV TZ ${TZ}
-ENV NAMERD_VERSION 1.2.0 
+ENV NAMERD_VERSION 1.3.2
 ENV NAMERD_DOWNLOAD_URL https://github.com/linkerd/linkerd/releases/download/${NAMERD_VERSION}/namerd-${NAMERD_VERSION}-exec 
 
 RUN apk upgrade --update \

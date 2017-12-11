@@ -1,4 +1,4 @@
-FROM openjdk:8u131-jdk-alpine 
+FROM openjdk:8u151-jdk-alpine
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 

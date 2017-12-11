@@ -207,3 +207,7 @@ ss-redir` 和细化 MPTCP；升级 kcptun 到 315 打假版本 `(:`
 - 2017-11-22 Fix a security issue in ss-manager. (CVE-2017-15924)
 
 Fix a security issue in ss-manager. (CVE-2017-15924)
+
+- 2017-12-11 update base image
+
+update base image

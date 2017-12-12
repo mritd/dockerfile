@@ -1,4 +1,4 @@
-FROM openjdk:8u131-jdk-alpine 
+FROM openjdk:8u151-alpine
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
@@ -6,7 +6,7 @@ ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
 ENV JAVA_OPTS "-Xms256M -Xmx512M"
-ENV SKYWALKING_VERSION 3.2.2
+ENV SKYWALKING_VERSION 3.2.6
 ENV SKYWALKING_COLLECTOR_OPTS ""
 ENV SKYWALKING_HOME /usr/local/skywalking-collector
 ENV SKYWALKING_CONFIG_DIR ${SKYWALKING_HOME}/config

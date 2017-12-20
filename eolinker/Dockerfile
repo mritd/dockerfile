@@ -5,7 +5,7 @@ LABEL maintainer="mritd <mritd1234@gmail.com>"
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
-ENV EOLINKER_VERSION 3.1.8
+ENV EOLINKER_VERSION 3.1.9
 
 COPY eolinker_os_${EOLINKER_VERSION}.zip /usr/src/eolinker_os_${EOLINKER_VERSION}.zip
 

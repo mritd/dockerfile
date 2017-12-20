@@ -6,7 +6,7 @@ ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
 ENV EOLINKER_VERSION 3.1.9
-ENV EOLINKER_DOWNLOAD_URL https://github.com/eolinker/eoLinker-API-Management-System-OS-3.X/blob/master/release%5B%E6%AD%A3%E5%BC%8F%E5%AE%89%E8%A3%85%E5%8C%85%5D/eolinker_os_${EOLINKER_VERSION}.zip
+ENV EOLINKER_DOWNLOAD_URL https://raw.githubusercontent.com/eolinker/eoLinker-API-Management-System-OS-3.X/master/release%5B%E6%AD%A3%E5%BC%8F%E5%AE%89%E8%A3%85%E5%8C%85%5D/eolinker_os_${EOLINKER_VERSION}.zip
 
 RUN apk upgrade --update \
     && apk add bash tzdata zip wget \

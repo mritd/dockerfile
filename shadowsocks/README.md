@@ -3,7 +3,7 @@
 [![](https://images.microbadger.com/badges/image/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own version badge on microbadger.com")
 
 - **shadowsocks-libev 版本: 3.1.1**
-- **kcptun 版本: 20171113**
+- **kcptun 版本: 20171201**
 
 ### 打开姿势
 
@@ -211,3 +211,7 @@ Fix a security issue in ss-manager. (CVE-2017-15924)
 - 2017-12-11 update base image
 
 update base image
+
+- 2017-12-27 update kcptun
+
+update kcptun to 20171201

@@ -1,4 +1,4 @@
-FROM node:9.3.0
+FROM node:9.3-slim
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 

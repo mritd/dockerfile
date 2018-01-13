@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM BASEIMAGE
+FROM bashell/alpine-bash
 
 ADD kube-addons.sh /opt/
 ADD namespace.yaml /opt/

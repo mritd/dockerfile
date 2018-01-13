@@ -1,21 +1,23 @@
-# Copyright 2016 The Kubernetes Authors.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+FROM alpine:3.7
 
-FROM bashell/alpine-bash
+LABEL maintainer="mritd <mritd1234@gmail.com>"
+
+ARG TZ="Asia/Shanghai"
+
+ENV TZ ${TZ}
+ENV KUBECTL_VERSION 1.8.6
+ENV KUBECTL_DOWNLOAD_URL https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl
+
+RUN apk upgrade --update \
+    && apk add bash tzdata wget ca-certificates \
+    && wget ${KUBECTL_DOWNLOAD_URL} -O /usr/local/bin/kubectl \
+    && chmod +x /usr/local/bin/kubectl \
+    && apk del wget ca-certificates \
+    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
+    && rm -rf /var/cache/apk/*
 
 ADD kube-addons.sh /opt/
 ADD namespace.yaml /opt/
-ADD kubectl /usr/local/bin/
 
 CMD ["/opt/kube-addons.sh"]

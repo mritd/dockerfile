@@ -2,7 +2,7 @@
 
 [![](https://images.microbadger.com/badges/image/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own version badge on microbadger.com")
 
-- **shadowsocks-libev 版本: 3.1.2**
+- **shadowsocks-libev 版本: 3.1.3**
 - **kcptun 版本: 20171201**
 
 ### 打开姿势
@@ -216,6 +216,10 @@ update base image
 
 update kcptun to 20171201
 
-- 2018-1-2 update shadowsocks
+- 2018-01-2 update shadowsocks
 
 update shadowsocks to 3.1.2(Fix a bug in DNS resolver;Add new TFO API support.)
+
+- 2018-01-22 update shadowsocks
+
+update shadowsocks to 3.1.3(Fix a bug in UDP relay.)

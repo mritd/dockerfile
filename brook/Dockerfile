@@ -6,7 +6,7 @@ ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
 
-ENV BROOK_VERSION 20171113
+ENV BROOK_VERSION 20180112
 ENV BROOK_DOWNLOAD_URL https://github.com/txthinking/brook/releases/download/v${BROOK_VERSION}/brook
 
 RUN apk upgrade --update \

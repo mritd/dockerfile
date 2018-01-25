@@ -38,7 +38,7 @@ services:
     volumes:
       - /data/piwik/mysql/runtime:/var/lib/mysql
   piwik_app:
-    image: mritd/piwik:3.2.0
+    image: mritd/piwik:3.2.1
     restart: always
     links:
       - piwik_db

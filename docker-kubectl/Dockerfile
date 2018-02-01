@@ -6,7 +6,7 @@ ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
 
-ENV KUBE_VERSION v1.8.4
+ENV KUBE_VERSION v1.8.7
 
 RUN apk upgrade --update \
     && apk add bash tzdata wget ca-certificates \

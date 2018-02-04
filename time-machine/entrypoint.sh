@@ -47,9 +47,16 @@ else
     echo "afp.conf already modify!"
 fi
 
-if [ ! -e /var/run/dbus/system_bus_socket ]; then
-    dbus-daemon --system
+echo "Starting..."
+
+if [ -e /var/run/dbus.pid ]; then
+    rm -f /var/run/dbus.pid
 fi
 
-echo "Netatalk starting..."
-netatalk -d
+if [ -e /var/run/dbus/system_bus_socket ]; then
+	rm -f /var/run/dbus/system_bus_socket
+fi
+
+dbus-daemon --system
+
+runsvdir /etc/runit/services

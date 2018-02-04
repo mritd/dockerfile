@@ -11,7 +11,7 @@ ENV NETATALK_DOWNLOAD_URL https://downloads.sourceforge.net/project/netatalk/net
 RUN apk --update upgrade \
     && apk add bash tzdata libldap libgcrypt python \
         dbus dbus-glib py-dbus linux-pam cracklib db \
-        libevent file acl openssl \
+        libevent file acl openssl avahi runit \
     && apk add --no-cache --virtual .build-deps \
         build-base autoconf automake libtool libgcrypt-dev \
         linux-pam-dev cracklib-dev acl-dev db-dev dbus-dev libevent-dev \
@@ -33,17 +33,20 @@ RUN apk --update upgrade \
         --enable-pgp-uam \
         --with-acls \
     && make && make install) \
-    && rm -rf /netatalk-${NETATALK_VERSION}* \
+    && sed -i 's@#host-name.*@host-name=TimeMachine@g' /etc/avahi/avahi-daemon.conf \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && apk del .build-deps \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /netatalk-${NETATALK_VERSION}* \
+            /etc/avahi/services/* \
+            /var/cache/apk/*
 
 EXPOSE 548 636
 
 COPY entrypoint.sh /entrypoint.sh
-
-COPY afp.conf /etc/afp.conf
+COPY conf/afp.conf /etc/afp.conf
+COPY conf/afpd.service /etc/avahi/services/afpd.service
+COPY services /etc/runit/services
 
 VOLUME ["/data"]
 

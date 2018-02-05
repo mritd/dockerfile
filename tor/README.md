@@ -8,10 +8,10 @@
 启动 Tor 匿名代理
 
 ``` sh
-docker run -dt --name tor -p 8123:8123 -p 9100:9100 mritd/tor
+docker run -d --name tor -p 9100:9100 mritd/tor
 ```
 
-**默认情况下 Tor 监听在 `0.0.0.0:9100` 端口上，privoxy 监听在 `0.0.0.0:8123` 端口上，若想通过 Tor 代理访问网络，请将浏览器代理设置到 `http://TOR-DOCKER-IP:8123` 或 `socks5://TOR-DOCKER-IP:9100` 即可**
+**默认情况下 Tor 监听在 `0.0.0.0:9100` 端口上，若想通过 Tor 代理访问网络，请将浏览器代理设置到 `socks5://TOR-DOCKER-IP:9100` 即可**
 
 
 ### Tor 相关设置

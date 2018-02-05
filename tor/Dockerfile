@@ -6,9 +6,8 @@ ARG TZ='Asia/Shanghai'
 
 ENV TZ ${TZ}
 
-RUN echo '@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories \
-    && apk upgrade --update \
-    && apk add tor@testing privoxy bash tzdata su-exec \
+RUN apk upgrade --update \
+    && apk add tor privoxy bash tzdata su-exec \
     && ln -sf /dev/stdout /var/log/tor/notices.log \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo "${TZ}" > /etc/timezone \

@@ -7,11 +7,11 @@ ARG TZ="Asia/Shanghai"
 ENV TZ ${TZ}
 # https://artifacts.elastic.co/GPG-KEY-elasticsearch
 ENV GPG_KEY 46095ACC8548582C1A2699A9D27D666CD88E42B4
-ENV ELASTICSEARCH_VERSION 6.1.3
+ENV ELASTICSEARCH_VERSION 6.2.1
 ENV ELASTICSEARCH_HOME /usr/local/elasticsearch
 ENV ELASTICSEARCH_TARBALL https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz
 ENV ELASTICSEARCH_TARBALL_ASC https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz.asc
-ENV ELASTICSEARCH_TARBALL_SHA1 cebe9cc3278440adbce75c580b5c05f684742f56
+ENV ELASTICSEARCH_TARBALL_SHA1 8d5c6a95ab7569eee42a8430778111c1944a6f4e
 
 # ensure elasticsearch user exists
 RUN set -ex \
@@ -26,11 +26,11 @@ RUN set -ex \
         gnupg \
         openssl \
         tar \
-    && wget -O elasticsearch.tar.gz "$ELASTICSEARCH_TARBALL" \
-    && wget -O elasticsearch.tar.gz.asc "$ELASTICSEARCH_TARBALL_ASC" \
-    && echo "$ELASTICSEARCH_TARBALL_SHA1  elasticsearch.tar.gz" | sha1sum -c - \
+    && wget -O elasticsearch.tar.gz "${ELASTICSEARCH_TARBALL}" \
+    && wget -O elasticsearch.tar.gz.asc "${ELASTICSEARCH_TARBALL_ASC}" \
+    && echo "${ELASTICSEARCH_TARBALL_SHA1}  elasticsearch.tar.gz" | sha1sum -c - \
     && export GNUPGHOME="$(mktemp -d)" \
-    && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY" \
+    && gpg --keyserver pgp.mit.edu --recv-keys "${GPG_KEY}" \
     && gpg --batch --verify elasticsearch.tar.gz.asc elasticsearch.tar.gz \
     && tar -zxf elasticsearch.tar.gz \
     && mv elasticsearch-${ELASTICSEARCH_VERSION} ${ELASTICSEARCH_HOME} \

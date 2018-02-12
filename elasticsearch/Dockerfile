@@ -7,11 +7,11 @@ ARG TZ="Asia/Shanghai"
 ENV TZ ${TZ}
 # https://artifacts.elastic.co/GPG-KEY-elasticsearch
 ENV GPG_KEY 46095ACC8548582C1A2699A9D27D666CD88E42B4
-ENV ELASTICSEARCH_VERSION 5.6.3
+ENV ELASTICSEARCH_VERSION 6.1.3
 ENV ELASTICSEARCH_HOME /usr/local/elasticsearch
 ENV ELASTICSEARCH_TARBALL https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz
 ENV ELASTICSEARCH_TARBALL_ASC https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz.asc
-ENV ELASTICSEARCH_TARBALL_SHA1 d5e4b61038f2cc3ec7ae5cbecf3406c7ecc7a1c4
+ENV ELASTICSEARCH_TARBALL_SHA1 cebe9cc3278440adbce75c580b5c05f684742f56
 
 # ensure elasticsearch user exists
 RUN set -ex \

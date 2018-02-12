@@ -20,7 +20,7 @@ RUN set -ex \
     && apk upgrade --update \
     # grab su-exec for easy step-down from root
     # and bash for "bin/elasticsearch" among others
-    && apk add 'su-exec>=0.2' bash tzdata \
+    && apk add 'su-exec>=0.2' bash tzdata coreutils \
     && apk add --virtual .fetch-deps \
         ca-certificates \
         gnupg \
@@ -40,7 +40,7 @@ RUN set -ex \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && apk del .fetch-deps \
-    && rm -rf "$GNUPGHOME" \
+    && rm -rf "${GNUPGHOME}" \
         elasticsearch.tar.gz.asc \
         elasticsearch.tar.gz \
         ${ELASTICSEARCH_HOME}/bin/*.exe \

@@ -2,8 +2,10 @@ FROM alpine:3.7
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
-ENV TZ 'Asia/Shanghai'
-ENV OWNCLOUD_VERSION 10.0.2
+ARG TZ='Asia/Shanghai'
+
+ENV TZ ${TZ}
+ENV OWNCLOUD_VERSION 10.0.6
 ENV OWNCLOUD_GPGKEY E3036906AD9F30807351FAC32D5D5E97F6978A26
 ENV OWNCLOUD_DOWNLOAD_URL https://download.owncloud.org/community/owncloud-${OWNCLOUD_VERSION}.tar.bz2
 ENV OWNCLOUD_DOWNLOAD_ASC_URL https://download.owncloud.org/community/owncloud-${OWNCLOUD_VERSION}.tar.bz2.asc
@@ -17,14 +19,14 @@ RUN apk upgrade --update \
     && curl -fsSL -o owncloud.tar.bz2 ${OWNCLOUD_DOWNLOAD_URL} \
     && curl -fsSL -o owncloud.tar.bz2.asc ${OWNCLOUD_DOWNLOAD_ASC_URL} \
     && export GNUPGHOME="$(mktemp -d)" \
-    && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys ${OWNCLOUD_GPGKEY} \
+    && gpg --keyserver pgp.mit.edu --recv-keys ${OWNCLOUD_GPGKEY} \
     && gpg --batch --verify owncloud.tar.bz2.asc owncloud.tar.bz2 \
     && mkdir /usr/src \
     && tar -xjf owncloud.tar.bz2 -C /usr/src \
     && addgroup -g 82 -S www-data \
     && adduser -u 82 -D -S -G www-data www-data \
-    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo "Asia/Shanghai" > /etc/timezone \
+    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo "${TZ}" > /etc/timezone \
     && rm -rf ${GNUPGHOME} \
         owncloud.tar.bz2 \
         owncloud.tar.bz2.asc \

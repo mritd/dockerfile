@@ -8,8 +8,8 @@ ENV TZ ${TZ}
 
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get install -y unzip tzdata \
-    && cpanm Encode::Locale IO::Socket::SSL Mojolicious \
+    && apt-get install -y unzip tzdata libcrypt-openssl-bignum-perl libcrypt-openssl-rsa-perl \
+    && cpanm Encode::Locale IO::Socket::SSL Mojolicious Crypt::OpenSSL::RSA Crypt::OpenSSL::Bignum \
     && wget -q https://github.com/sjdy521/Mojo-Webqq/archive/master.zip -O Mojo-Webqq.zip \
     && unzip -qo Mojo-Webqq.zip \
     && (cd Mojo-Webqq-master \

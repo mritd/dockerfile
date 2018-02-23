@@ -16,7 +16,6 @@ RUN apk upgrade --update \
     && apk add --virtual .build-deps \
         autoconf \
         automake \
-        asciidoc \
         xmlto \
         build-base \
         curl \
@@ -39,7 +38,7 @@ RUN apk upgrade --update \
     && git clone ${OBFS_DOWNLOAD_URL} \
     && (cd simple-obfs \
     && git submodule update --init --recursive \
-    && ./autogen.sh && ./configure \
+    && ./autogen.sh && ./configure --disable-documentation\
     && make && make install) \
     && curl -sSLO ${KCP_DOWNLOAD_URL} \
     && tar -zxf kcptun-linux-amd64-${KCP_VERSION}.tar.gz \

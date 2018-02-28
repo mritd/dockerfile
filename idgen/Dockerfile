@@ -5,7 +5,7 @@ LABEL maintainer="mritd <mritd1234@gmail.com>"
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
-ENV IDGEN_VERSION v0.0.1
+ENV IDGEN_VERSION v0.0.2
 ENV IDGEN_DOWNLOAD_URL https://github.com/mritd/idgen/releases/download/${IDGEN_VERSION}/idgen_linux_amd64
 
 RUN apk upgrade --update \

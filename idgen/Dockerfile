@@ -6,7 +6,7 @@ ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
 ENV IDGEN_VERSION v0.0.3
-ENV IDGEN_DOWNLOAD_URL https://github.com/mritd/idgen/releases/download/${IDGEN_VERSION}/idgen_linux_amd64
+ENV IDGEN_DOWNLOAD_URL https://github.com/mritd/idgen/releases/download/${IDGEN_VERSION}/https://github.com/mritd/idgen/releases/download/v0.0.3/idgen-linux-amd64
 
 RUN apk upgrade --update \
     && apk add bash tzdata wget ca-certificates \

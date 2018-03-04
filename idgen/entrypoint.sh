@@ -2,5 +2,6 @@
 
 set -e
 
+echo "init database..."
 idgen init
-ingen server
+idgen server

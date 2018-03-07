@@ -2,6 +2,7 @@ version: '2'
 services:
   nginx:
     image: mritd/nginx
+    container_name: nginx
     restart: always
     volumes:
       - /etc/nginx/ssl:/etc/nginx/ssl
@@ -22,23 +23,29 @@ services:
       - "443:443"
   jekyll:
     image: mritd/jekyll
+    container_name: jekyll
     restart: always
   videovip:
     image: mritd/videovip
+    container_name: vip
     restart: always
   idea:
     image: mritd/idea
+    container_name: idea
     restart: always
   yum:
     image: mritd/yum
+    container_name: yum
     restart: always  
   piwik_db:
     image: mysql:5.7.17
+    container_name: piwik_mysql
     restart: always
     volumes:
       - /data/piwik/mysql/runtime:/var/lib/mysql
   piwik_app:
     image: mritd/piwik:3.3.0
+    container_name: piwik
     restart: always
     links:
       - piwik_db
@@ -46,6 +53,11 @@ services:
       - /data/piwik/config:/var/www/html/config
   radicale:
     image: mritd/radicale:2.1.5
+    container_name: 2do
     restart: always
     volumes:
       - /data/radicale:/data/radicale
+  idgen:
+    image: mritd/idgen:v0.0.3
+    container_name: idgen
+    restart: always

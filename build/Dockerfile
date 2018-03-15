@@ -23,7 +23,7 @@ ENV GRADLE_DOWNLOAD_URL https://services.gradle.org/distributions/gradle-${GRADL
 
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get install wget tar unzip tzdata git make gcc g++ -y \
+    && apt-get install wget tar unzip tzdata git make gcc g++ libpng-dev -y \
     && mkdir -p ${MAVEN_HOME} ${MAVEN_LOCAL_REPO} ${NODE_HOME} ${GRADLE_HOME} ${GRADLE_USER_HOME} \
     && wget ${MAVEN_DOWNLOAD_URL} ${NODE_DOWNLOAD_URL} ${GRADLE_DOWNLOAD_URL} \
     && tar -zxf apache-maven-${MAVEN_VERSION}-bin.tar.gz -C ${MAVEN_HOME} --strip-components=1 \

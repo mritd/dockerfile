@@ -18,6 +18,7 @@ RUN apk upgrade --update \
     && npm install) \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
+    && apk del unzip wget ca-certificates \
     && rm -rf /var/cache/apk/*
 
 WORKDIR ${TAIGA_EVENTS_HOME}

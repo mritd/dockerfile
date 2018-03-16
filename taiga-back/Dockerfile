@@ -24,6 +24,7 @@ RUN apt update -y \
     && (cd /usr/local/taiga-back \
     && pip install --no-cache-dir -r requirements.txt \
     && python manage.py collectstatic --noinput) \
+    && apt remove -y unzip \
     && rm -rf ${TAIGA_BACK_VERSION}.tar.gz \
             /var/lib/apt/lists/*
 

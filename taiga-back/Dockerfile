@@ -6,6 +6,7 @@ ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
 ENV TAIGA_BACK_VERSION 3.2.0
+ENV TAIGA_BACK_HOME /usr/local/taiga-back
 ENV TAIGA_DOWNLOAD_URL https://github.com/taigaio/taiga-back/archive/${TAIGA_BACK_VERSION}.tar.gz
 
 RUN apt update -y \
@@ -16,18 +17,18 @@ RUN apt update -y \
     && echo 'LANG=en_US.UTF-8' > /etc/default/locale \
     && echo 'LANGUAGE=en_US:en' >> /etc/default/locale \
     && echo 'LC_TYPE=en_US.UTF-8' >> /etc/default/locale \
-    && echo 'LC_MESSAGES=POSIX' >> /etc/default/locale
-
-
-RUN wget ${TAIGA_DOWNLOAD_URL} \
+    && echo 'LC_MESSAGES=POSIX' >> /etc/default/locale \
+    && wget ${TAIGA_DOWNLOAD_URL} \
     && tar -zxvf ${TAIGA_BACK_VERSION}.tar.gz \
-    && mv taiga-back-${TAIGA_BACK_VERSION} /usr/local/taiga-back \
+    && mv taiga-back-${TAIGA_BACK_VERSION} ${TAIGA_BACK_HOME} \
     && (cd /usr/local/taiga-back \
     && pip install --no-cache-dir -r requirements.txt \
     && python manage.py collectstatic --noinput) \
     && rm -rf ${TAIGA_BACK_VERSION}.tar.gz \
             /var/lib/apt/lists/*
 
-WORKDIR /usr/local/taiga-back
+WORKDIR ${TAIGA_BACK_HOME}
 
-CMD ["python","manage.py","runserver"]
+EXPOSE 8000 9001
+
+CMD ["python","manage.py","runserver","0.0.0.0:8000"]

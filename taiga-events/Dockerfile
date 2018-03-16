@@ -5,7 +5,7 @@ LABEL maintainer="mritd <mritd1234@gmail.com>"
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
-ENV TAIGA_EVENTS_HOME
+ENV TAIGA_EVENTS_HOME /usr/local/taiga-events
 ENV TAIGA_EVENTS_DOWNLOAD_URL https://github.com/taigaio/taiga-events/archive/master.zip
 
 RUN apk upgrade --update \

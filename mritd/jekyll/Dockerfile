@@ -1,4 +1,4 @@
-FROM nginx:1.13.8-alpine
+FROM nginx:1.13.9-alpine
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
@@ -15,6 +15,7 @@ RUN apk upgrade --update \
     && rm -rf /var/cache/apk/*
 
 ADD entrypoint.sh /entrypoint.sh
+ADD flush /usr/local/bin/flush
 
 WORKDIR /usr/share/nginx/html
 

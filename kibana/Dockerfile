@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM node:9.9.0-alpine
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
@@ -9,16 +9,17 @@ ENV ELASTIC_CONTAINER true
 ENV KIBANA_VERSION 6.2.3
 ENV KIBANA_HOME /usr/local/kibana
 ENV KIBANA_DOWNLOAD_URL https://artifacts.elastic.co/downloads/kibana/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz
-ENV X-PACK_DOWNLOAD_URL https://artifacts.elastic.co/downloads/packs/x-pack/x-pack-${KIBANA_VERSION}.zip
+ENV XPACK_DOWNLOAD_URL https://artifacts.elastic.co/downloads/packs/x-pack/x-pack-${KIBANA_VERSION}.zip
 
-RUN set -ex && apk upgrade --update \
+RUN apk upgrade --update \
     && apk add bash tzdata fontconfig freetype tar curl \
     && mkdir ${KIBANA_HOME} \
     && (cd ${KIBANA_HOME} \
     && curl -Ls ${KIBANA_DOWNLOAD_URL} | tar --strip-components=1 -zxf - \
-    && ln -s ${KIBANA_HOME} /opt/kibana \
     && ln -s ${KIBANA_HOME}/bin/* /usr/local/bin) \
-    && kibana-plugin install ${X-PACK_DOWNLOAD_URL} \
+    && sed -i 's@^NODE=.*@@gi' ${KIBANA_HOME}/bin/kibana-plugin \
+    && sed -i 's@^test\ -x.*@NODE=$(which node)@gi' ${KIBANA_HOME}/bin/kibana-plugin \
+    && kibana-plugin install ${XPACK_DOWNLOAD_URL} \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && rm -rf /var/cache/apk/*

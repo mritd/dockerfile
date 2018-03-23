@@ -3,7 +3,7 @@
 [![](https://images.microbadger.com/badges/image/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own version badge on microbadger.com")
 
 - **shadowsocks-libev 版本: 3.1.3**
-- **kcptun 版本: 20180305**
+- **kcptun 版本: 20180316**
 
 ### 打开姿势
 
@@ -227,3 +227,7 @@ update shadowsocks to 3.1.3(Fix a bug in UDP relay.)
 - 2018-03-11 update kcptun
 
 update kcptun to 20180305
+
+- 2018-03-23 update kcptun
+
+update kcptun to 20180316(fix 'too man open files')

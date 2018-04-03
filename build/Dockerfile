@@ -1,6 +1,6 @@
 FROM debian:stretch
 
-MAINTAINER mritd <mritd1234@gmail.com>
+LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 ARG TZ='Asia/Shanghai'
 

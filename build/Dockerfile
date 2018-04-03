@@ -24,7 +24,7 @@ RUN apt-get update -y \
     && wget ${MAVEN_DOWNLOAD_URL} ${GRADLE_DOWNLOAD_URL} \
     && wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash \
     && tar -zxf apache-maven-${MAVEN_VERSION}-bin.tar.gz -C ${MAVEN_HOME} --strip-components=1 \
-    && unzip -jo -d ${GRADLE_HOME} gradle-${GRADLE_VERSION}-bin.zip
+    && unzip -jo -d ${GRADLE_HOME} gradle-${GRADLE_VERSION}-bin.zip \
     && mv gradle-${GRADLE_VERSION}/* ${GRADLE_HOME} \
     && ln -s ${MAVEN_HOME}/bin/* /usr/local/bin \
     && ln -s ${GRADLE_HOME}/bin/* /usr/local/bin \

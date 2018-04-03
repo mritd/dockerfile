@@ -22,26 +22,24 @@ RUN apt-get update -y \
     && apt-get install wget tar unzip tzdata git make gcc g++ libpng-dev -y \
     && mkdir -p ${MAVEN_HOME} ${MAVEN_LOCAL_REPO} ${GRADLE_HOME} ${GRADLE_USER_HOME} \
     && wget ${MAVEN_DOWNLOAD_URL} ${GRADLE_DOWNLOAD_URL} \
+    && wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash \
     && tar -zxf apache-maven-${MAVEN_VERSION}-bin.tar.gz -C ${MAVEN_HOME} --strip-components=1 \
     && unzip -jo -d ${GRADLE_HOME} gradle-${GRADLE_VERSION}-bin.zip
     && mv gradle-${GRADLE_VERSION}/* ${GRADLE_HOME} \
-    && ln -s ${JAVA_HOME}/bin/* /usr/local/bin \
     && ln -s ${MAVEN_HOME}/bin/* /usr/local/bin \
-    && ln -s ${NODE_HOME}/bin/* /usr/local/bin \
     && ln -s ${GRADLE_HOME}/bin/* /usr/local/bin \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo "${TZ}" > /etc/timezone \
     && rm -rf apache-maven-${MAVEN_VERSION}-bin.tar.gz \
-            node-v${NODE_VERSION}-linux-x64.tar.xz \
-            gradle-${GRADLE_VERSION} \
             gradle-${GRADLE_VERSION}-bin.zip \
             /usr/local/bin/*.bat \
-            ${NODE_HOME}/bin/*.bat \
             ${MAVEN_HOME}/bin/*.bat \
             ${GRADLE_HOME}/bin/*.bat \
             /tmp/*
 
 COPY cnpm /usr/local/bin/cnpm
 COPY settings.xml ${MAVEN_HOME}/conf/settings.xml
+COPY entrypoint.sh /entrypoint.sh
 
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["bash"]

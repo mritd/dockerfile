@@ -1,13 +1,16 @@
-FROM alpine:3.7
+FROM openjdk:8u151-jdk-alpine3.7
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
-ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
-ENV PATH $PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
+ARG TZ="Asia/Shanghai"
 
-RUN apk add --update bash curl tar wget ca-certificates \
-                    unzip openjdk8 font-adobe-100dpi \
-                    ttf-dejavu fontconfig \
-    && rm -rf /var/cache/apk/* \
+ENV TZ ${TZ}
+
+RUN apk upgrade --update \
+    && apk add bash curl tar wget ca-certificates \
+        unzip font-adobe-100dpi ttf-dejavu \
+    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
+    && rm -rf /var/cache/apk/*
 
 CMD ["bash"]

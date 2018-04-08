@@ -8,7 +8,7 @@ ENV TZ ${TZ}
 
 RUN apk upgrade --update \
     && apk add bash curl tar wget ca-certificates \
-        unzip font-adobe-100dpi ttf-dejavu \
+        tzdata unzip font-adobe-100dpi ttf-dejavu \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && rm -rf /var/cache/apk/*

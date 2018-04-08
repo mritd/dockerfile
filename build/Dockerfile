@@ -27,6 +27,7 @@ RUN apt-get update -y \
     && echo ${TZ} > /etc/timezone \
     && rm -rf /tmp/*
 
+COPY sdkconfig /root/.sdkman/etc/config
 COPY cnpm /usr/local/bin/cnpm
 COPY cmvn /usr/local/bin/cmvn
 

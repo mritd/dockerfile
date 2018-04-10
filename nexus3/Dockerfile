@@ -1,4 +1,4 @@
-FROM openjdk:8u151-jdk-alpine
+FROM openjdk:8u151-jdk-alpine3.7
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
@@ -7,7 +7,7 @@ ARG TZ='Asia/Shanghai'
 ENV TZ ${TZ}
 ENV SONATYPE_DIR /usr/local/sonatype
 ENV SONATYPE_WORK ${SONATYPE_DIR}/sonatype-work
-ENV NEXUS_VERSION 3.8.0-02
+ENV NEXUS_VERSION 3.10.0-04
 ENV NEXUS_HOME ${SONATYPE_DIR}/nexus
 ENV NEXUS_DATA /data/nexus-data
 ENV NEXUS_CONTEXT ''
@@ -25,7 +25,7 @@ RUN apk upgrade --update \
     && sed -e '/^nexus-context/ s:$:${NEXUS_CONTEXT}:' -i ${NEXUS_HOME}/etc/nexus-default.properties \
     && ln -s ${NEXUS_DATA} ${SONATYPE_WORK}/nexus3 \
     && apk del wget tar \
-    && ln -sf /usr/share/zoneinfo/Asia/${TZ} /etc/localtime \
+    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo "${TZ}" > /etc/timezone \
     && rm -rf /var/cache/apk/*
 

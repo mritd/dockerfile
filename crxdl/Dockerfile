@@ -9,7 +9,7 @@ ENV CRXDL_VERSION 1.0.0
 ENV CRXDL_DOWNLOAD_URL https://github.com/mritd/crxdl/releases/download/v${CRXDL_VERSION}/crxdl_linux_amd64
 
 RUN apk upgrade --update \
-    && apk add bash tzdata wget \
+    && apk add bash tzdata wget ca-certificates \
     && wget ${CRXDL_DOWNLOAD_URL} -O /crxdl \
     && chmod +x /crxdl \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \

@@ -10,7 +10,8 @@ ENV CRXDL_DOWNLOAD_URL https://github.com/mritd/crxdl/releases/download/v${CRXDL
 
 RUN apk upgrade --update \
     && apk add bash tzdata wget \
-    && wget ${CRXDL_DOWNLOAD_URL} \
+    && wget ${CRXDL_DOWNLOAD_URL} -O /crxdl \
+    && chmod +x /crxdl \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && apk del wget \

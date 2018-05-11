@@ -4,10 +4,10 @@ ENV STACKEDIT_VERSION 5.11.0
 ENV STACKEDIT_DOWNLOAD_URL https://github.com/benweet/stackedit/archive/v${STACKEDIT_VERSION}.tar.gz
 
 RUN apk upgrade --update \
-    && apk add wget tar \
-    && wget stackedit-${STACKEDIT_DOWNLOAD_URL} \
-    && tar -zxvf ${STACKEDIT_VERSION}.tar.gz \
-    && (cd ${STACKEDIT_VERSION} \
+    && apk add git wget ca-certificates tar \
+    && wget ${STACKEDIT_DOWNLOAD_URL} \
+    && tar -zxvf v${STACKEDIT_VERSION}.tar.gz \
+    && (cd stackedit-${STACKEDIT_VERSION} \
     && npm install \
     && npm run build)
 

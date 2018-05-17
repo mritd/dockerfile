@@ -11,7 +11,7 @@ ENV LUAJIT_MAIN_VERSION 2.0
 ENV LUAJIT_LIB /usr/local/lib
 ENV LUAJIT_INC /usr/local/include/luajit-${LUAJIT_MAIN_VERSION}
 ENV NGINX_LUA_MODULE_VERSION 0.10.13
-ENV NGINX_MORE_NGINX_MODULE_VERSION 0.33
+ENV HEADERS_MORE_NGINX_MODULE_VERSION 0.33
 
 RUN apk upgrade --update \
     && apk add bash tzdata \
@@ -62,8 +62,8 @@ RUN apk upgrade --update \
         --with-compat \
         --with-file-aio \
         --with-http_v2_module \
-        --add-module=/usr/src/headers-more-nginx-module-v${HEADERS_MORE_NGINX_MODULE_VERSION} \
         --add-module=/usr/src/lua-nginx-module-${NGINX_LUA_MODULE_VERSION} \
+        --add-module=/usr/src/headers-more-nginx-module-${HEADERS_MORE_NGINX_MODULE_VERSION} \
     " \
     && addgroup -S nginx \
     && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
@@ -111,7 +111,6 @@ RUN apk upgrade --update \
     && cd /usr/src/LuaJIT-$LUAJIT_VERSION \
     && make -j$(getconf _NPROCESSORS_ONLN) \
     && make install \
-    && ln -s /usr/local/lib/libluajit-5.1.so.$LUAJIT_VERSION /usr/local/lib/libluajit-5.1.so.2 \
     && cd /usr/src/nginx-$NGINX_VERSION \
     && ./configure $CONFIG --with-debug \
     && make -j$(getconf _NPROCESSORS_ONLN) \
@@ -136,7 +135,10 @@ RUN apk upgrade --update \
     && ln -s ../../usr/lib/nginx/modules /etc/nginx/modules \
     && strip /usr/sbin/nginx* \
     && strip /usr/lib/nginx/modules/*.so \
-    && rm -rf /usr/src/nginx-$NGINX_VERSION \
+    && rm -rf /usr/src/nginx-${NGINX_VERSION} \
+    && rm -rf /usr/src/LuaJIT-${LUAJIT_VERSION} \
+    && rm -rf /usr/src/lua-nginx-module-${NGINX_LUA_MODULE_VERSION} \
+    && rm -rf /usr/src/headers-more-nginx-module-${HEADERS_MORE_NGINX_MODULE_VERSION} \
     \
     # Bring in gettext so we can get `envsubst`, then throw
     # the rest away. To do this, we need to install `gettext`

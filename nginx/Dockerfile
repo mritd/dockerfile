@@ -111,6 +111,7 @@ RUN apk upgrade --update \
     && cd /usr/src/LuaJIT-$LUAJIT_VERSION \
     && make -j$(getconf _NPROCESSORS_ONLN) \
     && make install \
+    && ln -sf /usr/local/lib/libluajit-5.1.so.$LUAJIT_VERSION /usr/local/lib/libluajit-5.1.so.2 \
     && cd /usr/src/nginx-$NGINX_VERSION \
     && ./configure $CONFIG --with-debug \
     && make -j$(getconf _NPROCESSORS_ONLN) \

@@ -5,7 +5,7 @@ LABEL maintainer="mritd <mritd1234@gmail.com>"
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
-ENV LOGSTASH_VERSION 6.2.3
+ENV LOGSTASH_VERSION 6.2.4
 ENV LOGSTASH_HOME /usr/local/logstash
 ENV LOGSTASH_TARBALL https://artifacts.elastic.co/downloads/logstash/logstash-${LOGSTASH_VERSION}.tar.gz 
 

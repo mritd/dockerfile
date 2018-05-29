@@ -2,7 +2,7 @@
 
 [![](https://images.microbadger.com/badges/image/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own version badge on microbadger.com")
 
-- **shadowsocks-libev 版本: 3.1.3**
+- **shadowsocks-libev 版本: 3.2.0**
 - **kcptun 版本: 20180316**
 
 ### 打开姿势
@@ -231,3 +231,7 @@ update kcptun to 20180305
 - 2018-03-23 update kcptun
 
 update kcptun to 20180316(fix 'too man open files')
+
+- 2018-05-29 update shadowsocks
+
+update shadowsocks to 3.2.0(Add MinGW,Refine c-ares integration...)

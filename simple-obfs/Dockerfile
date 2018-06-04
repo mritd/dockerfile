@@ -10,21 +10,19 @@ ENV OBFS_DOWNLOAD_URL https://github.com/shadowsocks/simple-obfs.git
 RUN apk upgrade --update \
     && apk add bash tzdata \
     && apk add --virtual .build-deps \
+        asciidoc \
         autoconf \
         automake \
-        xmlto \
-        build-base \
-        curl \
-        c-ares-dev \
+        g++ \
+        gcc \
         libev-dev \
+        libpcre32 \
         libtool \
         linux-headers \
-        udns-dev \
-        libsodium-dev \
-        mbedtls-dev \
-        pcre-dev \
-        udns-dev \
-        tar \
+        make \
+        openssl \
+        xmlto \
+        zlib-devel \
         git \
     && git clone ${OBFS_DOWNLOAD_URL} \
     && (cd simple-obfs \

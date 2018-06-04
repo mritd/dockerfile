@@ -22,7 +22,7 @@ RUN apk upgrade --update \
         make \
         openssl \
         xmlto \
-        zlib-devel \
+        zlib-dev \
         git \
     && git clone ${OBFS_DOWNLOAD_URL} \
     && (cd simple-obfs \

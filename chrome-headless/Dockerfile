@@ -24,4 +24,4 @@ COPY entrypoint.sh /
 EXPOSE 9222
 VOLUME /data
 
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]

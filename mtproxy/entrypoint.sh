@@ -8,6 +8,10 @@ SECRET=`head -c 16 /dev/urandom | xxd -ps`
 # Create 1 worker by default if MTPROXY_WORKERS is not defined
 WORKERS=${MTPROXY_WORKERS:-"1"}
 
+# Get IP for NAT mapping
+PUBLIC_IP="$(curl -s https://api.ipify.org)"
+INTERNAL_IP="$(ip -4 route get 8.8.8.8 | grep '^8\.8\.8\.8\s' | grep -Po 'src\s+\d+\.\d+\.\d+\.\d+' | awk '{print $2}')"
+
 # Print secret to terminal
 echo "##############################################"
 echo "##                                          ##"
@@ -33,6 +37,7 @@ else
         -S ${SECRET} \
         -M ${WORKERS} \
         --address 0.0.0.0 \
+        --nat-info "${INTERNAL_IP}:${PUBLIC_IP}" \
         --aes-pwd ${MTPROXY_CONFIG_PATH}/proxy-secret \
         ${MTPROXY_CONFIG_PATH}/proxy-multi.conf
 fi

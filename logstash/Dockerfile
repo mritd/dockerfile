@@ -38,13 +38,14 @@ RUN set -ex \
     && apk del .fetch-deps \
     && rm -rf logstash.tar.gz.asc \
         logstash.tar.gz \
+        ${logstash_HOME}/config \
         ${logstash_HOME}/bin/*.exe \
         ${logstash_HOME}/bin/*.bat \
         /var/cache/apk/*
 
 COPY --from=builder /go/env2yaml /usr/bin/env2yaml
-COPY config ${logstash_HOME}/config
-COPY pipeline ${logstash_HOME}/pipeline
+COPY config ${LOGSTASH_HOME}/config
+COPY pipeline ${LOGSTASH_HOME}/pipeline
 COPY docker-entrypoint.sh /entrypoint.sh
 
 VOLUME /data /var/log/logstash 

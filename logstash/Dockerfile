@@ -1,11 +1,19 @@
-FROM openjdk:8u151-jre-alpine
+FROM golang:1.10.3-alpine3.7 AS builder
+
+COPY env2yaml.go /go/env2yaml.go
+
+RUN apk add git --update \
+    && go get gopkg.in/yaml.v2 \
+    && go build env2yaml.go
+
+FROM openjdk:8u171-jre-alpine3.7
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
-ENV LOGSTASH_VERSION 6.2.4
+ENV LOGSTASH_VERSION 6.3.0
 ENV LOGSTASH_HOME /usr/local/logstash
 ENV LOGSTASH_TARBALL https://artifacts.elastic.co/downloads/logstash/logstash-${LOGSTASH_VERSION}.tar.gz 
 
@@ -14,8 +22,6 @@ RUN set -ex \
     && addgroup -S logstash \
     && adduser -S -G logstash logstash \
     && apk upgrade --update \
-    # grab su-exec for easy step-down from root
-    # and bash for "bin/logstash" among others
     && apk add 'su-exec>=0.2' bash tzdata \
     && apk add --virtual .fetch-deps \
         wget \
@@ -36,12 +42,11 @@ RUN set -ex \
         ${logstash_HOME}/bin/*.bat \
         /var/cache/apk/*
 
+COPY --from=builder /go/env2yaml /usr/bin/env2yaml
 COPY config ${logstash_HOME}/config
-
+COPY pipeline ${logstash_HOME}/pipeline
 COPY docker-entrypoint.sh /entrypoint.sh
 
 VOLUME /data /var/log/logstash 
 
 ENTRYPOINT ["/entrypoint.sh"]
-
-CMD ["-e",""]

@@ -1,5 +1,8 @@
 #!/bin/bash
+
 set -e
+
+env2yaml ${LOGSTASH_HOME}/config/logstash.yml
 
 chown -R logstash:logstash /data /var/log/logstash 
 

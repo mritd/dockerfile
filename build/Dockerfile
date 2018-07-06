@@ -9,6 +9,7 @@ ENV TZ ${TZ}
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV NVM_VERSION 0.33.11
+ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 8.11.3
 ENV OPENJDK_VERSION 8.0.172-zulu
 ENV ORACLEJDK_VERSION 8.0.171-oracle
@@ -29,7 +30,8 @@ RUN apt-get update -y \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
     && echo -e 'LANG="en_US.UTF-8"' > /etc/default/locale \
     && echo -e 'LANGUAGE="en_US:en"' >> /etc/default/locale \
-    && mkdir -p ${NPM_CACHE_DIR} ${MAVEN_CACHE_DIR} ${GRADLE_CACHE_DIR} \
+    && mkdir -p ${NVM_DIR} ${NPM_CACHE_DIR} \
+        ${MAVEN_CACHE_DIR} ${GRADLE_CACHE_DIR} \
     && curl -s ${NVM_INSTALL_URL} | bash \
     && curl -s ${SDKMAN_INSTALL_URL} | bash \
     && source ~/.bashrc \

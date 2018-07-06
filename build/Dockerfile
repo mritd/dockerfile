@@ -12,6 +12,8 @@ ENV NVM_VERSION 0.33.11
 ENV NODE_VERSION 8.11.3
 ENV OPENJDK_VERSION 8.0.172-zulu
 ENV ORACLEJDK_VERSION 8.0.171-oracle
+ENV NPM_CACHE_DIR /data/npm_cache
+ENV MAVEN_CACHE_DIR /data/maven_cache
 ENV SDKMAN_INSTALL_URL https://get.sdkman.io
 ENV NVM_INSTALL_URL https://raw.githubusercontent.com/creationix/nvm/v${NVM_VERSION}/install.sh
 
@@ -19,8 +21,8 @@ SHELL ["/bin/bash", "-c"]
 
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get install curl wget tar unzip zip tzdata \
-        git make gcc g++ libpng-dev locales -y \
+    && apt-get install curl wget tar unzip zip bzip2 \
+        tzdata git make gcc g++ libpng-dev locales -y \
     && locale-gen --purge en_US.UTF-8 zh_CN.UTF-8 \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
     && echo -e 'LANG="en_US.UTF-8"' > /etc/default/locale \
@@ -32,7 +34,8 @@ RUN apt-get update -y \
     && sdk install gradle \
     && sdk install java ${ORACLEJDK_VERSION} \
     && sdk install java ${OPENJDK_VERSION} \
-    && npm install -g npm yarn \
+    && npm install -g npm yarn node-gyp gulp \
+    && npm install -g --unsafe-perm build-tools \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && rm -rf /var/lib/apt/lists/* /tmp/*

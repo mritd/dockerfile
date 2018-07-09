@@ -1,4 +1,4 @@
-FROM openjdk:8u151-jdk-alpine3.7
+FROM openjdk:8u171-jdk-alpine3.7
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
@@ -7,7 +7,7 @@ ARG TZ='Asia/Shanghai'
 ENV TZ ${TZ}
 ENV SONATYPE_DIR /usr/local/sonatype
 ENV SONATYPE_WORK ${SONATYPE_DIR}/sonatype-work
-ENV NEXUS_VERSION 3.12.0-01
+ENV NEXUS_VERSION 3.12.1-01
 ENV NEXUS_HOME ${SONATYPE_DIR}/nexus
 ENV NEXUS_DATA /data/nexus-data
 ENV NEXUS_CONTEXT ''

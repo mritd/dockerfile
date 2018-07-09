@@ -235,3 +235,7 @@ update kcptun to 20180316(fix 'too man open files')
 - 2018-05-29 update shadowsocks
 
 update shadowsocks to 3.2.0(Add MinGW,Refine c-ares integration...)
+
+- 2018-07-09 update base image
+
+update base image to alpine 3.8

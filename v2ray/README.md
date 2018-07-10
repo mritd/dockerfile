@@ -2,7 +2,7 @@
 
 [![](https://images.microbadger.com/badges/version/mritd/v2ray.svg)](https://microbadger.com/images/mritd/v2ray "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/mritd/v2ray.svg)](https://microbadger.com/images/mritd/v2ray "Get your own image badge on microbadger.com")
 
-> 截至目前该镜像为 v2ray 2.34 版本
+> 截至目前该镜像为 v2ray 3.29 版本
 
 ### 打开姿势
 

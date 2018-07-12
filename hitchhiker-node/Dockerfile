@@ -11,7 +11,7 @@ ENV HITCHHIKER_NODE_DOWNLOAD_URL https://github.com/brookshi/Hitchhiker-Node/rel
 RUN apk upgrade --update \
     && apk add bash tzdata unzip wget ca-certificates \
     && wget ${HITCHHIKER_NODE_DOWNLOAD_URL} \
-    && unzip lnux_64.zip -m -d / \
+    && unzip linux_64.zip -m -d / \
     && chmod +x Hitchhiker-Node_linux_amd64 \
     && mv Hitchhiker-Node_linux_amd64 hitchhiker-node \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \

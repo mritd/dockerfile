@@ -1,10 +1,11 @@
 FROM debian:stretch-slim
 
-MAINTAINER mritd <mritd@mritd.me>
 
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
 ENV JAVA_VERSION 8
 ENV JAVA_UPDATE 181
 ENV JAVA_BUILD 13
@@ -24,6 +25,10 @@ RUN apt update -y \
     && ln -s ${JAVA_HOME}/bin/* /usr/bin/ \
     && wget --header "Cookie: oraclelicense=accept-securebackup-cookie;" ${JCE_DOWNLOAD_URL} \
     && unzip -jo -d ${JAVA_HOME}/jre/lib/security jce_policy-${JAVA_VERSION}.zip \
+    && locale-gen --purge en_US.UTF-8 zh_CN.UTF-8 \
+    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
+    && echo -e 'LANG="en_US.UTF-8"' > /etc/default/locale \
+    && echo -e 'LANGUAGE="en_US:en"' >> /etc/default/locale \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo "${TZ}" > /etc/timezone \
     && rm -rf   jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz \

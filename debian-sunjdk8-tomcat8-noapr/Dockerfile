@@ -1,9 +1,9 @@
-FROM mritd/debian-sunjdk8:8.144.1
+FROM mritd/debian-sunjdk8:8.181.13
 
-MAINTAINER mritd <mritd@mritd.me>
+LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 ENV TOMCAT_MAJOR 8
-ENV TOMCAT_VERSION 8.5.20
+ENV TOMCAT_VERSION 8.5.32
 ENV CATALINA_HOME /usr/local/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
 ENV TOMCAT_TGZ_URL http://apache.mirrors.ionfish.org/tomcat/tomcat-${TOMCAT_MAJOR}/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz

@@ -16,7 +16,7 @@ ENV JCE_DOWNLOAD_URL http://download.oracle.com/otn-pub/java/jce/${JAVA_VERSION}
 
 RUN apt update -y \
     && apt upgrade -y \
-    && apt install wget tar unzip tzdata -y \
+    && apt install wget tar unzip tzdata locales -y \
     && wget --header "Cookie: oraclelicense=accept-securebackup-cookie;" ${JAVA_DOWNLOAD_URL} \
     && tar -xzf jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz \
     && mkdir -p /usr/lib/jvm \

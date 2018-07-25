@@ -26,7 +26,7 @@ RUN apt update -y \
     && echo "${TZ}" > /etc/timezone \
     && apt autoremove \
     && apt autoclean \
-    && rm -rf /tmp/*
+    && rm -rf *.deb /tmp/*
 
 EXPOSE 80 443
 EXPOSE 1194 1194/udp

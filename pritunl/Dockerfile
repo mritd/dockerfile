@@ -26,11 +26,11 @@ RUN apt update -y \
     && echo "${TZ}" > /etc/timezone \
     && apt autoremove \
     && apt autoclean \
-    && rm -rf *.deb /tmp/*
+    && rm -rf /etc/pritunl.conf *.deb /tmp/*
+
+VOLUME /etc/pritunl.conf
 
 EXPOSE 80 443
 EXPOSE 1194 1194/udp
-
-VOLUME /etc/pritunl.conf
 
 CMD ["pritunl","start"]

@@ -14,7 +14,7 @@ ENV PRITUNL_NDPPD_DOWNLOAD_URL http://repo.pritunl.com/stable/apt/pool/main/p/pr
 
 RUN apt update -y \
     && apt upgrade -y \
-    && apt install wget unzip tzdata locales python openvpn bridge-utils net-tools psmisc -y \
+    && apt install wget unzip tzdata locales python openvpn bridge-utils net-tools psmisc iptables -y \
     && wget ${PRITUNL_DOWNLOAD_URL} -O pritunl.deb \
     && wget ${PRITUNL_NDPPD_DOWNLOAD_URL} -O pritunl_ndppd.deb \
     && dpkg -i pritunl.deb pritunl_ndppd.deb \

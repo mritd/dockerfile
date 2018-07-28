@@ -20,4 +20,4 @@ RUN apk upgrade --update \
 
 COPY --from=builder /go/bin/go-shadowsocks2 /usr/bin/shadowsocks
 
-CMD ["/bin/bash"]
+ENTRYPOINT ["shadowsocks"]

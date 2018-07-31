@@ -5,7 +5,7 @@ LABEL maintainer="mritd <mritd1234@gmail.com>"
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
-ENV JSONON_GIT_ADDR https://github.com/awesomes-cn/jsonon.git
+ENV JSONON_GIT_ADDR https://github.com/mritd/jsonon.git
 
 RUN apk upgrade --update \
     && apk add bash tzdata git \

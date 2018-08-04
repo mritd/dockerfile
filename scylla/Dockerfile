@@ -13,7 +13,7 @@ ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
 
-RUN apt upgrade \
+RUN apt update \
     && apt install -y ibxslt-dev libssl-dev libcurl4-openssl-dev \
         gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 \
         libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 \

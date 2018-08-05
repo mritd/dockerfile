@@ -239,3 +239,7 @@ update shadowsocks to 3.2.0(Add MinGW,Refine c-ares integration...)
 - 2018-07-09 update base image
 
 update base image to alpine 3.8
+
+- 2018-08-05 fix high-quality random numbers
+
+fix `system doesn't provide enough entropy to quickly generate high-quality random numbers`

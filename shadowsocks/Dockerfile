@@ -11,8 +11,8 @@ ENV SS_DOWNLOAD_URL https://github.com/shadowsocks/shadowsocks-libev/releases/do
 ENV OBFS_DOWNLOAD_URL https://github.com/shadowsocks/simple-obfs.git
 ENV KCP_DOWNLOAD_URL https://github.com/xtaci/kcptun/releases/download/v${KCP_VERSION}/kcptun-linux-amd64-${KCP_VERSION}.tar.gz
 
-RUN apk upgrade --update \
-    && apk add bash tzdata libsodium \
+RUN apk upgrade \
+    && apk add bash tzdata libsodium rng-tools \
     && apk add --virtual .build-deps \
         autoconf \
         automake \

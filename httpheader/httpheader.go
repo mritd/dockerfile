@@ -6,6 +6,7 @@ import (
 )
 
 func main(){
+    log.Println("Server starting...")
 	http.HandleFunc("/",getHeader)
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {

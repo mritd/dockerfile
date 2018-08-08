@@ -11,7 +11,7 @@ ENV ELASTICSEARCH_VERSION 6.3.2
 ENV ELASTICSEARCH_HOME /usr/local/elasticsearch
 ENV ELASTICSEARCH_TARBALL https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz
 ENV ELASTICSEARCH_TARBALL_ASC https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz.asc
-ENV ELASTICSEARCH_TARBALL_SHA1 8d5c6a95ab7569eee42a8430778111c1944a6f4e
+ENV ELASTICSEARCH_TARBALL_SHA1 7982b300716563125749cd24f9873ea3aed28e4d
 
 # ensure elasticsearch user exists
 RUN set -ex \

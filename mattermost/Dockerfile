@@ -5,12 +5,12 @@ LABEL maintainer="mritd <mritd1234@gmail.com>"
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ} 
-ENV MATTERMOST_VERSION 5.0.0
+ENV MATTERMOST_VERSION 5.1.0
 ENV MATTERMOST_HOME /mattermost
 ENV MATTERMOST_DATA_DIR /data
 ENV MATTERMOST_DOWNLOAD_URL https://releases.mattermost.com/${MATTERMOST_VERSION}/mattermost-${MATTERMOST_VERSION}-linux-amd64.tar.gz
 
-RUN set -ex && apk upgrade --update \
+RUN apk upgrade \
     && apk add bash tzdata wget ca-certificates \
         libc6-compat libffi-dev mailcap \
     && wget ${MATTERMOST_DOWNLOAD_URL} \

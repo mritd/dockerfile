@@ -3,7 +3,7 @@
 [![](https://images.microbadger.com/badges/image/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own version badge on microbadger.com")
 
 - **shadowsocks-libev 版本: 3.2.0**
-- **kcptun 版本: 20180316**
+- **kcptun 版本: 20180810**
 
 ### 打开姿势
 
@@ -243,3 +243,7 @@ update base image to alpine 3.8
 - 2018-08-05 fix high-quality random numbers
 
 fix `system doesn't provide enough entropy to quickly generate high-quality random numbers`
+
+- 2018-08-16 update kcptun
+
+update kcptun to v20180810

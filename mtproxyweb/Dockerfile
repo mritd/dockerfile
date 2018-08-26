@@ -10,9 +10,10 @@ RUN apk upgrade --update \
     && apk add bash git \
     && rm -rf /usr/share/nginx/html \
     && git clone https://github.com/mritd/mtproxyweb.git /usr/share/nginx/html \
+    && chown -R nginx:nginx /usr/share/nginx/html \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /usr/share/nginx/html/.git /var/cache/apk/*
 
 ADD entrypoint.sh /entrypoint.sh
 

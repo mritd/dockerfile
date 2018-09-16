@@ -8,9 +8,7 @@ ENV FILEBEAT_HOME /usr/share/filebeat
 ENV FILEBEAT_DOWNLOAD_URL https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz 
 
 RUN apk upgrade \
-    && addgroup -S filebeat \
-    && adduser -S -G filebeat filebeat \
-    && apk add bash tzdata libc6-compat su-exec \
+    && apk add bash tzdata libc6-compat \
     && apk add --virtual=build-dependencies wget ca-certificates \
     && wget -q ${FILEBEAT_DOWNLOAD_URL} \
     && mkdir -p ${FILEBEAT_HOME}/data ${FILEBEAT_HOME}/logs \

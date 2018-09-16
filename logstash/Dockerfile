@@ -12,8 +12,9 @@ LABEL maintainer="mritd <mritd1234@gmail.com>"
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
-ENV LANG 'en_US.UTF-8'
-ENV LC_ALL 'en_US.UTF-8'
+ENV LANG zh_CN.UTF-8
+ENV LC_ALL zh_CN.UTF-8
+ENV LANGUAGE zh_CN.UTF-8
 ENV LOGSTASH_VERSION 6.4.0
 ENV LOGSTASH_HOME /usr/share/logstash
 ENV LOGSTASH_TARBALL https://artifacts.elastic.co/downloads/logstash/logstash-${LOGSTASH_VERSION}.tar.gz 
@@ -21,12 +22,11 @@ ENV LOGSTASH_TARBALL https://artifacts.elastic.co/downloads/logstash/logstash-${
 RUN set -ex \
     && apt update \
     && apt upgrade -y \
-    && apt install tzdata wget ca-certificates tar \
-    && groupadd --gid 1000 logstash \
-    && useradd --uid 1000 --gid 1000 --home ${LOGSTASH_HOME} logstash \
-    && wget -O logstash.tar.gz "${LOGSTASH_TARBALL}" \
-    && tar -zxf logstash.tar.gz \
-    && mv logstash-${LOGSTASH_VERSION} -C ${LOGSTASH_HOME} \
+    && apt install -y tzdata wget ca-certificates tar \
+    &&  groupadd -g 1000 logstash \
+    && useradd -u 1000 -g 1000 -d ${LOGSTASH_HOME} -m logstash \
+    && wget -q -O logstash.tar.gz "${LOGSTASH_TARBALL}" \
+    && tar -zxf logstash.tar.gz -C ${LOGSTASH_HOME} \
     && mkdir -p /data /var/log/logstash \
     && chown -R logstash:logstash ${LOGSTASH_HOME} /data /var/log/logstash \
     && ln -sf ${LOGSTASH_HOME}/bin/* /usr/bin \

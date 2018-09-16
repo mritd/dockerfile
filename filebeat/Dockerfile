@@ -14,7 +14,6 @@ RUN apk upgrade \
     && mkdir -p ${FILEBEAT_HOME}/data ${FILEBEAT_HOME}/logs \
     && tar -zxf filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz \
         -C ${FILEBEAT_HOME} --strip-components 1 \
-    && chown -R root:filebeat ${FILEBEAT_HOME} \
     && rm -f filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz \
         ${FILEBEAT_HOME}/.build_hash.txt \
         ${FILEBEAT_HOME}/NOTICE \

@@ -31,4 +31,4 @@ VOLUME /etc/filebeat
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["-e","-c","/etc/filebeat/filebeat.yaml"]
+CMD ["-e","-c","/etc/filebeat.yaml"]

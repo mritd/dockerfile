@@ -13,7 +13,6 @@ ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
 ENV LANG en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
 ENV LOGSTASH_VERSION 6.4.0
 ENV LOGSTASH_HOME /usr/share/logstash
@@ -26,7 +25,7 @@ RUN set -ex \
     && groupadd -g 1000 logstash \
     && useradd -u 1000 -g 1000 -d ${LOGSTASH_HOME} -m logstash \
     && wget -q -O logstash.tar.gz "${LOGSTASH_TARBALL}" \
-    && tar -zxf logstash.tar.gz -C ${LOGSTASH_HOME} \
+    && tar -zxf logstash.tar.gz -C ${LOGSTASH_HOME} --strip-components 1 \
     && mkdir -p /data /var/log/logstash \
     && chown -R logstash:logstash ${LOGSTASH_HOME} /data /var/log/logstash \
     && ln -sf ${LOGSTASH_HOME}/bin/* /usr/bin \

@@ -5,7 +5,7 @@ set -euo pipefail
 # Check if the the user has invoked the image with flags.
 # eg. "filebeat -c filebeat.yml"
 if [[ -z $1 ]] || [[ ${1:0:1} == '-' ]] ; then
-  su-exec filebeat "$@"
+  su-exec filebeat filebeat "$@"
 else
   # They may be looking for a Beat subcommand, like "filebeat setup".
   subcommands=$(filebeat help \
@@ -15,7 +15,7 @@ else
   # If we _did_ get a subcommand, pass it to filebeat.
   for subcommand in $subcommands; do
       if [[ $1 == $subcommand ]]; then
-        su-exec filebeat "$@"
+        su-exec filebeat filebeat "$@"
       fi
   done
 fi

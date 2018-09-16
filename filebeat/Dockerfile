@@ -3,27 +3,35 @@ FROM alpine:3.8
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
-ENV FILEBEAT_VERSION 6.2.4
-ENV FILEBEAT_HOME /usr/local/filebeat
+ENV FILEBEAT_VERSION 6.4.0
+ENV FILEBEAT_HOME /usr/share/filebeat
 ENV FILEBEAT_DOWNLOAD_URL https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz 
 
-RUN apk upgrade --update \
-    && apk add bash tzdata libc6-compat \
+RUN apk upgrade \
+    && addgroup -S filebeat \
+    && adduser -S -G filebeat filebeat \
+    && apk add bash tzdata libc6-compat su-exec \
     && apk add --virtual=build-dependencies wget ca-certificates \
-    && wget ${FILEBEAT_DOWNLOAD_URL} \
-    && mkdir ${FILEBEAT_HOME} \
-    && tar -zxvf filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz -C ${FILEBEAT_HOME} --strip-components 1 \
+    && wget -q ${FILEBEAT_DOWNLOAD_URL} \
+    && mkdir -p ${FILEBEAT_HOME}/data ${FILEBEAT_HOME}/logs \
+    && tar -zxf filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz \
+        -C ${FILEBEAT_HOME} --strip-components 1 \
+    && chown -R root:filebeat ${FILEBEAT_HOME} \
     && rm -f filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz \
         ${FILEBEAT_HOME}/.build_hash.txt \
         ${FILEBEAT_HOME}/NOTICE \
         ${FILEBEAT_HOME}/README.md \
-    && ln -s ${FILEBEAT_HOME}/filebeat /usr/local/bin/filebeat \
+    && ln -s ${FILEBEAT_HOME}/filebeat /usr/bin/filebeat \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && mkdir /etc/filebeat \
     && apk del build-dependencies \
     && rm -rf /var/cache/apk/*
 
+COPY docker-entrypoint.sh /entrypoint.sh
+
 VOLUME /etc/filebeat
 
-CMD ["filebeat","-e","-c","/etc/filebeat/filebeat.yaml"]
+ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["-e","-c","/etc/filebeat/filebeat.yaml"]

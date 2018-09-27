@@ -247,3 +247,7 @@ fix `system doesn't provide enough entropy to quickly generate high-quality rand
 - 2018-08-16 update kcptun
 
 update kcptun to v20180810
+
+- 2018-09-27 update kcptun
+
+update kcptun to v20180926

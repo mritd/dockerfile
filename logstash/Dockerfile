@@ -14,7 +14,7 @@ ARG TZ="Asia/Shanghai"
 ENV TZ ${TZ}
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
-ENV LOGSTASH_VERSION 6.4.0
+ENV LOGSTASH_VERSION 6.4.2
 ENV LOGSTASH_HOME /usr/share/logstash
 ENV LOGSTASH_TARBALL https://artifacts.elastic.co/downloads/logstash/logstash-${LOGSTASH_VERSION}.tar.gz 
 

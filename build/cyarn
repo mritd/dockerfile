@@ -1,0 +1,3 @@
+#!/bin/bash
+
+yarn --cache-folder ${YARN_CACHE_DIR} $@

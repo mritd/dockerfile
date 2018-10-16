@@ -10,9 +10,10 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV NVM_VERSION 0.33.11
 ENV NVM_DIR /usr/local/nvm
-ENV NODE_VERSION 8.11.3
-ENV OPENJDK_VERSION 8.0.172-zulu
-ENV ORACLEJDK_VERSION 8.0.171-oracle
+ENV NODE_VERSION 8.12.0
+ENV JDK_VERSION 11.0.0-open
+ENV OPENJDK_VERSION 8.0.181-zulu
+ENV ORACLEJDK_VERSION 8.0.181-oracle
 ENV NPM_CACHE_DIR /data/npm_cache
 ENV NPM_REGISTRY https://registry.npm.taobao.org
 ENV MAVEN_CACHE_DIR /data/maven_cache
@@ -38,6 +39,7 @@ RUN apt-get update -y \
     && source ~/.bashrc \
     && sdk install maven \
     && sdk install gradle \
+    && sdk install java ${JDK_VERSION} \
     && sdk install java ${ORACLEJDK_VERSION} \
     && sdk install java ${OPENJDK_VERSION} \
     && npm install -g npm yarn node-gyp gulp \
@@ -47,8 +49,9 @@ RUN apt-get update -y \
     && rm -rf ~/.npm /var/lib/apt/lists/* /tmp/*
 
 COPY sdkconfig /root/.sdkman/etc/config
-COPY cnpm /usr/local/bin/cnpm
-COPY cmvn /usr/local/bin/cmvn
+COPY cnpm /usr/bin/cnpm
+COPY cyarn /usr/bin/cyarn
+COPY cmvn /usr/bin/cmvn
 
 VOLUME ${NPM_CACHE_DIR}
 VOLUME ${MAVEN_CACHE_DIR}

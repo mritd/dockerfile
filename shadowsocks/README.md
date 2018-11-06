@@ -3,7 +3,7 @@
 [![](https://images.microbadger.com/badges/image/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own version badge on microbadger.com")
 
 - **shadowsocks-libev 版本: 3.2.0**
-- **kcptun 版本: 20180810**
+- **kcptun 版本: 20181002**
 
 ### 打开姿势
 
@@ -251,3 +251,7 @@ update kcptun to v20180810
 - 2018-09-27 update kcptun
 
 update kcptun to v20180926
+
+- 2018-11-06
+
+update kcptun to v20181002

@@ -3,7 +3,7 @@
 [![](https://images.microbadger.com/badges/image/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/mritd/shadowsocks.svg)](https://microbadger.com/images/mritd/shadowsocks "Get your own version badge on microbadger.com")
 
 - **shadowsocks-libev 版本: 3.2.0**
-- **kcptun 版本: 20180810**
+- **kcptun 版本: 20181002**
 
 ### 打开姿势
 
@@ -18,6 +18,7 @@ docker run -dt --name ss -p 6443:6443 mritd/shadowsocks -s "-s 0.0.0.0 -p 6443 -
 - `-x` : 开启 kcptun 支持
 - `-e` : 指定 kcptun 命令，默认为 `kcpserver` 
 - `-k` : kcptun 参数字符串
+- `-r` : 使用 `/dev/urandom` 来生成随机数
 
 ### 选项描述
 
@@ -26,6 +27,7 @@ docker run -dt --name ss -p 6443:6443 mritd/shadowsocks -s "-s 0.0.0.0 -p 6443 -
 - `-x` : 指定该参数后才会开启 kcptun 支持，否则将默认禁用 kcptun
 - `-e` : 参数后指定一个 kcptun 命令，如 kcpclient，不写默认为 kcpserver；该参数用于 kcptun 在客户端和服务端工作模式间切换，可选项如下: `kcpserver`、`kcpclient`
 - `-k` : 参数后指定一个 kcptun 的参数字符串，所有参数将被拼接到 `kcptun` 后
+- `-r` : 修复在 GCE 上可能出现的 `This system doesn't provide enough entropy to quickly generate high-quality random numbers.` 错误
 
 ### 命令示例
 
@@ -70,6 +72,7 @@ kcpclient -r SSSERVER_IP:6500 -l :6500 -mode fast2
 |KCP_FLAG|是否开启 kcptun 支持|可选参数为 true 和 false，默认为 fasle 禁用 kcptun|
 |KCP_MODULE|kcptun 启动命令| `kcpserver`、`kcpclient`|
 |KCP_CONFIG|kcptun 参数字符串|所有字符串内内容应当为 kcptun 支持的选项参数|
+|RNGD_FLAG|是否使用 `/dev/urandom` 生成随机数|可选参数为 true 和 false，默认为 fasle 不使用|
 
 
 使用时可指定环境变量，如下
@@ -81,6 +84,12 @@ docker run -dt --name ss -p 6443:6443 -p 6500:6500/udp -e SS_CONFIG="-s 0.0.0.0 
 ### 容器平台说明
 
 **各大免费容器平台都已经对代理工具做了对应封锁，一是为了某些不可描述的原因，二是为了防止被利用称为 DDOS 工具等；基于种种原因，公共免费容器平台问题将不予回复**
+
+### GCE 随机数生成错误
+
+如果在 GCE 上使用本镜像，在特殊情况下可能会出现 `This system doesn't provide enough entropy to quickly generate high-quality random numbers.` 错误；
+这种情况是由于宿主机没有能提供足够的熵来生成随机数导致，修复办法可以考虑增加 `-r` 选项来使用 `/dev/urandom` 来生成，不过并不算推荐此种方式；**`-r` 
+选项可能需要配合 docker 的 `--privileged` 选项启用特权模式来使用**
 
 ### 更新日志
 
@@ -251,3 +260,8 @@ update kcptun to v20180810
 - 2018-09-27 update kcptun
 
 update kcptun to v20180926
+
+- 2018-11-06 add `-r` option
+
+update kcptun to v20181002
+add `-r` option to fix GCE `system doesn't provide enough entropy...` error

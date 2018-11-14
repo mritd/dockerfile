@@ -1,4 +1,4 @@
-FROM openjdk:8u171-jdk-alpine3.7
+FROM openjdk:8u181-jdk-slim-stretch
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
@@ -16,15 +16,14 @@ ENV JAVA_MAX_MEM 1200m
 ENV JAVA_MIN_MEM 1200m
 ENV EXTRA_JAVA_OPTS ""
 
-RUN apk upgrade --update \
-    && apk add bash tzdata wget tar \
+RUN apt upgrade -y \
+    && apt install -y tzdata tar \
     && mkdir -p ${SONATYPE_DIR} ${SONATYPE_WORK} ${NEXUS_DATA} \
     && wget --no-check-certificate ${NEXUS_DOWNLOAD_URL} \
     && tar -zxvf nexus-${NEXUS_VERSION}-unix.tar.gz \
     && mv nexus-${NEXUS_VERSION} ${NEXUS_HOME} \
     && sed -e '/^nexus-context/ s:$:${NEXUS_CONTEXT}:' -i ${NEXUS_HOME}/etc/nexus-default.properties \
     && ln -s ${NEXUS_DATA} ${SONATYPE_WORK}/nexus3 \
-    && apk del wget tar \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo "${TZ}" > /etc/timezone \
     && rm -rf /var/cache/apk/*

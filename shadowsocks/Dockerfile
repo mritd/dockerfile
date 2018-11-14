@@ -44,8 +44,8 @@ RUN apk upgrade \
     && tar -zxf kcptun-linux-amd64-${KCP_VERSION}.tar.gz \
     && mv server_linux_amd64 /usr/bin/kcpserver \
     && mv client_linux_amd64 /usr/bin/kcpclient \
-    && ln -sf /usr/share/zoneinfo/$TZ /etc/localtime \
-    && echo $TZ > /etc/timezone \
+    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
     && runDeps="$( \
         scanelf --needed --nobanner /usr/bin/ss-* /usr/local/bin/obfs-* \
             | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \

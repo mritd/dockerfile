@@ -5,7 +5,7 @@ LABEL maintainer="mritd <mritd1234@gmail.com>"
 ARG TZ='Asia/Shanghai'
 
 ENV TZ $TZ
-ENV SS_LIBEV_VERSION 3.2.0
+ENV SS_LIBEV_VERSION 3.2.1
 ENV KCP_VERSION 20181002
 ENV SS_DOWNLOAD_URL https://github.com/shadowsocks/shadowsocks-libev/releases/download/v${SS_LIBEV_VERSION}/shadowsocks-libev-${SS_LIBEV_VERSION}.tar.gz
 ENV OBFS_DOWNLOAD_URL https://github.com/shadowsocks/simple-obfs.git

@@ -10,7 +10,7 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV NVM_VERSION 0.33.11
 ENV NVM_DIR /usr/local/nvm
-ENV NODE_VERSION 8.12.0
+ENV NODE_VERSION 10.13.0
 ENV JDK_VERSION 11.0.0-open
 ENV OPENJDK_VERSION 8.0.181-zulu
 ENV ORACLEJDK_VERSION 8.0.181-oracle
@@ -19,6 +19,7 @@ ENV NPM_REGISTRY https://registry.npm.taobao.org
 ENV MAVEN_CACHE_DIR /data/maven_cache
 ENV GRADLE_CACHE_DIR /data/gradle_cache
 ENV GRADLE_USER_HOME ${GRADLE_CACHE_DIR}
+ENV SDKMAN_DIR /usr/local/sdkman
 ENV SDKMAN_INSTALL_URL https://get.sdkman.io
 ENV NVM_INSTALL_URL https://raw.githubusercontent.com/creationix/nvm/v${NVM_VERSION}/install.sh
 
@@ -48,13 +49,16 @@ RUN apt-get update -y \
     && echo ${TZ} > /etc/timezone \
     && rm -rf ~/.npm /var/lib/apt/lists/* /tmp/*
 
-COPY sdkconfig /root/.sdkman/etc/config
+COPY sdkconfig ${SDKMAN_DIR}/etc/config
 COPY cnpm /usr/bin/cnpm
 COPY cyarn /usr/bin/cyarn
 COPY cmvn /usr/bin/cmvn
+COPY entrypoint.sh /entrypoint.sh
 
 VOLUME ${NPM_CACHE_DIR}
 VOLUME ${MAVEN_CACHE_DIR}
 VOLUME ${GRADLE_CACHE_DIR}
+
+ENTRYPOINT ["entrypoint.sh"]
 
 CMD ["bash"]

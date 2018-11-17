@@ -13,7 +13,7 @@ ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 10.13.0
 ENV JDK_VERSION 11.0.1-open
 ENV OPENJDK_VERSION 8.0.181-zulu
-ENV ORACLEJDK_VERSION 8.0.181-oracle
+ENV ORACLEJDK_VERSION 8.0.191-oracle
 ENV NPM_CACHE_DIR /data/npm_cache
 ENV NPM_REGISTRY https://registry.npm.taobao.org
 ENV MAVEN_CACHE_DIR /data/maven_cache

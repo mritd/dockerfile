@@ -22,6 +22,4 @@ COPY --from=builder /go/bin/go-shadowsocks2 /usr/bin/shadowsocks
 
 ADD entrypoint.sh /entrypoint.sh
 
-RUN chmod +x /entrypoint.sh
-
 ENTRYPOINT ["/entrypoint.sh"]

@@ -2,7 +2,7 @@ FROM golang:1.10.3-alpine3.8 AS builder
 
 RUN apk upgrade --update \
     && apk add git \
-    && go get github.com/riobard/go-shadowsocks2
+    && go get github.com/shadowsocks/go-shadowsocks2
 
 FROM alpine:3.8
 
@@ -20,4 +20,6 @@ RUN apk upgrade --update \
 
 COPY --from=builder /go/bin/go-shadowsocks2 /usr/bin/shadowsocks
 
-ENTRYPOINT ["shadowsocks"]
+ADD entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]

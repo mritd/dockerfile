@@ -3,7 +3,7 @@ FROM alpine:3.8
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
-ENV FILEBEAT_VERSION 6.4.2
+ENV FILEBEAT_VERSION 6.5.2
 ENV FILEBEAT_HOME /usr/share/filebeat
 ENV FILEBEAT_DOWNLOAD_URL https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz 
 

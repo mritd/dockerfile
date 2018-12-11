@@ -16,8 +16,9 @@ ENV JAVA_MAX_MEM 1200m
 ENV JAVA_MIN_MEM 1200m
 ENV EXTRA_JAVA_OPTS ""
 
-RUN apt upgrade -y \
-    && apt install -y tzdata tar \
+RUN apt update -y \
+    && apt upgrade -y \
+    && apt install -y tzdata tar wget \
     && mkdir -p ${SONATYPE_DIR} ${SONATYPE_WORK} ${NEXUS_DATA} \
     && wget --no-check-certificate ${NEXUS_DOWNLOAD_URL} \
     && tar -zxvf nexus-${NEXUS_VERSION}-unix.tar.gz \
@@ -26,7 +27,8 @@ RUN apt upgrade -y \
     && ln -s ${NEXUS_DATA} ${SONATYPE_WORK}/nexus3 \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo "${TZ}" > /etc/timezone \
-    && rm -rf /var/cache/apk/*
+    && apt autoclean \
+    && rm -f nexus-${NEXUS_VERSION}-unix.tar.gz
 
 WORKDIR ${NEXUS_HOME}
 

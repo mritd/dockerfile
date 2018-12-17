@@ -59,6 +59,6 @@ VOLUME ${NPM_CACHE_DIR}
 VOLUME ${MAVEN_CACHE_DIR}
 VOLUME ${GRADLE_CACHE_DIR}
 
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["bash"]

@@ -1,8 +1,9 @@
-FROM golang:1.10.3-alpine3.8 AS builder
+FROM golang:1.11.3-alpine3.8 AS builder
 
 RUN apk upgrade --update \
     && apk add git \
-    && go get github.com/shadowsocks/go-shadowsocks2
+    && go get -ldflags '-w -s' \
+         github.com/shadowsocks/go-shadowsocks2
 
 FROM alpine:3.8
 

@@ -1,14 +1,15 @@
-FROM node:10.3.0-alpine
+FROM node:10.15.0-alpine
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
+ENV VERSION 3.10.2
 
 RUN apk upgrade --update \
     && apk add bash tzdata ca-certificates su-exec python make \
-    && npm install --unsafe -g verdaccio \
+    && npm install --unsafe -g verdaccio@${VERSION} \
     && addgroup -S verdaccio \
     && adduser -S -G verdaccio verdaccio \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \

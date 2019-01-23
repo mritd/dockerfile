@@ -44,7 +44,7 @@ RUN apk upgrade \
     && ./autogen.sh && ./configure \
         --disable-documentation \
     && make install) \
-    && curl -O v2ray_plugin.tar.gz -sSL ${V2RAY_PLUGIN_DOWNLOAD_URL} \
+    && curl -o v2ray_plugin.tar.gz -sSL ${V2RAY_PLUGIN_DOWNLOAD_URL} \
     && tar -zxf v2ray_plugin.tar.gz \
     && mv v2ray-plugin_linux_amd64 /usr/bin/v2ray-plugin \
     && curl -sSLO ${KCP_DOWNLOAD_URL} \

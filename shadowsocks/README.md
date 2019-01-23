@@ -285,3 +285,7 @@ update kcptun to v20181224
 - 2019-01-10 update kcptun
 
 update kcptun to v20190109
+
+- 2019-01-23 add v2ray-plugin
+
+add v2ray-plugin support

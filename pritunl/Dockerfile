@@ -7,7 +7,7 @@ ARG TZ="Asia/Shanghai"
 ENV TZ ${TZ}
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
-ENV PRITUNL_VERSION 1.29.1765.91
+ENV PRITUNL_VERSION 1.29.1958.76
 ENV PRITUNL_NDPPD_VERSION 0.2.5
 ENV PRITUNL_DOWNLOAD_URL http://repo.pritunl.com/stable/apt/pool/main/p/pritunl/pritunl_${PRITUNL_VERSION}-0ubuntu1~bionic_amd64.deb
 ENV PRITUNL_NDPPD_DOWNLOAD_URL http://repo.pritunl.com/stable/apt/pool/main/p/pritunl-ndppd/pritunl-ndppd_${PRITUNL_NDPPD_VERSION}-0ubuntu1~bionic_amd64.deb 

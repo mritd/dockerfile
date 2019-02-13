@@ -1,6 +1,11 @@
 ### docker files
 
-这个仓库目前存放了一些工作 or 生活中需要用到的 Dockerfile,大部分都是自己造的轮子
+This repository contains some dockerfiles of personally created docker images;
+it will be maintained for long periods if necessary.
+
+**The dockerfile for docker images running in a production environment has been**
+**moved to [Gozap/dockerfiles](https://github.com/Gozap/dockerfile). such as `all in one build image`、`jdk`、`tomcat`;**
+**dockerfiles for these docker images will be maintained for a long time**
 
 ## Stargazers over time
 

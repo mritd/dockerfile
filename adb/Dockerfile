@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-glibc:alpine-3.7
+FROM frolvlad/alpine-glibc:alpine-3.9_glibc-2.29
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 

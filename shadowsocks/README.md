@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/docker/stars/mritd/shadowsocks.svg) ![](https://img.shields.io/docker/pulls/mritd/shadowsocks.svg) ![](https://img.shields.io/microbadger/image-size/mritd/shadowsocks.svg) ![](https://img.shields.io/microbadger/layers/mritd/shadowsocks.svg)
 
-- **shadowsocks-libev 版本: 3.2.3**
+- **shadowsocks-libev 版本: 3.2.4**
 - **kcptun 版本: 20190109**
 
 ### 打开姿势
@@ -289,3 +289,7 @@ update kcptun to v20190109
 - 2019-01-23 add v2ray-plugin
 
 add v2ray-plugin support
+
+- 2019-02-26 update to 3.2.4
+
+update shadowsocks to 3.2.4

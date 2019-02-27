@@ -1,11 +1,11 @@
-FROM alpine:3.8
+FROM alpine:3.9
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
-ENV BROOK_VERSION 20181212
+ENV BROOK_VERSION 20190205
 ENV BROOK_DOWNLOAD_URL https://github.com/txthinking/brook/releases/download/v${BROOK_VERSION}/brook
 
 RUN apk upgrade --update \

@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:3.9
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
@@ -10,8 +10,8 @@ ENV CRXDL_DOWNLOAD_URL https://github.com/mritd/crxdl/releases/download/v${CRXDL
 
 RUN apk upgrade --update \
     && apk add bash tzdata wget ca-certificates \
-    && wget ${CRXDL_DOWNLOAD_URL} -O /crxdl \
-    && chmod +x /crxdl \
+    && wget ${CRXDL_DOWNLOAD_URL} -O /usr/bin/crxdl \
+    && chmod +x /usr/bin/crxdl \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && apk del wget \
@@ -19,4 +19,4 @@ RUN apk upgrade --update \
 
 EXPOSE 8080
 
-CMD ["/crxdl"]
+CMD ["crxdl"]

@@ -11,6 +11,7 @@ ENV SS_DOWNLOAD_URL https://github.com/shadowsocks/shadowsocks-libev.git
 ENV OBFS_DOWNLOAD_URL https://github.com/shadowsocks/simple-obfs.git
 ENV V2RAY_PLUGIN_DOWNLOAD_URL https://github.com/shadowsocks/v2ray-plugin/releases/download/v1.0/v2ray-plugin-linux-amd64-8cea1a3.tar.gz
 ENV KCP_DOWNLOAD_URL https://github.com/xtaci/kcptun/releases/download/v${KCP_VERSION}/kcptun-linux-amd64-${KCP_VERSION}.tar.gz
+ENV LINUX_HEADERS_DOWNLOAD_URL=http://dl-cdn.alpinelinux.org/alpine/v3.7/main/x86_64/linux-headers-4.4.6-r2.apk
 
 RUN apk upgrade \
     && apk add bash tzdata rng-tools \
@@ -22,12 +23,13 @@ RUN apk upgrade \
         c-ares-dev \
         libev-dev \
         libtool \
-        linux-headers \
         libsodium-dev \
         mbedtls-dev \
         pcre-dev \
         tar \
         git \
+    && curl -sSL ${LINUX_HEADERS_DOWNLOAD_URL} > /linux-headers-4.4.6-r2.apk \
+    && apk add --virtual .build-deps-kernel /linux-headers-4.4.6-r2.apk \
     && git clone ${SS_DOWNLOAD_URL} \
     && (cd shadowsocks-libev \
     && git checkout tags/${SS_LIBEV_VERSION} -b ${SS_LIBEV_VERSION} \
@@ -50,12 +52,13 @@ RUN apk upgrade \
     && mv client_linux_amd64 /usr/bin/kcpclient \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
-    && apk del .build-deps \
+    && apk del .build-deps .build-deps-kernel \
 	&& apk add --no-cache \
       $(scanelf --needed --nobanner /usr/bin/ss-* /usr/local/bin/obfs-* \
       | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
       | sort -u) \
-    && rm -rf kcptun-linux-amd64-${KCP_VERSION}.tar.gz \
+    && rm -rf /linux-headers-4.4.6-r2.apk \
+        kcptun-linux-amd64-${KCP_VERSION}.tar.gz \
         shadowsocks-libev \
         simple-obfs \
         v2ray_plugin.tar.gz \

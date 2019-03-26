@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.8
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
@@ -24,7 +24,7 @@ RUN apk upgrade --update \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && apk del .build-deps \
-    && rm -f /Gemfile* \
+    && rm -rf /Gemfile* \
             /var/cache/apk/* \
             /usr/lib/lib/ruby/gems/*/cache/* \
             ~/.gem

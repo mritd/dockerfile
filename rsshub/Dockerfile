@@ -32,4 +32,6 @@ RUN apt update -y \
 
 WORKDIR /rsshub
 
+EXPOSE 1200
+
 CMD ["npm","run","start"]

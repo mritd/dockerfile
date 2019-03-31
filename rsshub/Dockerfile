@@ -12,7 +12,7 @@ ENV DOWNLOAD_URL https://github.com/DIYgod/RSSHub/archive/v${VERSION}.tar.gz
 
 RUN apt update -y \
     && apt upgrade -y \
-    && apt install -y tzdata locales wget tar \
+    && apt install -y tzdata locales wget \
     && wget ${DOWNLOAD_URL} -O rsshub.tar.gz \
     && tar -zxvf rsshub.tar.gz \
     && mv RSSHub-${VERSION} /rsshub \
@@ -23,7 +23,7 @@ RUN apt update -y \
     && echo 'LANGUAGE="en_US:en"' >> /etc/default/locale \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
-    && apt purge -y wget tar \
+    && apt purge -y wget \
     && apt autoremove -y \
     && apt autoclean -y \
     && rm -rf /rsshub.tar.gz \

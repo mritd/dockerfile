@@ -27,7 +27,7 @@ RUN set -ex \
     && tar -zxvf trojan.tar.gz -C trojan --strip-components 1 \
     && (cd trojan/build && cmake .. && make ) \
     && mv trojan/build/trojan /usr/bin/trojan \
-    && mv trojan/examples/server.json-example /usr/local/etc/trojan/config.json \
+    && mv trojan/examples/* /usr/local/etc/trojan \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && runDeps="$( \

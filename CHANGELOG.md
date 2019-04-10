@@ -1,0 +1,390 @@
+<a name="unreleased"></a>
+## [Unreleased]
+
+
+<a name="v1.0.0"></a>
+## v1.0.0 - 2019-04-10
+### Chore
+- ***:** 调整目录名称
+- ***:** 调整目录名称
+- **goflyway:** 排除 goflyway 可执行文件
+- **goflyway:** 排除 goflyway 可执行文件
+
+### Docs
+- **README:** update README.md
+- **example:** change aes-256-cfb to chacha20
+- **kcptun:** update kcptun to 20171021
+- **nginx:** update
+- **readme:** add Stargazers over time
+- **readme:** update readme
+- **shadowoscks:** add badger
+- **shadowsocks:** update README
+- **ss:** update README
+- **ss:** update README
+
+### Feat
+- ***:** 调整安装位置、参数名称
+- ***:** add skywalking-ui
+- ***:** 调整安装目录名称，保持和镜像一致
+- ***:** 增加 skywalking controller 镜像
+- **1.0.4:** update lightsocks to 1.0.4
+- **1.0.4:** update lightsocks to 1.0.4
+- **Hitchhiker:** add Hitchhiker
+- **activemq:** update to 5.15.7, change base image
+- **activemq:** update to 5.15.8
+- **activemq:** fix sha512 check failed, fix useradd failed
+- **activemq:** add activemq
+- **adb:** update base image
+- **alpine:** update to 3.8
+- **alpine:** update base image
+- **alpine:** remove update option
+- **alpine-glibc:** 移除 alpine glibc
+- **alpine-gradle:** 移除 alpine-gradle
+- **alpine-sunjdk:** update jdk version
+- **alpine-sunjdk-tomcat8:** update tomcatl jdk
+- **alpine-tengine:** remove alpine-tengine
+- **ansible:** del ansible
+- **ansible:** del ansible
+- **boom:** remove boom
+- **brook:** update 20180909
+- **brook:** update brook to 20171111
+- **brook:** format Dockerfile
+- **brook:** update to 20180601
+- **brook:** update to 20180707
+- **brook:** update to 20181212
+- **brook:** update to 20190205
+- **brook:** remove brook
+- **brook:** update to 20171113
+- **brook:** update brook to 20170909
+- **brook:** update brook to 20170909
+- **build:** add sdkman config
+- **build:** add nvm
+- **build:** 调整 build 镜像
+- **build:** change NVM dir
+- **build:** update jdk、nodejs version
+- **build:** add opnejdk 11、yarn
+- **build:** add gradle cache
+- **build:** add npm build tools
+- **build:** update node、jdk version
+- **build:** update nvm
+- **build:** fix entrypoint
+- **build:** fix sdkman, update nodejs
+- **build:** remove build(move to gozap/dockerfile)
+- **build:** add NPM_REGISTRY
+- **build:** fix jdk11
+- **build:** 完成基本调整
+- **build:** fix oracle jdk
+- **chrome-headless:** add chrome-headless
+- **cloud-torrent:** update to 0.8.25
+- **cloud-torrent:** update base image
+- **cloud-torrent:** 直接采用预编译二进制，去除 golang 依赖
+- **cloud-torrent:** 直接采用预编译二进制，去除 golang 依赖
+- **cloud-torrent:** update base image
+- **codis:** remove codis
+- **crxdl:** add crxdl
+- **crxdl:** update base image
+- **crxdl:** update base image
+- **debian-sunjdk8:** add locale
+- **debian-sunjdk8:** update base image
+- **debian-sunjdk8:** add local setting
+- **debian-sunjdk8-tomcat8-noapr:** update tomcat
+- **demo:** update nginx to 1.14.0
+- **demo:** update nginx
+- **dnsmasq:** 增加时区设置
+- **dnsmasq:** 增加时区设置
+- **docker-kubectl:** update kubectl to v1.12.2
+- **docker-kubectl:** add curl
+- **docker-kubectl:** update kubectl version to 1.8.0
+- **docker-kubectl:** update kubectl to 1.10.3
+- **docker-kubectl:** update kubectl to 1.13.4
+- **docker-kubectl:** update kubectl version to 1.8.0
+- **docker-kubectl:** update kubectl to 1.12.4
+- **elasticsearch:** update to 6.4.2
+- **eolinker:** remove eolinker
+- **es:** add volume dir
+- **es:** update to 6.3.2
+- **es:** update to 5.6.3
+- **es:** add volume dir
+- **es:** update to 5.6.3
+- **es:** update to 6.5.2
+- **es:** update sha1
+- **filebeat:** update to 6.4.0
+- **filebeat:** update to 6.7.1
+- **filebeat:** update to 6.5.2
+- **filebeat:** 保留样例配置
+- **filebeat:** 保留样例配置
+- **filebeat:** update to 5.6.3
+- **filebeat:** update to 6.1.1
+- **filebeat:** update to 5.6.3
+- **filebeat:** update to 6.4.2
+- **filebeat:** update to 6.2.4
+- **filebeat:** change config path
+- **filebeat:** update base image
+- **filebrat:** update to 6.2.3
+- **fpm:** add fpm dockerfile
+- **fpm:** update base image
+- **frp:** update base image
+- **frp:** update to v0.25.2
+- **frp:** update to v0.20.0
+- **gh-pages:** 调整时区设置，格式化 Dockerfile
+- **gh-pages:** 调整时区设置，格式化 Dockerfile
+- **gh-pages:** update base image
+- **goflyway:** add goflyway
+- **goflyway:** add goflyway
+- **goflyway:** update base image
+- **golang:** del golang
+- **golang:** del golang
+- **gpg:** 移除 gpg 签名校验
+- **gpg:** 移除 gpg 签名校验
+- **gsnova:** update base image
+- **gsnova:** add gsnova
+- **hexo:** hexo 停止维护
+- **hexo:** format Dockerfile
+- **hexo:** format Dockerfile
+- **hitchhiker:** rename dir
+- **hitchhiker-node:** add hitchhiker-node
+- **httpheader:** remove httpheader
+- **httpheader:** add log
+- **httpheader:** add httpheader
+- **java:** remove java related images
+- **jekyll:** 增加 flush 脚本
+- **jekyll:** update nginx,support tz arg
+- **jsonon:** update base image
+- **jsonon:** chanage download addr
+- **jsonon:** add jsonon
+- **kcptun:** update kcptun to 20171021
+- **kcptun:** update kcptun
+- **kibana:** fix xpack install failed
+- **kibana:** add kibana
+- **kube-addon-manager:** remove kube-addon-manager
+- **kubectl:** update to v1.12.1
+- **kubectl:** update to 1.12.3
+- **kubectl:** update kubectl
+- **lightsocks:** update base image
+- **lightsocks:** 增加 entrypoint 脚本
+- **lightsocks:** 删除调试代码
+- **lightsocks:** 删除调试代码
+- **lightsocks:** add lightsocks
+- **lightsocks:** 增加 entrypoint 脚本
+- **lightsocks:** add lightsocks
+- **logsatsh:** update to 6.2.3
+- **logstash:** 重新添加 logstash
+- **logstash:** update 6.4.2
+- **logstash:** update to 6.4.0
+- **logstash:** 重新添加 logstash
+- **logstash:** 增加日志位置设置，调整 CMD
+- **logstash:** add logstash
+- **logstash:** update to 6.3.0
+- **logstash:** add logstash
+- **logstash:** update to 6.2.4
+- **logstash:** 增加日志位置设置，调整 CMD
+- **mattermost:** update to 5.4.0
+- **mattermost:** update to 5.0.0
+- **mattermost:** update mattermost version to 4.2.0
+- **mattermost:** update to 5.3.1
+- **mattermost:** update to 5.1.0
+- **mattermost:** update mattermost to 4.3.1
+- **mattermost:** update mattermost version to 4.2.0
+- **mattermost:** update base image
+- **mattermost:** update to 5.2.0
+- **mattermost:** update to 5.5.1
+- **metricbeat:** add metricbeat
+- **mritd:** update base image
+- **mritd:** 调整网站 dockerfile
+- **mritd:** update base image
+- **mritd:** update base image
+- **mritd:** www 301 永久跳转
+- **mritd:** 301 www
+- **mtproxy:** add mtproxy
+- **mtproxyweb:** update base image
+- **mtproxyweb:** add mtproxyweb
+- **nexus:** update jdk
+- **nexus:** update nexus to 3.6.0-02
+- **nexus3:** update to 3.14.0-04
+- **nexus3:** update to 3.12.0-01
+- **nexus3:** update to 3.10.0
+- **nexus3:** update to 3.12.1-01
+- **nginx:** update nginx
+- **nginx:** add nginx
+- **nginx:** uopdate nginx
+- **openjdk:** update to 8u151
+- **openjdk:** add openjdk8
+- **openjdk:** rename dir
+- **pcap_dnsproxy:** add pcap_dnsproxy
+- **php7:** remove php7 support
+- **piwik:** update piwik
+- **piwik:** update to 3.2.0
+- **piwik:** update to 3.2.0
+- **piwik:** update piwik
+- **pritunl:** update to 1.29.1958.76
+- **pritunl:** add pritunl
+- **pritunl:** add deb install
+- **privoxy:** update base image
+- **privoxy:** add privoxy
+- **privoxy:** add privoxy
+- **radicale:** update base image
+- **radicale:** format Dockerfile
+- **rsshub:** add EXPOSE
+- **rsshub:** add rsshub
+- **ruby:** del ruby
+- **ruby:** del ruby
+- **scylla:** add scylla
+- **scylla:** update base image
+- **shadowcosk2:** add custom command support
+- **shadowsocks:** update kcptun to v20190109
+- **shadowsocks:** kcptun
+- **shadowsocks:** update to v3.2.1
+- **shadowsocks:** update kcptun
+- **shadowsocks:** update kcptun
+- **shadowsocks:** update kcptun
+- **shadowsocks:** update README.md
+- **shadowsocks:** update
+- **shadowsocks:** update kcptun
+- **shadowsocks:** update kcptun
+- **shadowsocks:** add v2ray-plugin
+- **shadowsocks:** update README
+- **shadowsocks:** update base image
+- **shadowsocks:** update to 3.2.4
+- **shadowsocks:** format code
+- **shadowsocks:** update to 3.2.0
+- **shadowsocks:** update kcptun
+- **shadowsocks:** update kcptun
+- **shadowsocks2:** remove option
+- **shadowsocks2:** add entrypoint
+- **shadowsocks2:** add shadowsocks2
+- **shaodowsocks:** update README
+- **shells:** add shells dockerfile
+- **simple-obfs:** update base image
+- **simple-obfs:** add simple-obfs
+- **simple-obfs:** 调整编译依赖
+- **skywallking:** remove skywalking
+- **ss:** update kcptun
+- **ss:** update kcptun
+- **stackedit:** remove stackedit
+- **stackedit:** add stackedit
+- **sunjdk:** update sunjdk
+- **sunjdk:** remove sunjdk8、tomcat8(move to gozap/dockerfile)
+- **sunjdk-maven:** 移除 alpine-sunjdk8-maven3 镜像
+- **swagger-editor:** update to 3.6.1
+- **taiga:** delete unzip
+- **taiga:** add TAIGA_FRONT_HOME
+- **taiga:** fix TAIGA_EVENTS_HOME miss
+- **taiga:** add TAIGA_EVENTS_HOME
+- **taiga:** clean
+- **taiga:** add taiga
+- **taiga-back:** 合并 dockerfile
+- **teleport:** update example config
+- **teleport:** update to 3.0.1
+- **time-machine:** update Netatalk to 3.1.11
+- **time-machine:** update Netatalk to 3.1.11
+- **tomcat:** update tomcat
+- **tor:** update base image
+- **trojan:** remove trojan
+- **trojan:** add trojan
+- **trojan:** copy all example config
+- **twemproxy:** add twemproxy
+- **tz:** add tz arg support
+- **tz:** tz arg support
+- **v2ray:** update base image
+- **verdaccio:** add verdaccio dockerfile
+- **verdaccio:** update base image
+- **verdaccio:** remove verdaccio
+- **verdaccio:** update to v3.10.2
+- **videovip:** add videovip
+- **videovip:** add videovip
+- **videovip:** update nginx config
+- **webqq:** remove webqq
+- **zetcd:** add zetcd
+
+### Fix
+- ***:** 修复环境变量错误
+- ***:** 删除无用文件
+- ***:** 修复执行类错误
+- ***:** 调整变量名称，删除无用软件包
+- ***:** 修复classpath 错误
+- ***:** 修复 skywalking 无法执行问题
+- ***:** 修复设置权限失败问题
+- ***:** 修复 log 日志不显示问题
+- ***:** 修复 log 日志不显示问题
+- **TFO:** fix TFO
+- **build:** 调整 maintainer
+- **build:** fix gradle
+- **build:** fix platform encoding
+- **build:** fix shell
+- **chown:** 不修改logstash目录
+- **chown:** 不修改logstash目录
+- **chrome-headless:** fix entrypoint.sh
+- **config:** fix config
+- **crxdl:** fix file nout found
+- **crxdl:** fix ca
+- **entrypoit:** 启动前修复目录权限
+- **entrypoit:** 启动前修复目录权限
+- **es:** update TZ
+- **es:** 修复 sha 验证失败
+- **es:** 修复 sha 验证失败
+- **es:** update TZ
+- **fileabeat:** fix glibc
+- **filebeat:** 修复可执行文件路径错误
+- **filebeat:** fix chown
+- **filebeat:** fix entrypoint
+- **filebeat:** 修正 ARG 命令错误
+- **filebeat:** 修正 ARG 命令错误
+- **filebeat:** 修正挂载错误
+- **filebeat:** 修正挂载错误
+- **filebeat:** 修正 Dockerfile 命令错误
+- **filebeat:** swicth to root
+- **filebeat:** 修正 Dockerfile 命令错误
+- **filebeat:** 修复可执行文件路径错误
+- **gpg:** 修复下载失败问题
+- **gpg:** 修复下载失败问题
+- **hitchhiker-node:** fix zip file not found
+- **hitchhiker-node:** fix unzip
+- **logsatsh:** fix cmd not found
+- **logstash:** 解决权限错误
+- **logstash:** 删除 logstash
+- **logstash:** fix build error
+- **logstash:** 解决权限错误
+- **logstash:** 修正 data 目录权限问题
+- **logstash:** 修正 data 目录权限问题
+- **logstash:** 删除 logstash
+- **logstash:** fix locales
+- **mattermost:** 修复 i18n 目录无法找到问题
+- **mattermost:** 修复 i18n 目录无法找到问题
+- **mattermost:** 修复执行错误
+- **mattermost:** 修复执行错误
+- **mtproxy:** fix mod
+- **mtproxy:** fix nat err
+- **mtproxyweb:** fix
+- **nexus3:** fix build failed
+- **nginx:** fix luajit lib missing
+- **nginx:** fix nginx build failed
+- **openjdk:** fix tzdata missing
+- **param:** fix mt prefix
+- **piwik:** 删除无用文件
+- **piwik:** update piwik
+- **piwik:** update piwik
+- **pritunl:** fix config exist
+- **pritunl:** fix iptables cmd missing
+- **pritunl:** delete deb file
+- **random-numbers:** fix 'system doesn't provide enough entropy' error
+- **rsshub:** fix tar
+- **scylla:** fix libxslt-dev
+- **scylla:** fix apt
+- **shadowsocks:** fix curl download failed
+- **shadowsocks:** 删除错误提交
+- **shadowsocks:** fix TFO
+- **shadowsocks:** 删除错误提交
+- **shadowsocks:** fix high-quality random numbers
+- **simple-obfs:** fix build dep(zlib-devel=>zlib-dev)
+- **stackedit:** fix source dir err
+- **time-machine:** 修复无法登陆问题
+- **time-machine:** 修复无法登陆问题
+- **twemproxy:** fix entrypoint
+- **verdaccio:** fix verdaccio data dir
+
+### BREAKING CHANGE
+
+rename /etc/filebeat/filebeat.yml to /etc/filebeat/filebeat.yaml
+
+
+[Unreleased]: https://github.com/mritd/dockerfile/compare/v1.0.0...HEAD

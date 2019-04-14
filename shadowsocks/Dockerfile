@@ -5,8 +5,8 @@ LABEL maintainer="mritd <mritd1234@gmail.com>"
 ARG TZ='Asia/Shanghai'
 
 ENV TZ ${TZ}
-ENV SS_LIBEV_VERSION v3.2.4
-ENV KCP_VERSION 20190109
+ENV SS_LIBEV_VERSION v3.2.5
+ENV KCP_VERSION 20190409
 ENV SS_DOWNLOAD_URL https://github.com/shadowsocks/shadowsocks-libev.git 
 ENV OBFS_DOWNLOAD_URL https://github.com/shadowsocks/simple-obfs.git
 ENV V2RAY_PLUGIN_DOWNLOAD_URL https://github.com/shadowsocks/v2ray-plugin/releases/download/v1.0/v2ray-plugin-linux-amd64-8cea1a3.tar.gz

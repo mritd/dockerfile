@@ -1,11 +1,11 @@
-FROM alpine:3.8
+FROM alpine:3.9
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
-ENV TELEPORT_VERSION v3.0.1
+ENV TELEPORT_VERSION v3.2.2
 ENV TELEPORT_DOWNLOAD_URL https://get.gravitational.com/teleport-${TELEPORT_VERSION}-linux-amd64-bin.tar.gz
 
 RUN apk upgrade \

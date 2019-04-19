@@ -10,7 +10,7 @@ ENV TELEPORT_DOWNLOAD_URL https://get.gravitational.com/teleport-${TELEPORT_VERS
 
 RUN apk upgrade \
     && apk add bash tzdata libc6-compat wget tar ca-certificates \
-    && wget ${TELEPORT_DOWNLOAD_URL} \
+    && wget -q ${TELEPORT_DOWNLOAD_URL} \
     && tar -zxvf teleport-${TELEPORT_VERSION}-linux-amd64-bin.tar.gz \
     && mv teleport/tctl teleport/teleport teleport/tsh /usr/bin \
     && mkdir /etc/teleport \

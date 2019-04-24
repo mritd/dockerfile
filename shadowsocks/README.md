@@ -299,3 +299,7 @@ update shadowsocks to v3.2.4
 - 2019-04-14 update to v3.2.5
 
 update shadowsocks to v3.2.5, update kcptun to v20190409
+
+- 2019-04-24 update kcptun
+
+update kcptun to v20190424

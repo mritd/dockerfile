@@ -7,7 +7,7 @@ RUN apt update \
 
 FROM python:3.7.0-slim-stretch
 
-LABEL maintainer="mritd <mritd1234@gmail.com>"
+LABEL maintainer="mritd <mritd@linux.com>"
 
 ARG TZ="Asia/Shanghai"
 

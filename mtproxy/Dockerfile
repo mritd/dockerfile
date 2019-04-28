@@ -1,6 +1,6 @@
 FROM debian:stretch AS builder
 
-LABEL maintainer="mritd <mritd1234@gmail.com>"
+LABEL maintainer="mritd <mritd@linux.com>"
 
 ENV MTPROXY_DOWNLOAD_URL https://github.com/TelegramMessenger/MTProxy.git
 
@@ -11,7 +11,7 @@ RUN apt update -y && apt upgrade -y \
 
 FROM debian:stretch
 
-LABEL maintainer="mritd <mritd1234@gmail.com>"
+LABEL maintainer="mritd <mritd@linux.com>"
 
 ENV TZ 'Asia/Shanghai'
 ENV MTPROXY_CONFIG_PATH /etc/mtproxy

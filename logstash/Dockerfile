@@ -7,7 +7,7 @@ RUN go get gopkg.in/yaml.v2 \
 
 FROM openjdk:8u181-jdk-slim-stretch
 
-LABEL maintainer="mritd <mritd1234@gmail.com>"
+LABEL maintainer="mritd <mritd@linux.com>"
 
 ARG TZ="Asia/Shanghai"
 

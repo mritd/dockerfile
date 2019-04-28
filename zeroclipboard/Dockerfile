@@ -1,6 +1,6 @@
 FROM alpine:3.6
 
-LABEL maintainer="mritd <mritd1234@gmail.com>"
+LABEL maintainer="mritd <mritd@linux.com>"
 
 COPY Gemfile Gemfile
 

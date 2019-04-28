@@ -16,7 +16,7 @@ RUN apk upgrade --update \
 
 FROM alpine:3.8
 
-LABEL maintainer="mritd <mritd1234@gmail.com>"
+LABEL maintainer="mritd <mritd@linux.com>"
 
 ARG TZ="Asia/Shanghai"
 

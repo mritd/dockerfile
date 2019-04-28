@@ -1,6 +1,6 @@
 FROM ruby:2.6.2-alpine3.9
 
-LABEL maintainer="mritd <mritd1234@gmail.com>"
+LABEL maintainer="mritd <mritd@linux.com>"
 
 ARG TZ="Asia/Shanghai"
 

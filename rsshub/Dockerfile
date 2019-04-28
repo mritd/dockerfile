@@ -1,6 +1,6 @@
 FROM node:10.15.3-stretch-slim 
 
-LABEL maintainer="mritd <mritd1234@gmail.com>"
+LABEL maintainer="mritd <mritd@linux.com>"
 
 ARG TZ="Asia/Shanghai"
 

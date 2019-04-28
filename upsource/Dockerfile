@@ -1,6 +1,6 @@
 FROM mritd/alpine-glibc:3.5
 
-LABEL maintainer="mritd <mritd1234@gmail.com>"
+LABEL maintainer="mritd <mritd@linux.com>"
 
 ENV TZ 'Asia/Shanghai'
 

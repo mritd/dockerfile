@@ -1,6 +1,6 @@
 FROM openjdk:8u151-jdk-alpine
 
-LABEL maintainer="mritd <mritd1234@gmail.com>"
+LABEL maintainer="mritd <mritd@linux.com>"
 
 ARG TZ='Asia/Shanghai'
 

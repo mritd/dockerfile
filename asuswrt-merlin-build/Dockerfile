@@ -1,6 +1,6 @@
 FROM ubuntu:16.04 
 
-LABEL maintainer="mritd <mritd1234@gmail.com>"
+LABEL maintainer="mritd <mritd@linux.com>"
 
 ARG BUILD_DATE
 ARG VCS_REF

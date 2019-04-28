@@ -1,6 +1,6 @@
 FROM openjdk:11.0.2-jre-slim-stretch
 
-LABEL maintainer="mritd <mritd1234@gmail.com>"
+LABEL maintainer="mritd <mritd@linux.com>"
 
 ARG TZ="Asia/Shanghai"
 

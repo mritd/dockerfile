@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-MAINTAINER mritd <mritd1234@gmail.com>
+MAINTAINER mritd <mritd@linux.com>
 
 ENV TZ 'Asia/Shanghai'
 ENV CHROME_VERSION 67.0.3396.79

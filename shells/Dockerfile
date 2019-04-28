@@ -1,6 +1,6 @@
 FROM nginx:1.13.12-alpine
 
-LABEL maintainer="mritd <mritd1234@gmail.com>"
+LABEL maintainer="mritd <mritd@linux.com>"
 
 ARG TZ='Asia/Shanghai'
 

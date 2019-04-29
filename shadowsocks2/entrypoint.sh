@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "${SS_CONFIG}" != "" ]; then
-    shadowsocks -s ${SS_CONFIG} -verbose
+    exec shadowsocks -s ${SS_CONFIG} -verbose
 else
-    shadowsocks $@
+    exec shadowsocks $@
 fi

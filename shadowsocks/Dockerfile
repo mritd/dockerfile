@@ -8,13 +8,13 @@ ENV TZ ${TZ}
 ENV SS_LIBEV_VERSION v3.2.5
 ENV KCP_VERSION 20190424
 ENV SS_DOWNLOAD_URL https://github.com/shadowsocks/shadowsocks-libev.git 
-ENV OBFS_DOWNLOAD_URL https://github.com/shadowsocks/simple-obfs.git
-ENV V2RAY_PLUGIN_DOWNLOAD_URL https://github.com/shadowsocks/v2ray-plugin/releases/download/v1.0/v2ray-plugin-linux-amd64-8cea1a3.tar.gz
 ENV KCP_DOWNLOAD_URL https://github.com/xtaci/kcptun/releases/download/v${KCP_VERSION}/kcptun-linux-amd64-${KCP_VERSION}.tar.gz
+ENV PLUGIN_OBFS_DOWNLOAD_URL https://github.com/shadowsocks/simple-obfs.git
+ENV PLUGIN_V2RAY_DOWNLOAD_URL https://github.com/shadowsocks/v2ray-plugin/releases/download/v1.0/v2ray-plugin-linux-amd64-8cea1a3.tar.gz
 ENV LINUX_HEADERS_DOWNLOAD_URL=http://dl-cdn.alpinelinux.org/alpine/v3.7/main/x86_64/linux-headers-4.4.6-r2.apk
 
 RUN apk upgrade \
-    && apk add bash tzdata rng-tools \
+    && apk add bash tzdata rng-tools runit \
     && apk add --virtual .build-deps \
         autoconf \
         automake \
@@ -37,13 +37,13 @@ RUN apk upgrade \
     && ./autogen.sh \
     && ./configure --prefix=/usr --disable-documentation \
     && make install) \
-    && git clone ${OBFS_DOWNLOAD_URL} \
+    && git clone ${PLUGIN_OBFS_DOWNLOAD_URL} \
     && (cd simple-obfs \
     && git submodule update --init --recursive \
     && ./autogen.sh \
     && ./configure --disable-documentation \
     && make install) \
-    && curl -o v2ray_plugin.tar.gz -sSL ${V2RAY_PLUGIN_DOWNLOAD_URL} \
+    && curl -o v2ray_plugin.tar.gz -sSL ${PLUGIN_V2RAY_DOWNLOAD_URL} \
     && tar -zxf v2ray_plugin.tar.gz \
     && mv v2ray-plugin_linux_amd64 /usr/bin/v2ray-plugin \
     && curl -sSLO ${KCP_DOWNLOAD_URL} \
@@ -52,6 +52,8 @@ RUN apk upgrade \
     && mv client_linux_amd64 /usr/bin/kcpclient \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
+    && adduser -h /tmp -s /sbin/nologin -S -D -H shadowsocks \
+    && adduser -h /tmp -s /sbin/nologin -S -D -H kcptun \
     && apk del .build-deps .build-deps-kernel \
 	&& apk add --no-cache \
       $(scanelf --needed --nobanner /usr/bin/ss-* /usr/local/bin/obfs-* \
@@ -62,8 +64,12 @@ RUN apk upgrade \
         shadowsocks-libev \
         simple-obfs \
         v2ray_plugin.tar.gz \
+        /etc/service \
         /var/cache/apk/*
 
-ADD entrypoint.sh /entrypoint.sh
+SHELL ["/bin/bash"]
+
+COPY runit /etc/service
+COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]

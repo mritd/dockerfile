@@ -1,0 +1,22 @@
+#!/bin/bash
+
+exec 2>&1
+
+if [ "${KCP_FLAG}" == "true" ]; then
+
+    if [ -z "${KCP_MODULE}" ]; then
+        echo "Warning: KCP_MODULE is empty, default to kcpserver!"
+        KCP_MODULE="kcpserver"
+    fi
+    
+    if [ -n "${KCP_CONFIG}" ]; then
+        echo "starting kcptun..."
+        exec chpst -u kcptun ${KCP_MODULE} ${KCP_CONFIG}
+    else
+        echo "Error: KCP_CONFIG is empty, exit!"
+        exit 1
+    fi
+else
+    exit 0
+fi
+

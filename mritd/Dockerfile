@@ -1,4 +1,4 @@
-FROM nginx:1.14.2-alpine
+FROM nginx:1.15.12-alpine
 
 LABEL maintainer="mritd <mritd@linux.com>"
 
@@ -14,8 +14,8 @@ RUN apk upgrade --update \
     && echo ${TZ} > /etc/timezone \
     && rm -rf /var/cache/apk/*
 
-ADD entrypoint.sh /entrypoint.sh
-ADD flush /usr/local/bin/flush
+COPY entrypoint.sh /entrypoint.sh
+COPY flush /usr/local/bin/flush
 
 WORKDIR /usr/share/nginx/html
 

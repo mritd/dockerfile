@@ -25,7 +25,7 @@ RUN apt update -y \
     && echo "${TZ}" > /etc/timezone \
     && apt autoremove \
     && apt autoclean \
-    && rm -rf /etc/pritunl.conf /tmp/*
+    && rm -rf /tmp/*
 
 EXPOSE 80 443
 EXPOSE 1194 1194/udp

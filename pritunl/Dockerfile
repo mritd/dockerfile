@@ -27,8 +27,6 @@ RUN apt update -y \
     && apt autoclean \
     && rm -rf /etc/pritunl.conf /tmp/*
 
-VOLUME /etc/pritunl.conf
-
 EXPOSE 80 443
 EXPOSE 1194 1194/udp
 

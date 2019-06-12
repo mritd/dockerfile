@@ -1,11 +1,11 @@
-FROM golang:1.11.0-stretch AS builder
+FROM golang:1.12.5-stretch AS builder
 
 COPY env2yaml.go /go/env2yaml.go
 
 RUN go get gopkg.in/yaml.v2 \
     && go build env2yaml.go
 
-FROM openjdk:8u181-jdk-slim-stretch
+FROM openjdk:8u212-b04-jdk-slim-stretch
 
 LABEL maintainer="mritd <mritd@linux.com>"
 
@@ -14,7 +14,7 @@ ARG TZ="Asia/Shanghai"
 ENV TZ ${TZ}
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
-ENV LOGSTASH_VERSION 6.4.2
+ENV LOGSTASH_VERSION 7.1.1
 ENV LOGSTASH_HOME /usr/share/logstash
 ENV LOGSTASH_TARBALL https://artifacts.elastic.co/downloads/logstash/logstash-${LOGSTASH_VERSION}.tar.gz 
 
@@ -32,7 +32,7 @@ RUN set -ex \
     && locale-gen --purge en_US.UTF-8 zh_CN.UTF-8 \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
-    && apt autoclean \
+    && apt autoclean -y \
     && rm -rf logstash.tar.gz.asc \
         logstash.tar.gz \
         ${logstash_HOME}/config \

@@ -1,13 +1,14 @@
-FROM nginx:1.14.2-alpine
+FROM nginx:1.17.0-alpine
 
 LABEL maintainer="mritd <mritd@linux.com>"
 
-ENV TZ 'Asia/Shanghai'
+ARG TZ 'Asia/Shanghai'
+ENV TZ ${TZ}
 
 RUN apk upgrade --update \
     && apk add bash tzdata curl wget ca-certificates \
-    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo "Asia/Shanghai" > /etc/timezone \
+    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
     && rm -rf /var/cache/apk/*
 
 COPY index.html /usr/share/nginx/html/index.html

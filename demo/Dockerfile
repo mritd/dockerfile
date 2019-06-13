@@ -2,7 +2,7 @@ FROM nginx:1.17.0-alpine
 
 LABEL maintainer="mritd <mritd@linux.com>"
 
-ARG TZ 'Asia/Shanghai'
+ARG TZ='Asia/Shanghai'
 ENV TZ ${TZ}
 
 RUN apk upgrade --update \

@@ -1,9 +1,11 @@
-FROM golang:1.12.4-alpine3.9 AS builder
+FROM golang:1.12.5-alpine3.9 AS builder
 
-RUN apk upgrade --update \
+ENV GO111MODULE on
+ENV GOPROXY https://goproxy.io
+
+RUN apk upgrade \
     && apk add git \
-    && go get -ldflags '-w -s' \
-        github.com/shadowsocks/go-shadowsocks2
+    && go get -ldflags github.com/shadowsocks/go-shadowsocks2
 
 FROM alpine:3.9 AS dist
 

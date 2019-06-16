@@ -303,3 +303,7 @@ update kcptun to v20190424
 - 2019-04-29 add runit
 
 add runit, remove rng-tools
+
+- 2019-06-16 update kcptun
+
+update kcptun to v20190611

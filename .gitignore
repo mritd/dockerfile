@@ -2,3 +2,4 @@ gcr-registry/docker-entrypoint.sh
 gcr-registry/registry/*.json
 goflyway/goflyway
 mritd/vippasswd
+atlassian-confluence/atlassianctl_linux_amd64

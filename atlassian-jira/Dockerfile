@@ -13,7 +13,7 @@ RUN set -x \
     && apk add bash tzdata \
     && cd ${JIRA_INSTALL_DIR}/atlassian-jira/WEB-INF/lib/ \
     && atlassianctl crack atlassian-extras-3.2.jar \
-    && chown -R ${RUN_USER}:${RUN_GROUP} ${CONFLUENCE_INSTALL_DIR} \
+    && chown -R ${RUN_USER}:${RUN_GROUP} ${JIRA_INSTALL_DIR} \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && rm -rf /var/cache/apk/*

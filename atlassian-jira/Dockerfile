@@ -5,15 +5,17 @@ LABEL maintainer="mritd <mritd@linux.com>"
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
+ENV AGENT_PATH /opt/atlassian-agent.jar
 
-COPY atlassianctl_linux_amd64 /usr/local/bin/atlassianctl
+COPY atlassian-agent.jar ${AGENT_PATH}
+COPY hijack.sh /hijack.sh
 
 RUN set -x \
     && apk upgrade \
     && apk add bash tzdata \
-    && cd ${JIRA_INSTALL_DIR}/atlassian-jira/WEB-INF/lib/ \
-    && atlassianctl crack atlassian-extras-3.2.jar \
-    && chown -R ${RUN_USER}:${RUN_GROUP} ${JIRA_INSTALL_DIR} \
+    && chown ${RUN_USER}:${RUN_GROUP} ${AGENT_PATH} \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && rm -rf /var/cache/apk/*
+
+CMD ["/hijack.sh"]

@@ -3,3 +3,4 @@ gcr-registry/registry/*.json
 goflyway/goflyway
 mritd/vippasswd
 atlassian-confluence/atlassianctl_linux_amd64
+atlassian-jira/atlassianctl_linux_amd64

@@ -1,4 +1,4 @@
-FROM dchevell/jira-software:7.13.4-alpine
+FROM dchevell/jira-software:8.2.2-jdk8
 
 LABEL maintainer="mritd <mritd@linux.com>"
 
@@ -11,11 +11,15 @@ COPY atlassian-agent.jar ${AGENT_PATH}
 COPY hijack.sh /hijack.sh
 
 RUN set -x \
-    && apk upgrade \
-    && apk add bash tzdata \
+    && export DEBIAN_FRONTEND=noninteractive \
+    && apt update \
+    && apt upgrade -y \
+    && apt install tzdata -y \
     && chown ${RUN_USER}:${RUN_GROUP} ${AGENT_PATH} \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
-    && rm -rf /var/cache/apk/*
+    && dpkg-reconfigure --frontend noninteractive tzdata \
+    && apt autoremove -y \
+    && apt autoclean -y
 
 CMD ["/hijack.sh"]

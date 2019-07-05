@@ -15,6 +15,7 @@ RUN set -x \
     && apt install tzdata -y \
     && cd ${CONFLUENCE_INSTALL_DIR}/confluence/WEB-INF/lib/ \
     && atlassianctl crack atlassian-extras-decoder-v*.jar \
+    && chown -R ${RUN_USER}:${RUN_GROUP} ${CONFLUENCE_INSTALL_DIR} \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && dpkg-reconfigure --frontend noninteractive tzdata \

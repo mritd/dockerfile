@@ -1,4 +1,4 @@
-FROM ruby:2.6.2-alpine3.9
+FROM ruby:2.6.3-alpine3.10
 
 LABEL maintainer="mritd <mritd@linux.com>"
 

@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:3.10
 
 ENV TWEMPROXY_VERSION 0.4.1
 ENV TWEMPROXY_CONFIG_DIR /etc/twemproxy
@@ -14,7 +14,7 @@ RUN apk upgrade --update \
  	&& make -j2 \
  	&& make install)
 
-FROM alpine:3.8
+FROM alpine:3.10
 
 LABEL maintainer="mritd <mritd@linux.com>"
 

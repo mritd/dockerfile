@@ -1,11 +1,11 @@
-FROM alpine:3.8
+FROM alpine:3.10
 
 LABEL maintainer="mritd <mritd@linux.com>"
 
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ} 
-ENV MATTERMOST_VERSION 5.5.1
+ENV MATTERMOST_VERSION 5.12.3
 ENV MATTERMOST_HOME /mattermost
 ENV MATTERMOST_DATA_DIR /data
 ENV MATTERMOST_DOWNLOAD_URL https://releases.mattermost.com/${MATTERMOST_VERSION}/mattermost-${MATTERMOST_VERSION}-linux-amd64.tar.gz

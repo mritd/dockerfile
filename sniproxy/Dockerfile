@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:3.10
 
 LABEL maintainer="mritd <mritd@linux.com>"
 

@@ -10,10 +10,11 @@ ENV MATTERMOST_HOME /mattermost
 ENV MATTERMOST_DATA_DIR /data
 ENV MATTERMOST_DOWNLOAD_URL https://releases.mattermost.com/${MATTERMOST_VERSION}/mattermost-${MATTERMOST_VERSION}-linux-amd64.tar.gz
 
-RUN apk upgrade \
+RUN set -ex \
+    && apk upgrade \
     && apk add bash tzdata wget ca-certificates \
         libc6-compat libffi-dev mailcap \
-    && wget ${MATTERMOST_DOWNLOAD_URL} \
+    && wget -q ${MATTERMOST_DOWNLOAD_URL} \
     && tar -xzf mattermost*.gz \
     && mkdir ${MATTERMOST_DATA_DIR} \
     && ln -s ${MATTERMOST_DATA_DIR} ${MATTERMOST_HOME}/data \

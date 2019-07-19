@@ -54,6 +54,7 @@ RUN apk upgrade \
     && echo ${TZ} > /etc/timezone \
     && adduser -h /tmp -s /sbin/nologin -S -D -H shadowsocks \
     && adduser -h /tmp -s /sbin/nologin -S -D -H kcptun \
+    && apk add libcap && for filename in $(ls  /usr/bin/ss-* /usr/local/bin/* /usr/bin/v2ray-plugin /usr/bin/kcp*) ; do setcap cap_net_bind_service+ep $filename ;done \
     && apk del .build-deps .build-deps-kernel \
 	&& apk add --no-cache \
       $(scanelf --needed --nobanner /usr/bin/ss-* /usr/local/bin/obfs-* \

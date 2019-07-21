@@ -5,7 +5,7 @@ LABEL maintainer="mritd <mritd@linux.com>"
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
-ENV NETATALK_VERSION 3.1.11
+ENV NETATALK_VERSION 3.1.12
 ENV NETATALK_DOWNLOAD_URL https://downloads.sourceforge.net/project/netatalk/netatalk/${NETATALK_VERSION}/netatalk-${NETATALK_VERSION}.tar.gz
 
 RUN apk --update upgrade \
@@ -15,8 +15,8 @@ RUN apk --update upgrade \
     && apk add --no-cache --virtual .build-deps \
         build-base autoconf automake libtool libgcrypt-dev \
         linux-pam-dev cracklib-dev acl-dev db-dev dbus-dev libevent-dev \
-    && wget ${NETATALK_DOWNLOAD_URL} \
-    && tar -zxvf netatalk-${NETATALK_VERSION}.tar.gz \
+    && wget -q ${NETATALK_DOWNLOAD_URL} \
+    && tar -zxv netatalk-${NETATALK_VERSION}.tar.gz \
     && (cd netatalk-${NETATALK_VERSION} \
     && CFLAGS="-Wno-unused-result -O2" ./configure \
         --prefix=/usr \

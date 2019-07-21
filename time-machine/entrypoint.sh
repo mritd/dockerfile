@@ -1,14 +1,17 @@
 #!/bin/bash
 
-USERNAME=${USERNAME:-"mritd"}
+USER_NAME=${USER_NAME:-"mritd"}
+USER_ID=${USER_ID:-"1000"}
 PASSWORD=${PASSWORD:-"123456"}
 MOUNT_POINT=${MOUNT_POINT-"/data"}
 VOL_SIZE_MB=${VOL_SIZE_MB-"512000"}
 
-while getopts "u:p:m:v" OPT; do
+while getopts "u:i:p:m:v" OPT; do
     case $OPT in
         u)
-            USERNAME=$OPTARG;;
+            USER_NAME=$OPTARG;;
+        i)
+            USER_ID=$OPTARG;;
         p)
             PASSWORD=$OPTARG;;
         m)
@@ -18,30 +21,29 @@ while getopts "u:p:m:v" OPT; do
     esac
 done
 
-cat /etc/passwd | grep $USERNAME >& /dev/null
+cat /etc/passwd | grep ${USER_NAME} >& /dev/null
 
 if [ $? -ne 0 ];then
-    echo "Add user: $USERNAME..."
-    adduser -S -H -G root $USERNAME
-    echo ${USERNAME}:${PASSWORD} | chpasswd &> /dev/null
-
+    echo "Add user: ${USER_NAME}..."
+    adduser -S -H -G root ${USER_NAME} -u ${USER_ID}
+    echo ${USER_NAME}:${PASSWORD} | chpasswd &> /dev/null
 else
-    echo "User: $USERNAME already exists!"
+    echo "User: ${USER_NAME} already exists!"
 fi
 
-mkdir -p $MOUNT_POINT
-chown -R $USERNAME:root $MOUNT_POINT
+mkdir -p ${MOUNT_POINT}
+chown -R ${USER_NAME}:root ${MOUNT_POINT}
 
-cat /etc/afp.conf | grep "$USERNAME" >& /dev/null
+cat /etc/afp.conf | grep "${USER_NAME}" >& /dev/null
 
 if [ $? -ne 0 ];then
     echo "Update /etc/afp.conf..."
     cat << EOF >> /etc/afp.conf
-[$USERNAME]
-valid users = $USERNAME
-path = $MOUNT_POINT
+[${USER_NAME}]
+valid users = ${USER_NAME}
+path = ${MOUNT_POINT}
 time machine = yes
-vol size limit = $VOL_SIZE_MB
+vol size limit = ${VOL_SIZE_MB}
 EOF
 else
     echo "afp.conf already modify!"

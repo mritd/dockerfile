@@ -1,5 +1,6 @@
 #!/bin/bash
 
+exec >> ${LOG_FILE}
 exec 2>&1
 
 if [ -z "${SS_MODULE}" ]; then

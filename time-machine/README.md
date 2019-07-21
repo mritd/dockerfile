@@ -10,14 +10,14 @@
 - 纯 docker 启动
 
 ``` sh
-docker run -d -v /data:/data --network host mritd/time-machine -u testuser -p 12345678
+docker run -dt --name time-machine -v /data:/data --network host mritd/time-machine -u testuser -p 12345678
 ```
 
 - docker-compoe 启动
 
 ``` sh
 # docker-compose 文件如下
-version: '2'
+version: '3.5'
 services:
   time-machine:
     image: mritd/time-machine
@@ -37,3 +37,7 @@ docker-compose up -d
 容器启动后在**与宿主机同一局域网**的 Mac 机器能够在 Finder 中的 `共享的` 一栏中发现；
 打开后右上角点击链接按钮，然后输入账户和密码即可成功链接；此时打开 TimeMachine 备份磁盘
 中选择刚刚建立连接的磁盘即可
+
+### Update
+
+- 2019-07-21: 支持 `-i` 选项定义 user id，升级 netatalk 到 3.1.12

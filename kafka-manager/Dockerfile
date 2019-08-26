@@ -28,6 +28,8 @@ RUN set -ex \
 
 WORKDIR ${KAFKA_MANAGER_HOME}
 
+EXPOSE 9000
+
 ENTRYPOINT ["tini","--"]
 
 CMD ["./bin/kafka-manager"]

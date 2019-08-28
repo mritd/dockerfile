@@ -8,7 +8,7 @@ ENV TZ ${TZ}
 ENV MATTERMOST_VERSION 5.14.0
 ENV MATTERMOST_HOME /mattermost
 ENV MATTERMOST_DATA_DIR /data
-ENV MATTERMOST_DOWNLOAD_URL https://releases.mattermost.com/${MATTERMOST_VERSION}/mattermost-${MATTERMOST_VERSION}-linux-amd64.tar.gz
+ENV MATTERMOST_DOWNLOAD_URL https://releases.mattermost.com/${MATTERMOST_VERSION}/mattermost-team-${MATTERMOST_VERSION}-linux-amd64.tar.gz
 
 ENV PATH ${PATH}:${MATTERMOST_HOME}/bin
 

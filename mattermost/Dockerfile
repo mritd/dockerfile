@@ -29,4 +29,4 @@ VOLUME ${MATTERMOST_DATA_DIR}
 
 EXPOSE 8065
 
-CMD ["mattermost"]
+CMD ["mattermost","server"]

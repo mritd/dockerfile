@@ -17,7 +17,8 @@ RUN set -ex \
     && apk add bash tzdata curl ca-certificates \
         libc6-compat libffi-dev mailcap \
     && curl -s ${MATTERMOST_DOWNLOAD_URL} | tar -xz \
-    && ln -s ${MATTERMOST_DATA_DIR} ${MATTERMOST_HOME}/data \
+    && ln -sf ${MATTERMOST_DATA_DIR} ${MATTERMOST_HOME}/data \
+    && ln -sf ${MATTERMOST_DATA_DIR}/logs ${MATTERMOST_HOME}/logs \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && rm -rf ${MATTERMOST_HOME}/bin/platform \

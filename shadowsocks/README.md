@@ -307,3 +307,9 @@ add runit, remove rng-tools
 - 2019-06-16 update kcptun
 
 update kcptun to v20190611
+
+- 2019-09-15 update shadowsocks to v3.3.1
+
+update shadowsocks to v3.3.1
+update kcptun to v20190905
+update v2ray-plugin to v1.1.0

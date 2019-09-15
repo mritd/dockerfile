@@ -2,8 +2,8 @@
 
 ![](https://img.shields.io/docker/stars/mritd/shadowsocks.svg) ![](https://img.shields.io/docker/pulls/mritd/shadowsocks.svg) ![](https://img.shields.io/microbadger/image-size/mritd/shadowsocks.svg) ![](https://img.shields.io/microbadger/layers/mritd/shadowsocks.svg)
 
-- **shadowsocks-libev 版本: 3.2.5**
-- **kcptun 版本: 20190424**
+- **shadowsocks-libev 版本: 3.3.1**
+- **kcptun 版本: 20190905**
 
 **注意: 由于 Docker Hub 自动构建功能最近出现的 Bug 比较多，构建队列缓慢；部分镜像(包含本镜像)可能会在采用本地 Build 然后直接 push 到远程仓库的方式构建；如有安全疑虑，可自行实用本 Dockerfile 构建**
 

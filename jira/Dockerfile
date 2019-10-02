@@ -1,4 +1,4 @@
-FROM dchevell/jira-software:8.2.2-jdk8
+FROM dchevell/jira-software:8.3.1-jdk8
 
 LABEL maintainer="mritd <mritd@linux.com>"
 

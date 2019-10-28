@@ -9,4 +9,4 @@ if [ "${JNDI_EMAIL}" == "true" ]; then
     mv ${CONFLUENCE_INSTALL_DIR}/confluence/WEB-INF/lib/mail-*.jar ${CONFLUENCE_INSTALL_DIR}/lib/
 fi
 
-/entrypoint.sh -fg
+/entrypoint.py -fg

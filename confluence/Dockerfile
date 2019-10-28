@@ -1,4 +1,4 @@
-FROM atlassian/confluence-server:7.0.2
+FROM atlassian/confluence-server:7.0.3
 
 LABEL maintainer="mritd <mritd@linux.com>"
 

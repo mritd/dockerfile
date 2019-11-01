@@ -5,7 +5,7 @@ LABEL maintainer="mritd <mritd@linux.com>"
 ARG TZ='Asia/Shanghai'
 
 ENV TZ ${TZ}
-ENV SS_LIBEV_VERSION v3.3.2
+ENV SS_LIBEV_VERSION v3.3.3
 ENV KCP_VERSION 20190924
 ENV V2RAY_PLUGIN_VERSION v1.2.0
 ENV SS_DOWNLOAD_URL https://github.com/shadowsocks/shadowsocks-libev.git 

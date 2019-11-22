@@ -1,12 +1,12 @@
-FROM alpine:3.10
+FROM alpine:3.10.3
 
 LABEL maintainer="mritd <mritd@linux.com>"
 
 ARG TZ='Asia/Shanghai'
 
 ENV TZ ${TZ}
-ENV SS_LIBEV_VERSION v3.3.1
-ENV KCP_VERSION 20190924
+ENV SS_LIBEV_VERSION v3.3.3
+ENV KCP_VERSION 20191112
 ENV V2RAY_PLUGIN_VERSION v1.1.0
 ENV SS_DOWNLOAD_URL https://github.com/shadowsocks/shadowsocks-libev.git 
 ENV KCP_DOWNLOAD_URL https://github.com/xtaci/kcptun/releases/download/v${KCP_VERSION}/kcptun-linux-amd64-${KCP_VERSION}.tar.gz

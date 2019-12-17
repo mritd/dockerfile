@@ -6,7 +6,7 @@ ARG TZ='Asia/Shanghai'
 
 ENV TZ ${TZ}
 ENV SS_LIBEV_VERSION v3.3.3
-ENV KCP_VERSION 20190924
+ENV KCP_VERSION 20191127
 ENV V2RAY_PLUGIN_VERSION v1.2.0
 ENV SS_DOWNLOAD_URL https://github.com/shadowsocks/shadowsocks-libev.git 
 ENV KCP_DOWNLOAD_URL https://github.com/xtaci/kcptun/releases/download/v${KCP_VERSION}/kcptun-linux-amd64-${KCP_VERSION}.tar.gz
@@ -24,6 +24,7 @@ RUN apk upgrade \
         c-ares-dev \
         libev-dev \
         libtool \
+        libcap \
         libsodium-dev \
         mbedtls-dev \
         pcre-dev \
@@ -51,6 +52,9 @@ RUN apk upgrade \
     && tar -zxf kcptun-linux-amd64-${KCP_VERSION}.tar.gz \
     && mv server_linux_amd64 /usr/bin/kcpserver \
     && mv client_linux_amd64 /usr/bin/kcpclient \
+    && for binPath in `ls /usr/bin/ss-* /usr/local/bin/obfs-* /usr/bin/kcp* /usr/bin/v2ray*`; do \
+            setcap CAP_NET_BIND_SERVICE=+eip $binPath; \
+       done \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && adduser -h /tmp -s /sbin/nologin -S -D -H shadowsocks \

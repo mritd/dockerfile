@@ -1,11 +1,11 @@
-FROM alpine:3.10
+FROM alpine:3.11
 
 LABEL maintainer="mritd <mritd@linux.com>"
 
 ARG TZ='Asia/Shanghai'
 
 ENV TZ ${TZ}
-ENV VERSION 0.28.0
+ENV VERSION 0.30.0
 ENV DOWNLOAD_URL https://github.com/fatedier/frp/releases/download/v${VERSION}/frp_${VERSION}_linux_amd64.tar.gz
 
 RUN apk upgrade --update \

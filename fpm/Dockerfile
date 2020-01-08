@@ -7,7 +7,7 @@ ARG TZ="Asia/Shanghai"
 ENV TZ ${TZ}
 
 RUN apk upgrade --update \
-    && apk add bash tzdata make gcc libc-dev tar wget \
+    && apk add bash tzdata make gcc libc-dev tar \
     && gem install fpm \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \

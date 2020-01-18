@@ -25,14 +25,14 @@ RUN apk upgrade --update \
     && mv /tmp/v2ray/v2ctl /usr/bin \
     && mv /tmp/v2ray/geoip.dat /usr/bin \
     && mv /tmp/v2ray/geosite.dat /usr/bin \
-    && mv /tmp/v2ray/vpoint_vmess_freedom.json /etc/v2ray/config.json \
     && chmod +x /usr/bin/v2ray \
     && chmod +x /usr/bin/v2ctl \
     && apk del curl \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && rm -rf /tmp/v2ray /var/cache/apk/*
-
+    
+ADD config.json /etc/v2ray/config.json
 ADD entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]

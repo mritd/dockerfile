@@ -5,3 +5,4 @@ mritd/vippasswd
 atlassian-confluence/atlassian-agent.jar
 atlassian-jira/atlassian-agent.jar
 rap2-dolores/config.prod.ts
+hugo/httpcmd

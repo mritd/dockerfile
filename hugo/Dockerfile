@@ -23,6 +23,6 @@ RUN apk upgrade \
     && rm -rf /usr/share/nginx/html /var/cache/apk/*
 
 COPY --from=builder /go/bin/httpcmd /usr/local/bin/httpcmd
-COPY endpoint.sh /endpoint.sh
+COPY entrypoint.sh /entrypoint.sh
 
-CMD ["/endpoint.sh"]
+CMD ["/entrypoint.sh"]

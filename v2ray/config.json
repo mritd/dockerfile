@@ -19,13 +19,13 @@
         "kcpSettings": {
           "mtu": 1350,
           "tti": 50,
-          "uplinkCapacity": 150,
-          "downlinkCapacity": 150,
+          "uplinkCapacity": 20,
+          "downlinkCapacity": 20,
           "congestion": false,
           "readBufferSize": 2,
           "writeBufferSize": 2,
           "header": {
-            "type": "none",
+            "type": "wechat-video",
             "request": null,
             "response": null
           }

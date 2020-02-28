@@ -5,9 +5,9 @@ LABEL maintainer="mritd <mritd@linux.com>"
 ARG TZ='Asia/Shanghai'
 
 ENV TZ ${TZ}
-ENV SS_LIBEV_VERSION v3.3.3
-ENV KCP_VERSION 20191229
-ENV V2RAY_PLUGIN_VERSION v1.2.0
+ENV SS_LIBEV_VERSION v3.3.4
+ENV KCP_VERSION 20200226
+ENV V2RAY_PLUGIN_VERSION v1.3.0
 ENV SS_DOWNLOAD_URL https://github.com/shadowsocks/shadowsocks-libev.git 
 ENV KCP_DOWNLOAD_URL https://github.com/xtaci/kcptun/releases/download/v${KCP_VERSION}/kcptun-linux-amd64-${KCP_VERSION}.tar.gz
 ENV PLUGIN_OBFS_DOWNLOAD_URL https://github.com/shadowsocks/simple-obfs.git

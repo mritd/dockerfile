@@ -15,7 +15,8 @@ ENV DOWNLOAD_URL https://github.com/studyzy/imewlconverter/releases/download/${V
 
 ENV PATH ${INSTALL_DIR}:${PATH}
 
-RUN apt update -y \
+RUN set -ex \
+    && apt update -y \
     && apt upgrade -y \
     && apt install tzdata locales curl -y \
     && curl -sSL ${DOWNLOAD_URL} > imewlconverter.tar.gz \

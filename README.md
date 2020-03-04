@@ -10,3 +10,9 @@ it will be maintained for long periods if necessary.
 ## Stargazers over time
 
 [![Stargazers over time](https://starcharts.herokuapp.com/mritd/dockerfile.svg)](https://starcharts.herokuapp.com/mritd/dockerfile)
+
+## JetBrains
+
+Thanks to JetBrains for providing IDE support for this project, click to buy JetBrains IDE license to support the strongest IDE in the universe.
+
+[![JetBrains](jetbrains.jpeg)](https://www.jetbrains.com/)

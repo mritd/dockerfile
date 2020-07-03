@@ -28,3 +28,5 @@ RUN set -ex \
 EXPOSE 8000
 
 ENTRYPOINT ["/opt/yearning/yearning"]
+
+CMD ["-m","-s"]

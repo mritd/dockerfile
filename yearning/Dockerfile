@@ -1,22 +1,3 @@
-FROM golang:1.14.4-alpine3.12 AS builder
-
-ARG VERSION="v2.2.2"
-
-ENV VERSION ${VERSION}
-ENV DOWNLOAD_URL https://github.com/cookieY/Yearning/archive/${VERSION}.tar.gz
-
-ENV GO111MODE on
-ENV GOPROXY https://goproxy.cn
-
-WORKDIR /go/src/github.com/cookiey/yearning
-
-RUN set -ex \
-    && apk add git tar wget \
-    && wget ${DOWNLOAD_URL} \
-    && tar -zxf ${VERSION}.tar.gz -C . --strip-components=1 \
-    && rm -f ${VERSION}.tar.gz \
-    && go install
-
 FROM alpine:3.12
 
 LABEL maintainer="mritd <mritd@linux.com>"
@@ -25,15 +6,25 @@ ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
 
+ENV VERSION 2.2.2
+ENV INSTALL_DIR /opt/yearning
+ENV DOWNLOAD_URL https://github.com/cookieY/Yearning/releases/download/v${VERSION}/Yearning-${VERSION}-4kstars.linux-amd64.zip
+
+WORKDIR ${INSTALL_DIR}
+
 RUN set -ex \
     && apk upgrade \
-    && apk add bash tzdata ca-certificates \
+    && apk add bash tzdata ca-certificates libc6-compat wget unzip \
+    && wget ${DOWNLOAD_URL} -O yearning.zip \
+    && unzip yearning.zip \
+    && mv Yearning-go/Yearning ./yearning \
+    && mv Yearning-go/dist ./dist \
+    && mv Yearning-go/conf.toml ./conf.toml \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
-    && rm -rf /var/cache/apk/*
-
-COPY --from=builder /go/bin/Yearning-go /usr/local/bin/yearning
+    && apk del wget unzip \
+    && rm -rf Yearning-go yearning.zip __MACOSX /var/cache/apk/*
 
 EXPOSE 8000
 
-ENTRYPOINT ["yearning"]
+ENTRYPOINT ["/opt/yearning/yearning"]

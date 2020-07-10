@@ -341,3 +341,8 @@ update v2ray-plugin to 1.3.0
 - 2020-04-13 update kcptun
 
 update kcptun to v20200409
+
+- 2020-07-10 update kcptun
+
+update kcptun to v20200701
+update base image to alpine 3.12

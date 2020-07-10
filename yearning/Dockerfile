@@ -6,9 +6,8 @@ ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
 
-ENV VERSION 2.2.2
 ENV INSTALL_DIR /opt/yearning
-ENV DOWNLOAD_URL https://github.com/cookieY/Yearning/releases/download/v${VERSION}/Yearning-${VERSION}-4kstars.linux-amd64.zip
+ENV DOWNLOAD_URL https://github.com/cookieY/Yearning/releases/download/v2.2.2/Yearning-2.2.2-4kstars.linux-amd64-patch-1.zip
 
 WORKDIR ${INSTALL_DIR}
 
@@ -20,6 +19,7 @@ RUN set -ex \
     && mv Yearning-go/Yearning ./yearning \
     && mv Yearning-go/dist ./dist \
     && mv Yearning-go/conf.toml ./conf.toml \
+    && chmod +x ./yearning/yearning \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && apk del wget unzip \

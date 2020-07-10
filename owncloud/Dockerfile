@@ -1,11 +1,11 @@
-FROM alpine:3.10
+FROM alpine:3.12
 
 LABEL maintainer="mritd <mritd@linux.com>"
 
 ARG TZ='Asia/Shanghai'
 
 ENV TZ ${TZ}
-ENV OWNCLOUD_VERSION 10.0.6
+ENV OWNCLOUD_VERSION 10.4.1
 ENV OWNCLOUD_GPGKEY E3036906AD9F30807351FAC32D5D5E97F6978A26
 ENV OWNCLOUD_DOWNLOAD_URL https://download.owncloud.org/community/owncloud-${OWNCLOUD_VERSION}.tar.bz2
 ENV OWNCLOUD_DOWNLOAD_ASC_URL https://download.owncloud.org/community/owncloud-${OWNCLOUD_VERSION}.tar.bz2.asc

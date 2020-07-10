@@ -1,11 +1,11 @@
-FROM python:3.7.0-slim-stretch AS builder
+FROM python:3.7.8-slim-buster AS builder
 
 RUN apt update \
     && apt install -y g++ gcc libxslt-dev make \
         libcurl4-openssl-dev build-essential libssl-dev \
     && pip install scylla
 
-FROM python:3.7.0-slim-stretch
+FROM python:3.7.8-slim-buster
 
 LABEL maintainer="mritd <mritd@linux.com>"
 

@@ -1,4 +1,4 @@
-FROM atlassian/jira-software:8.7.1
+FROM atlassian/jira-software:8.10.0
 
 LABEL maintainer="mritd <mritd@linux.com>"
 

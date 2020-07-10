@@ -19,7 +19,7 @@ RUN set -ex \
     && mv Yearning-go/Yearning ./yearning \
     && mv Yearning-go/dist ./dist \
     && mv Yearning-go/conf.toml ./conf.toml \
-    && chmod +x ./yearning/yearning \
+    && chmod +x ./yearning \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && apk del wget unzip \

@@ -2,6 +2,8 @@
 
 set -ex
 
+CGO_ENABLE=0
+
 SOURCE_DIR='/go/src/github.com/cloudflare/cfssl'
 
 git clone https://github.com/cloudflare/cfssl.git ${SOURCE_DIR}

@@ -6,7 +6,7 @@ if [ "${MODE}" == "trackerd" ];then
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] INFO: container run as trackerd mode."
     /etc/init.d/fdfs_trackerd start
     while true;do
-        if [ ! -n "$(ps -ef | grep fdfs_trackerd | grep -v grep)" ];then
+        if [ -z "$(pgrep fdfs_trackerd)" ];then
             echo "[$(date '+%Y-%m-%d %H:%M:%S')] ERROR: fdfs health check failed, container exit!"
             exit 1
         fi
@@ -16,7 +16,7 @@ elif [ "${MODE}" == "storaged" ];then
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] INFO: container run as storaged mode."
     /etc/init.d/fdfs_storaged start
     while true;do
-        if [ ! -n "$(ps -ef | grep fdfs_storaged | grep -v grep)" ];then
+        if [ -z "$(pgrep fdfs_storaged)" ];then
             echo "[$(date '+%Y-%m-%d %H:%M:%S')] ERROR: fdfs health check failed, container exit!"
             exit 1
         fi
@@ -38,8 +38,8 @@ else
     /etc/init.d/fdfs_storaged start
 
     while true;do
-        if [ ! -n "$(ps -ef | grep fdfs_trackerd | grep -v grep)" ] || \
-            [ ! -n "$(ps -ef | grep fdfs_storaged | grep -v grep)" ];then
+        if [ -z "$(pgrep fdfs_trackerd)" ] || \
+            [ -z "$(pgrep fdfs_storaged)" ];then
             echo "[$(date '+%Y-%m-%d %H:%M:%S')] ERROR: fdfs health check failed, container exit!"
             exit 1
         fi

@@ -1,14 +1,15 @@
-{
-  "inbounds": [{
-    "port": 10086,
+ {
+  "inbounds": [
+  {
+    "port": 10088,
     "protocol": "vmess",
     "settings": {
       "clients": [
         {
-          "id": "7f3fec33-6e54-46e9-85f5-2e6b174872b4",
+          "id": "63971ed9-f6ed-4540-b9f0-2254b180cc76",
           "level": 1,
           "alterId": 60
-	}
+		}
       ]
     },
 	"streamSettings": {
@@ -34,7 +35,51 @@
         "httpSettings": null,
         "quicSettings": null
 	}
-  }],
+  },
+  {
+    "port": 10100,
+    "protocol": "vless",
+    "settings": {
+      "decryption":"none",
+      "clients": [
+        {
+          "id": "63971ed9-f6ed-4540-b9f0-2254b180cc76",
+          "flow": "",
+          "level": 0,
+          "email": "Ilove@v2fly.org"
+		}
+      ],
+      "fallbacks": [
+        {
+            "dest": 80
+        }
+      ]
+    },
+	"streamSettings": {
+        "network": "kcp",
+        "security": null,
+        "tlsSettings": null,
+        "tcpSettings": null,
+        "kcpSettings": {
+          "mtu": 1350,
+          "tti": 50,
+          "uplinkCapacity": 25,
+          "downlinkCapacity": 25,
+          "congestion": false,
+          "readBufferSize": 2,
+          "writeBufferSize": 2,
+          "header": {
+            "type": "none",
+            "request": null,
+            "response": null
+          }
+        },
+        "wsSettings": null,
+        "httpSettings": null,
+        "quicSettings": null
+	}
+  }
+  ],
   "outbounds": [{
     "protocol": "freedom",
     "settings": {}

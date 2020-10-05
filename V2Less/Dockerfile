@@ -33,6 +33,7 @@ RUN apk upgrade --update \
     && rm -rf /tmp/v2ray /var/cache/apk/*
     
 ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 ADD config.json /etc/v2ray/config.json
 
 ENTRYPOINT ["/entrypoint.sh"]

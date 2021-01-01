@@ -1,4 +1,4 @@
-FROM golang:1.14.6-stretch
+FROM golang:1.15-stretch
 
 LABEL maintainer="mritd <mritd@linux.com>"
 

@@ -1,4 +1,4 @@
-FROM ruby:2.7.1-alpine3.12
+FROM ruby:2.7.2-alpine3.12
 
 LABEL maintainer="mritd <mritd@linux.com>"
 
@@ -7,9 +7,8 @@ ARG TZ="Asia/Shanghai"
 ENV TZ ${TZ}
 
 RUN apk upgrade --update \
-    && apk add bash tzdata make gcc libc-dev tar git \
-    && git clone https://github.com/jordansissel/fpm.git \
-    && (cd fpm && make install) \
+    && apk add bash tzdata make gcc libc-dev tar \
+    && gem install fpm \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && rm -rf fpm /var/cache/apk/*

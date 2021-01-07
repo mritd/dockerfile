@@ -1,3 +1,0 @@
-[submodule "gozap"]
-	path = gozap
-	url = git@github.com:Gozap/dockerfile.git

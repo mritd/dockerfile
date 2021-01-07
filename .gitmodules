@@ -1,0 +1,3 @@
+[submodule "ytpay"]
+	path = ytpay
+	url = git@github.com:ytpay/dockerfiles.git

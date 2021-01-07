@@ -1,4 +1,4 @@
-#/bin/bash
+#!/usr/bin/env bash
 
 for dir in /data/data /data/logs /data/config /data/plugins /data/client-plugins; do
     if [ ! -d "${dir}" ]; then

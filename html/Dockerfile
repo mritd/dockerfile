@@ -1,4 +1,4 @@
-FROM nginx:1.19-alpine
+FROM nginx:1.19.0-alpine
 
 LABEL maintainer="mritd <mritd@linux.com>"
 
@@ -9,11 +9,9 @@ RUN apk upgrade --update \
     && apk add bash tzdata curl wget ca-certificates \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /usr/share/nginx/html /var/cache/apk/*
 
-COPY index.html /usr/share/nginx/html/index.html
-
-COPY docker.png /usr/share/nginx/html/docker.png
+COPY landscape-animation-experiment /usr/share/nginx/html
 
 EXPOSE 80 443
 

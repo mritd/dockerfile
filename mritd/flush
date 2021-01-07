@@ -1,6 +1,0 @@
-#!/bin/bash
-
-set -e
-
-cd /usr/share/nginx/html && git pull
-echo "static file flush done..."

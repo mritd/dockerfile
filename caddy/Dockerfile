@@ -1,4 +1,4 @@
-FROM golang:1.15-alpine3.12 AS builder
+FROM golang:1.16-alpine3.13 AS builder
 
 RUN set -e \
     && apk upgrade \
@@ -23,7 +23,7 @@ RUN set -e \
         --with github.com/mholt/caddy-webdav
     
 
-FROM alpine:3.12 AS dist
+FROM alpine:3.13 AS dist
 
 LABEL maintainer="mritd <mritd@linux.com>"
 

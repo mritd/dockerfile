@@ -10,9 +10,7 @@ RUN set -e \
         --with github.com/caddy-dns/route53 \
         --with github.com/caddy-dns/cloudflare \
         --with github.com/caddy-dns/alidns \
-        --with github.com/caddy-dns/vultr \
         --with github.com/caddy-dns/dnspod \
-        --with github.com/caddy-dns/duckdns \
         --with github.com/caddy-dns/gandi \
         --with github.com/abiosoft/caddy-exec \
         --with github.com/greenpau/caddy-trace \
@@ -21,7 +19,6 @@ RUN set -e \
         --with github.com/porech/caddy-maxmind-geolocation \
         --with github.com/caddyserver/format-encoder \
         --with github.com/caddyserver/replace-response \
-        --with github.com/mholt/caddy-webdav \
         --with github.com/imgk/caddy-trojan
     
 

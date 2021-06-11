@@ -7,7 +7,6 @@ RUN set -e \
     && echo ">>>>>>>>>>>>>>> ${version} ###############" \
     && go get -u github.com/caddyserver/xcaddy/cmd/xcaddy \
     && xcaddy build ${version} --output /caddy \
-        --with github.com/caddy-dns/googleclouddns \
         --with github.com/caddy-dns/route53 \
         --with github.com/caddy-dns/cloudflare \
         --with github.com/caddy-dns/alidns \

@@ -1,7 +1,7 @@
 ## Dockerfile
 
 ### ⚠️⚠️⚠️ Note: Some build work of docker image is being migrated to earthly, you may not see the update commit in the current repo.
-### ⚠️⚠️⚠️ Earthlyfile has better scalability and is more convenient for cross-compilation; the migrated dockerfle can be viewed in [https://github.com/mritd/autobuild](https://github.com/mritd/autobuild).
+### ⚠️⚠️⚠️ Earthfile has better scalability and is more convenient for cross-compilation; the migrated dockerfle can be viewed in [https://github.com/mritd/autobuild](https://github.com/mritd/autobuild).
 
 ---
 
